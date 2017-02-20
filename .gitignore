@@ -7,7 +7,7 @@
 #--------------------------#
 
 /app/etc/local.xml
-/media/*
+!/media/*
 !/media/.htaccess
 !/media/customer/.htaccess
 !/media/dhl/logo.jpg
