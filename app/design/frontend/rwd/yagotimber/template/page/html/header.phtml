@@ -1,0 +1,569 @@
+<?php 
+/* Header */
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+<!-- for version 1 -->
+<?php if(($get_current_layout=='custom_static_page_one')) { ?>   
+<header>
+
+<?php
+// IF WE ARE ON HOMEPAGE
+if(Mage::getSingleton('cms/page')->getIdentifier() == 'home' && Mage::app()->getFrontController()->getRequest()->getRouteName() == 'cms'
+) : ?>
+
+<?php endif; ?>
+  <div class="header-container">
+    <div class="container">
+      <div class="row">
+        <div class="header-top-links">
+          <div class="col-lg-3 col-md-3 col-sm-2 col-xs-5 toplinks">
+            <div class="links">
+              <div class="click-nav">
+                <div class="no-js">
+                  <a class="clicker" title="<?php echo $this->__('Company') ?>"></a>
+                  <div class="top-links">
+                    <ul class="links">
+                      <li class="login">
+                        <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                          <a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>" title="<?php echo $this->__('Log In') ?>"><span><?php echo $this->__('Log In') ?></span></a>            
+                        <?php } ?>
+                        <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                          <a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>" title="<?php echo $this->__('Log Out') ?>"><span><?php echo $this->__('Log Out') ?></span></a>            
+                        <?php } ?>                        
+                          <a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('Register') ?>"><span><?php echo $this->__('Register') ?></span></a>
+                      </li>
+                      <li><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></li>
+                      <li><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"><?php echo $this->__('Wishlist') ?></a></li>
+                      <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1){?>
+                        <li><a href="<?php echo $this->getUrl('')?>onestepcheckout/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a>
+                        </li>
+                      <?php }else{ ?>
+                        <li><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a>
+                        </li>
+                      <?php } ?>
+                      <li class="last"><a title="<?php echo $this->__('Blog') ?>" href="<?php echo $this->getUrl('')?>blog/"><span><?php echo $this->__('Blog') ?></span></a></li>
+                    </ul>
+                  </div>
+                </div>
+               </div>
+             </div>
+            <div class="welcome-msg hidden-xs"><?php echo $this->getWelcome() ?><?php echo $this->getAdditionalHtml() ?></div>
+          </div><!--col-lg-3 col-md-3 col-sm-3 col-xs-12 toplinks-->
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 hidden-xs">
+            <?php echo $this->getChildHtml('topSearch') ?>
+          </div><!--col-lg-6 col-md-6 col-sm-6 col-xs-12-->
+          <div class="col-lg-3 col-md-3 col-sm-4 col-xs-7">
+            <div class="lang-curr">
+              <?php echo $this->getChildHtml('store_language') ?>     
+              <?php echo $this->getChildHtml('custom_currency_selector') ?>
+            </div>
+          </div><!--col-lg-3 col-md-3 col-sm-3 col-xs-12-->
+        </div>
+      </div>
+    </div> 
+  </div><!--header-container--> 
+</header>
+<nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-2 col-sm-2 col-xs-12">
+        <div class="logo">
+          <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><?php echo $this->getChildHtml('elantraLogo', false) ?></a>
+        </div><!--logo-->
+      </div><!--col-lg-3 col-md-2 col-sm-2 col-xs-12-->
+      <div class="mm-toggle-wrap">
+        <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label"><?php echo $this->__('Menu') ?></span> </div>
+      </div>
+      <div class="nav-inner col-lg-9 col-md-10 col-sm-10">
+        <?php echo $this->getChildHtml('topMenu'); ?>
+        <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_shoppingcart/shoppingcart_top')): ?>
+          <?php echo $this->getChildHtml('cartTop') ?>
+        <?php endif; ?> 
+      </div><!--nav-inner col-lg-9 col-md-10 col-sm-10-->
+    </div><!--row-->
+  </div><!--container-->
+</nav>
+<?php } ?>
+<!-- version 1 end-->
+<!-- for version 2 -->
+<?php if(($get_current_layout=='custom_static_page_two')) { ?>   
+<header>
+ <div class="header-container">
+      <div class="header-top">
+        <div class="container">
+          <div class="row"> 
+            <!-- Header Language -->
+            <div class="col-xs-7 col-sm-6">
+	      <?php echo $this->getChildHtml('store_language') ?> 
+	      <!-- End Header Language --> 
+              <!-- Header Currency -->
+	      <?php echo $this->getChildHtml('custom_currency_selector') ?>
+              
+              <!-- End Header Currency -->
+              
+              <div class="welcome-msg hidden-xs"><?php echo $this->__('8010255255 hello@yagotimber.com') ?>  </div>
+            </div>
+            <div class="col-xs-5 col-sm-6"> 
+              
+              <!-- Header Top Links -->
+              <div class="toplinks">
+                <div class="links">
+
+                  <div class="myaccount"><a title="<?php echo $this->__('My Account') ?>" href="<?php echo $this->getUrl('')?>customer/account/"><span class="hidden-xs"><?php echo $this->__('My Account') ?></span></a></div>
+                  <div class="check">
+                      <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1){?>
+		      <a title="<?php echo $this->__('Checkout') ?>" href="<?php echo $this->getUrl('')?>onestepcheckout/"><span class="hidden-xs"><?php echo $this->__('Checkout') ?></span></a>
+                        
+                      <?php }else{ ?>
+		      <a title="<?php echo $this->__('Checkout') ?>" href="<?php echo $this->getUrl('')?>checkout/onepage/"><span class="hidden-xs"><?php echo $this->__('Checkout') ?></span></a>
+
+                        <?php } ?>
+		    </div>
+                  <div class="demo"><a title="<?php echo $this->__('Blog') ?>" href="<?php echo $this->getUrl('')?>blog/"><span class="hidden-xs"><?php echo $this->__('Blog') ?></span></a></div>
+                  <!-- Header Company -->
+                  <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="#"> Company <span class="caret"></span></a>
+                   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_top_links2_block')->toHtml() ?>
+                  </div>
+                  <!-- End Header Company -->
+                  <div class="login">
+			  <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+				  <a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>"><span class="hidden-xs"><?php echo $this->__('Log In') ?></span></a>
+			  <?php } ?>
+			  <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+				  <a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>"><span class="hidden-xs"><?php echo $this->__('Log Out') ?></span></a>
+			  <?php } ?>  
+		  </div>
+                </div>
+              </div>
+              <!-- End Header Top Links --> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</header>
+<nav>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-2 col-sm-2 col-xs-12">
+
+        <div class="logo">
+          <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><?php echo $this->getChildHtml('elantraLogo2', false) ?></a>
+        </div><!--logo-->
+      </div><!--col-lg-3 col-sm-3 col-xs-4-->
+      <div class="mm-toggle-wrap">
+          <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label"><?php echo $this->__('Menu') ?></span> </div>
+        </div>
+      <div class="nav-inner col-lg-10 col-md-10 col-sm-10">
+        <?php //echo $this->getChildHtml('topMenuMob'); ?>
+        <?php echo $this->getChildHtml('topMenu'); ?>
+        <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_shoppingcart/shoppingcart_top')): ?>
+          <?php echo $this->getChildHtml('cartTop') ?>    
+        <?php endif; ?>
+        <?php echo $this->getChildHtml('topSearch') ?>
+      </div><!--nav-inner col-lg-9 col-md-9 col-sm-9-->
+    </div><!--row-->
+  </div><!--container-->
+</nav>
+<?php } ?>
+<!-- version 2 End-->
+<!-- version 3 start -->
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> 
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header_top_block')->toHtml() ?>
+<header id="header">
+  <div class="header-container">
+    <div class="logo">
+       <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><?php echo $this->getChildHtml('elantraLogo3', false) ?></a>
+    </div><!--logo-->
+    <div class="top-menu container">
+      <div class="row">
+        <nav>
+          <div class="mm-toggle-wrap">
+              <div class="mm-toggle"><i class="fa fa-align-justify"></i><span class="mm-label"><?php echo $this->__('Menu') ?></span> </div>
+          </div>
+          <div class="nav-inner">
+            <?php echo $this->getChildHtml('topMenu'); ?>
+          </div><!--nav-inner-->
+        </nav>
+      </div><!--row-->
+    </div><!--top-menu container-->
+    <div class="header-right-col">
+      <div class="click-nav">
+        <div class="no-js">
+          <a class="clicker" title="Company"></a>
+          <div class="top-links">
+            <div class="lang-curr">
+              <?php echo $this->getChildHtml('store_language') ?>     
+              <?php echo $this->getChildHtml('custom_currency_selector') ?>
+            </div><!--lang-curr-->
+            <ul class="links">
+              <li><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></li>
+              <li><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"><?php echo $this->__('Wishlist') ?></a></li>
+              <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1) { ?>
+                <li><a href="<?php echo $this->getUrl('')?>onestepcheckout/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } else { ?>
+                <li><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } ?>
+              <li><a href="<?php echo $this->getUrl('')?>blog" title="<?php echo $this->__('Blog') ?>"><span><?php echo $this->__('Blog') ?></span></a></li>
+			  
+              <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>" title="<?php echo $this->__('Log In') ?>"><span><?php echo $this->__('Log In') ?></span></a></li>
+              <?php } ?>
+              <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>" title="<?php echo $this->__('Log Out') ?>"><span><?php echo $this->__('Log Out') ?></span></a></li>
+              <?php } ?>
+            </ul>
+          </div><!--top-links-->
+        </div><!--no-js-->
+      </div><!--click-nav-->
+      <div class="top-cart-contain">
+		<?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_shoppingcart/shoppingcart_top')): ?>
+           <?php echo $this->getChildHtml('cartTop') ?>
+        <?php endif; ?> 
+      </div><!--top-cart-contain-->
+      <?php echo $this->getChildHtml('topSearch') ?>
+    </div><!--header-right-col-->
+  </div><!--header-container-->
+</header>   
+<?php echo $this->getChildHtml('topContainer'); ?>
+
+<script type="text/javascript">
+  jQuery('.cross-img').click(function(){
+        jQuery(".header-banner").hide();
+  });
+</script>
+<?php } ?>
+<!-- version 3 end -->
+<!-- for version 4 -->
+<?php if(($get_current_layout=='custom_static_page_four')) { ?> 
+<header>
+<div class="header-container">
+ <div class="container">
+  <div class="row">
+    <div class="col-lg-4 col-xs-12 col-sm-5">
+      <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_home4_shipping_block')->toHtml() ?>     
+      <?php echo $this->getChildHtml('custom_currency_selector') ?>
+      <?php echo $this->getChildHtml('store_language') ?>
+      <div class="welcome-msg hidden-xs"><?php echo $this->getWelcome() ?><?php echo $this->getAdditionalHtml() ?></div>
+    </div><!--col-lg-4 col-xs-12 col-sm-5-->
+    <div class="col-lg-4 col-xs-12 col-sm-3 logo">
+      <div class="logo-img">
+        <a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>">
+          <?php echo $this->getChildHtml('elantraLogo4', false) ?>
+        </a>
+      </div>
+    </div><!--col-lg-4 col-xs-12 col-sm-3 logo-->
+    <div class="col-lg-4 col-xs-12 col-sm-4 toplinks">
+    <div class="links">
+            <div class="myaccount hidden-xs"><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></div>
+			
+           
+            <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1){?>
+            <div class="check hidden-xs"><a href="<?php echo $this->getUrl('')?>onestepcheckout/" title="<?php echo $this->__('Checkout') ?>">
+             <span class="hidden-xs"><?php echo $this->__('Checkout') ?></span></a>
+           </div>
+           <?php }else{ ?>
+           <div class="check hidden-xs"><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>">
+             <span class="hidden-xs"><?php echo $this->__('Checkout') ?></span></a>
+           </div>
+           <?php } ?>
+           <div class="demo hidden-xs"><a href="<?php echo $this->getUrl('')?>blog" title="<?php echo $this->__('Blog') ?>"><span class="hidden-xs"><?php echo $this->__('Blog') ?></span></a></div>
+          <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+             <div class="login"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>" title="<?php echo $this->__('Log In') ?>"><?php echo $this->__('Log In') ?></a>
+             </div>
+          <?php } ?>
+          <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+             <div class="logout"><a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>" title="<?php echo $this->__('Log Out') ?>"><?php echo $this->__('Log Out') ?></a>
+             </div>
+          <?php } ?>
+         </div> <!--links-->
+       </div><!--col-lg-4 col-xs-12 col-sm-4 toplinks-->
+     </div>
+   </div>
+ </div>
+</header>
+<nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-1 col-sm-1 nav-wrapper"> 
+          <?php echo $this->getChildHtml('topMenu4'); ?>
+        </div> 
+        <div class="col-lg-7 col-xs-12 col-sm-4 search-section">
+          <?php echo $this->getChildHtml('topSearch') ?>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-3 nav-right">
+          <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_shoppingcart/shoppingcart_top')): ?>
+             <?php echo $this->getChildHtml('cartTop') ?>
+          <?php endif; ?> 
+             <div class="wishlist hidden-xs"><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"><span><?php echo $this->__('Wishlist') ?></span></a></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+<?php } ?>
+<!-- version 4 end -->
+<!-- for version 5 -->
+<?php if(($get_current_layout=='custom_static_page_five')) { ?>   
+<header >
+  <div class="header-container">
+      <div class="header-top">
+      <div class="container"> 
+          <div class="row">
+             <div class="header-top-links">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-9">
+
+                       <div  class="logo" itemscope itemtype="http://schema.org/Organization">
+                           <!--  <a itemprop="url" href=" http://www.yagotimber.com"> -->
+                          
+                           
+                             
+                           <a itemprop="url" href="http://local.mage.dev/yagotimber/">
+                             <img style="height: 33px !important; width: 30px !important; " src="<?php echo $this->getUrl('') ?>/media/drawable-hdpi-icon.png"/>
+
+                            <img itemprop="logo" src="http://yagotimbercdn.magehost.com/skin/frontend/rwd/yagotimber/images/logo2.png " alt="Yagotimber Furniture Store " title="Yagotimber - Online Furniture Store" width="200" height="20"/></a>
+                            </div> 
+                       </div>
+
+                      <!--HeaderTopLinks -->
+
+              <div class=" col-lg-8 col-md-8 col-sm-8 col-xs-3 toplinks">
+                <div class="links">
+                                        
+                <!--HeaderCompany -->
+                <!--  <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="#"> COMPANY <span class="caret"></span></a>
+                   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_top_links2_block')->toHtml() ?>
+                  </div>  --> 
+                  <!-- End Header Company -->
+                    <div class="login">
+                    <!-- <a href="#" class="btn btn-app-store hidden-xs hidden-sm"><i class="fa fa-apple"></i> <span class="small">Download on the</span> <span class="big">App Store</span></a> -->
+
+                     <a href="#" class="btn btn-app-store hidden-xs hidden-sm"><i class="fa fa-mobile"></i> <span class="small">Download</span> <span class="big">YAGO APP</span></a>
+                  <!--   <i class="fa fa-cloud-download" aria-hidden="true"></i> -->
+
+                        <a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"> <i class="fa fa-heart-o" style="font-size: 15px;" aria-hidden="true"></i></a>
+      <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+        <a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>"><span class="hidden-xs"><?php echo $this->__('LOGIN') ?></span></a>
+      <?php } ?>
+<!-- <?php echo $this->__('Wishlist') ?>  --> 
+
+     <!--  <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+        <a href="<?php echo $this->getUrl('')."customer/account/create/"; ?>"><span class="hidden-xs"><?php echo $this->__('REGISTER') ?></span></a>
+      <?php } ?>  -->
+      
+     <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+        <div class="dropdown block-company-wrapper hidden-xs"><a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" href="<?php echo $this->getUrl('')."customer/account/"; ?>">
+              <span class="hidden-xs"><?php $customer_info = Mage::getSingleton('customer/session')->getCustomer();
+          echo 'Hi,' .strtoupper($customer_info->getFirstname()).' ';?></span>
+              <span class="caret"></span></a>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('my_account_link')->toHtml() ?>
+        </div>
+      <?php } ?>  
+        
+      <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+        <a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>"><span class="hidden-xs"><?php echo $this->__('LOG OUT') ?></span></a>
+      <?php } ?>  
+    </div> 
+      <span id="sidemebtn" class="hidden-xs" style="vertical-align: middle; font-size:20px;cursor:pointer; padding-left:10px; " onclick="openNav(); menuScroll();">&#9776;</span>
+
+
+               
+         
+
+
+                </div>
+              </div>
+              
+               <div class="header-search">
+               <h3 style="padding-bottom: 10px;" class="text-center"><span class="header_search_text1"> Beautiful Home Starts Here</span> </h3>
+               <h3 class="text-center"><span class="header_search_text"> #Relive</span></h3>
+            <?php echo $this->getChildHtml('topSearch') ?>
+               </div> 
+         </div>
+      
+      </div>
+    </div>
+     </div> 
+
+          <div class="container"> 
+          <div class="row">
+            <div class="col-md-9"></div>
+               <div class="col-md-3" style="float:right;">
+                  <div id="mySidenav" class="sidenav">
+                  <a class="closebtn" id="sbtnclose" onclick="closeNav(); menuScrollrem();" href="javascript:void(0)">&times;</a>
+                     <nav>
+                       <div class="container" style="padding:10px;"> 
+                        <div class="row" >
+                          <div class="mm-toggle-wrap">
+                              <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label"><?php echo $this->__('Menu') ?></span> </div>
+                            </div>
+
+
+                         <!-- <div class="nav-inner"> --> 
+                            <?php echo $this->getChildHtml('topMenu'); ?>   
+                         <!--   </div> --> <!--nav-inner col-lg-9 col-md-9 col-sm-9-->
+
+
+
+                          </div>
+                       </div> <!--row-->
+                       </nav> 
+                     </div>
+                     
+                    </div>
+                    </div>
+                 <!--      .................mobile menu.............. -->
+
+                       
+                  <!--   ...........................end mobile menu..................... -->
+              </div>
+
+
+
+  
+              <!-- .....................mobile menu..................... -->
+         
+                   <nav class="visible-xs  mobile_nav_display"> 
+                       <div class="container" style="padding:10px;"> 
+                        <div class="row" >
+                          <div class="mm-toggle-wrap">
+                              <div class="mm-toggle"><i class="fa fa-reorder"></i><span class="mm-label"><?php echo $this->__('Menu') ?></span> </div>
+                            </div>
+                          <div class="nav-inner">
+                            <?php echo $this->getChildHtml('topMenu'); ?>   
+                          </div> 
+                          </div>
+                      
+                       </nav> 
+                      
+              <!-- .............................end mobile menu................................ -->
+
+
+
+
+
+ </div>
+           <!--  <div>
+               <img  src="<?php echo $this->getUrl('') ?>/media/wysiwyg/newbg_1_.jpg"/>
+             </div> -->
+  
+              <!-- End Header Top Links --> 
+   </header>
+
+ 
+ <!-- <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header_sidenav')->toHtml() ?> -->
+ 
+
+  <script>
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+
+<script type="text/javascript">
+// $(document).ready(function() {
+    
+//   $('body')
+//   .on('shown', function () {
+//     $('body').on('wheel.modal mousewheel.modal', function () {
+//       return false;
+//     });
+//   })
+//   .on('hidden', function () {
+//     $('body').off('wheel.modal mousewheel.modal');
+//   });
+
+// });
+// var curScrollTop = $(window).scrollTop();
+//  $('html').toggleClass('noscroll').css('top', '-' + curScrollTop + 'px');
+
+</script>
+
+<style type="text/css">
+
+ .noscroll{
+  overflow: hidden !important;
+    /*position: fixed;
+    width: 100%;
+    top:0;
+    left: 0;
+    height: 100%;
+    overflow-y: scroll !important;
+    z-index: 10;*/
+ }
+/*body {
+   
+    overflow-x: hidden;
+    overflow-y: scroll !important;
+}*/
+ </style>
+
+
+<script>
+
+function menuScrollrem(){
+
+  // alert(15854);
+ 
+  var myButtonClasses = document.documentElement.classList;
+
+  myButtonClasses.remove("noscroll");
+}
+
+function menuScroll(){
+
+  // alert(15854);
+ 
+  var myButtonClasses = document.documentElement.classList;
+
+  myButtonClasses.add("noscroll");
+}
+
+// var $body = $(window.document.body);
+
+// function bodyFreezeScroll() {
+//     var bodyWidth = $body.innerWidth();
+//     $body.css('overflow', 'hidden');
+//     $body.css('marginRight', ($body.css('marginRight') ? '+=' : '') + ($body.innerWidth() - bodyWidth))
+// }
+
+// function bodyUnfreezeScroll() {
+//     var bodyWidth = $body.innerWidth();
+//     $body.css('marginRight', '-=' + (bodyWidth - $body.innerWidth()))
+//     $body.css('overflow', 'auto');
+// }
+//  $( document ).ready(function() {
+//     console.log( "ready!" );
+// });
+
+//   $(document).ready(function() {                       //run when the DOM is ready
+//   $("#sidemebtn").click(function() {
+//         alert("tghth");  //use a class, since your ID gets mangled
+//     $('html').addClass("noscroll");      //add the class to the clicked element
+//   });
+// });
+
+//   $(document).ready(function() {                       //run when the DOM is ready
+//   $("#sbtnclose").click(function() {  //use a class, since your ID gets mangled
+//     $('html').removeClass("noscroll");      //add the class to the clicked element
+//   });
+// });
+
+ 
+
+</script>
+
+ 
+<?php } ?>
+<!-- version 5 End-->
+ <?php echo $this->getChildHtml('topContainer'); ?>
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalog/product/home-popup.phtml')->toHtml(); ?>

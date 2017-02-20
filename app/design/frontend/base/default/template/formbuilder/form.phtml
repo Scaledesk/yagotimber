@@ -1,0 +1,153 @@
+<?php
+/*
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   frontend template
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+?>
+<?php
+ 
+$formIdfromCms = $this->getFormId();
+$formIdfromUrl = $this->getRequest()->getParam('id');
+$passFormId = $formIdfromCms ? $formIdfromCms : $formIdfromUrl;
+
+$helper = Mage::helper('formbuilder');
+$session = Mage::getSingleton('core/session');
+if ($helper->isEnabled()): ?>
+	<?php echo $this->getMessagesBlock()->getGroupedHtml(); ?>
+  
+        <?php
+			//$passFormId = intval($this->getRequest()->getParam('id'));
+			$currentForm = $currentFormFieldsCollection = array();
+			$currentForm = $this->getCurrentFormUsingBlock($passFormId);
+			if(isset($currentForm) && $currentForm!=NULL && count($currentForm)):
+				$titleImage = Mage::getBaseUrl('media').$currentForm->getTitleImage();
+				$currentFormFieldsCollection = $this->getCurrentFormFields($passFormId);
+				if(count($currentFormFieldsCollection)):
+					$currentFormId = $currentForm['forms_index'];
+					$formBgcolor = $currentForm['bgcolor'];
+					$formRedirectUrl = Mage::getUrl('formbuilder/index/formsubmit');
+					$submitButtonText = $currentForm['submit_text'];
+					if(!$submitButtonText)
+						$submitButtonText = "Submit";
+					?>
+					<?php //echo $this->getLayout()->createBlock('core/template')->setTemplate('formbuilder/fields_validation.phtml')->toHtml(); ?>
+					<script type="text/javascript">
+					function validateOptionsCallback(elmId, result)
+					{
+				        var container = $(elmId).up('ul.options-list');
+				        if (result == 'failed') {
+				            container.removeClassName('validation-passed');
+				            container.addClassName('validation-failed');
+				        } else {
+				            container.removeClassName('validation-failed');
+				            container.addClassName('validation-passed');
+				        }
+				    }
+				    </script>
+                      <?php if($currentForm['title_image']): ?>
+						<div class="title_image">
+						    <h2><?php echo "<img src='$titleImage' height='100' width='900' />" ?></h2>
+						</div>
+					<?php endif; ?>
+                    
+        	
+            
+            	<?php /*?><div class="pop-detail">
+                	<h1><?php echo $currentForm->getTitle(); ?></h1>
+                    <?php if($currentForm['header_content']): ?>
+								<p>
+								    <?php echo $currentForm['header_content']; ?>
+								</p>
+							<?php endif; ?>
+                          
+                    <img src="http://www.site4clientdemo.com/yagotimber/skin/frontend/rwd/yagotimber/images/custom-popup-step.png">
+                </div><?php */?>
+                
+                <div class="pop-detail">
+                	<h3><?php echo $currentForm->getTitle(); ?></h3>
+                </div>
+           
+      
+    	<form method="post" id="custom_form" action="<?php echo $formRedirectUrl ?>" name="custom_form" enctype="multipart/form-data">
+        <div class="pop-field">
+        	
+                <?php               $i =0;
+					        		foreach ($currentFormFieldsCollection as $key => $field){ ?>
+                                        <?php if($i== 0) { ?>
+                                        
+            	<div class="pop-field2">
+				<?php } elseif($i== 5) { ?>
+                   
+            	<div class="pop-field2">
+                <?php  } ?>
+                                        <?php 
+										$functionName = "get".ucfirst($field['previous_group'])."Html";
+					        			echo $this->$functionName($field);
+										
+										
+										if($i == 4)
+										{ ?>
+								             </div>
+            
+								<?php 
+										}
+									
+										$i++;
+					        		}
+								?>
+                                	
+
+                   
+                     
+                       <?php if($currentForm['footer_content']): ?>
+								<div class="footer_content">
+								    <?php echo $currentForm['footer_content']; ?>
+								</div>
+							<?php endif; ?>
+							
+                  <input type="hidden" name="current_form_id" id="current_form_id" value="<?php echo $currentFormId ?>">
+					        <button class="button pop-submit" title="<?php echo $this->__($submitButtonText) ?>" type="submit"><span><span><?php echo $this->__($submitButtonText) ?></span></span></button>
+                                       
+                   
+                </div>
+           <div class="action-call">You can also call us on <img alt="Phone" src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/phone036.png" /> <b>8010 255 255</b></div>
+        </div>
+        </form>
+		
+		
+
+		<script type="text/javascript">
+						var myForm = new VarienForm('custom_form', true);
+					</script>
+					<style type="text/css">
+						<?php
+							$formStyle = "#custom_form .fieldset, #custom_form .form-list {background-color: ".$formBgcolor."}";
+							echo $formStyle;
+						?>
+					</style>
+				<?php else: ?>
+					<p class="note-msg"><?php echo $this->__('There are no fields enabled/available in the requested form.') ?></p>
+				<?php endif; ?><!--if(count($currentFormFieldsCollection))-->
+			<?php endif; ?><!--if(isset($currentForm))-->
+		
+<?php endif; ?>	

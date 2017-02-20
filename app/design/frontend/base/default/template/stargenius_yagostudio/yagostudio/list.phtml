@@ -1,0 +1,44 @@
+<?php 
+/**
+ * StarGenius_Yagostudio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudio
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Yagostudio list template
+ *
+ * @category    StarGenius
+ * @package     StarGenius_Yagostudio
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_yagostudios = $this->getYagostudios(); ?>
+<div class="page-title yagostudio-title">
+    <h1><?php echo Mage::helper('stargenius_yagostudio')->__('Yagostudios') ?></h1>
+</div>
+<?php if ($_yagostudios->getSize() > 0) :?>
+    <?php echo $this->getPagerHtml(); ?>
+    <div class="yagostudio-list-container">
+    <?php foreach ($_yagostudios as $_yagostudio) : ?>
+        <div class="yagostudio-list-item">
+            <a href="<?php echo $_yagostudio->getYagostudioUrl()?>">
+                <?php echo $_yagostudio->getDesignerName();?>
+            </a><br />
+        </div>
+    <?php endforeach;?>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('stargenius_yagostudio')->__('There are no yagostudios at this moment');?>
+<?php endif;?>

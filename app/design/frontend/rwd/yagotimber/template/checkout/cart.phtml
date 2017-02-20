@@ -1,0 +1,180 @@
+
+<?php
+/**
+ * Shopping cart template
+ *
+ * @see Mage_Checkout_Block_Cart
+ */
+
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+<div class="page-heading">
+        <div class="page-title">
+          <h1><?php echo $this->__('Shopping Cart') ?></h1>
+        </div><!--page-title-->
+</div><!--page-heading-->
+<?php } ?> <!-- For version 3 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+<div class="shop_header has_big_img">
+    <div class="shop_header_image_background  parallax loaded" data-stellar-background-ratio="&quot;0.5&quot;"> </div>
+    <div class="cms-bg-overlay"></div>
+    <div class="container">
+      <div class="page-title">
+          <h1><?php echo $this->__('Shopping Cart') ?></h1>
+        </div>
+    </div>
+  </div>
+  <?php } ?> <!-- For version 5 -->
+
+    <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3, 5 -->
+      <div class="main-container col1-layout wow bounceInUp animated">
+        <div class="main container">
+          <div class="col-main">
+    <?php } ?>
+
+    <div class="cart wow bounceInUp animated">
+        <?php if(($get_current_layout!='custom_static_page_three') && ($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude From version 3, 5-->
+          <div class="page-title">
+            <h1><?php echo $this->__('Shopping Cart') ?></h1>
+          </div><!--page-title-->
+        <?php } ?> <!-- Exclude From version 3, 5 -->
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('form_before') ?>
+    <div class="table-responsive">
+    <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+        <?php echo $this->getBlockHtml('formkey'); ?>
+        <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+                <col width="1" />
+                <col />
+                <col width="1" />
+            <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                <col width="1" />
+            <?php endif ?>
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+            <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+            <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                <col width="1" />
+            <?php endif; ?>
+                <col width="1" />
+
+            <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+                <thead>
+                    <tr>
+                        <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+                        <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product Name') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>"></th>
+                        <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span></th>
+                        <?php endif ?>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Unit Price') ?></span></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><?php echo $this->__('Qty') ?></th>
+                        <th class="a-center" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Subtotal') ?></th>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center">&nbsp;</th>
+                    </tr>
+                    <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                    <tr>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                    </tr>
+                    <?php endif; ?>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td colspan="50" class="a-right">
+                            <?php if($this->getContinueShoppingUrl()): ?>
+                                <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                            <?php endif; ?>
+                            <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Cart'); ?>" class="button btn-update"><span><span><?php echo $this->__('Update Cart'); ?></span></span></button>
+                            <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Cart'); ?>" class="button btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Cart'); ?></span></span></button>
+                            <!--[if lt IE 8]>
+                            <input type="hidden" id="update_cart_action_container" />
+                            <script type="text/javascript">
+                            //<![CDATA[
+                                Event.observe(window, 'load', function()
+                                {
+                                    // Internet Explorer (lt 8) does not support value attribute in button elements
+                                    $emptyCartButton = $('empty_cart_button');
+                                    $cartActionContainer = $('update_cart_action_container');
+                                    if ($emptyCartButton && $cartActionContainer) {
+                                        Event.observe($emptyCartButton, 'click', function()
+                                        {
+                                            $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                            $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                            $cartActionContainer.setValue('empty_cart');
+                                        });
+                                    }
+
+                                });
+                            //]]>
+                            </script>
+                            <![endif]-->
+                        </td>
+                    </tr>
+                </tfoot>
+                <tbody>
+                <?php foreach($this->getItems() as $_item): ?>
+                    <?php echo $this->getItemHtml($_item) ?>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+        </fieldset>
+    </form>
+</div><!--table-responsive-->
+ </div>  <!--cart wow bounceInUp animated animated-->
+
+   <!-- BEGIN CART COLLATERALS -->
+<div class="cart-collaterals row  wow bounceInUp animated"> 
+  <div class="col-sm-4">
+    <?php echo $this->getChildHtml('checkout.cart.extra') ?>
+    <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping'); endif; ?> 
+  </div>   
+  <div class="col-sm-4">    
+    <?php echo $this->getChildHtml('coupon') ?> 
+  </div> <!--col-sm-4-->
+  <div class="col-sm-4">
+    <div class="totals">
+    <?php /* Extensions placeholder */ ?>
+    <h3><?php echo $this->__('Shopping Cart Total')?></h3>
+    <div class="inner">
+      <?php echo $this->getChildHtml('totals'); ?>
+       <?php if(!$this->hasError()): ?>  
+         <ul class="checkout">           
+          <?php foreach ($this->getMethods('methods') as $method): ?>
+            <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+              <li><?php echo $methodHtml; ?></li><br />
+            <?php endif; ?>
+          <?php endforeach; ?>
+         </ul>                
+       <?php endif; ?>
+    </div><!--inner-->
+    </div><!--totals-->
+  </div> <!--col-sm-4-->
+</div> <!--cart-collaterals-->
+
+<?php echo $this->getChildHtml('crosssell') ?>
+
+    <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- for version 3, 5 -->
+          </div> <!--col-main-->
+        </div>
+      </div>      
+    <?php } ?> <!-- for version 3, 5 -->

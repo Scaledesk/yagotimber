@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_Yagostudio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudio
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<widgets>
+    <yagostudio_yagostudio_view type="stargenius_yagostudio/yagostudio_widget_view" translate="name description" module="stargenius_yagostudio">
+        <name>Yagostudio view</name>
+        <description>Yagostudio view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <yagostudio_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Yagostudio</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_yagostudio/adminhtml_yagostudio_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Yagostudio</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </yagostudio_id>
+        </parameters>
+    </yagostudio_yagostudio_view>
+    <yagostudio_yagostudio_link type="stargenius_yagostudio/yagostudio_widget_link" translate="name description" module="stargenius_yagostudio">
+        <name>Yagostudio link</name>
+        <description>Yagostudio link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <yagostudio_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Yagostudio</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_yagostudio/adminhtml_yagostudio_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Yagostudio</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </yagostudio_id>
+        </parameters>
+    </yagostudio_yagostudio_link>
+</widgets>

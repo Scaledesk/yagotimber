@@ -1,0 +1,24 @@
+<div class="page-heading">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="page-title">
+          <h2><?php echo $this->__('Shopping Cart is Empty') ?></h2>
+        </div><!--page-title-->
+      </div><!--col-xs-12-->
+    </div><!--row-->
+  </div><!--container-->
+</div><!--page-heading-->
+
+<div class="main-container col1-layout wow bounceInUp animated">
+    <div class="main container">
+<div class="cart-empty">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('checkout_cart_empty_widget'); ?>
+    <p><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <p><?php echo $this->__('Click <a href="%s">here</a> to continue shopping.', $this->getContinueShoppingUrl()) ?></p>
+    <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
+</div>
+</div> 
+</div>
+

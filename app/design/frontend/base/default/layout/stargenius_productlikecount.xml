@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_ProductLikeCount extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_ProductLikeCount
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+    
+    <stargenius_productlikecount_productslike_index translate="label" module="stargenius_productlikecount">
+        <label>ProductsLikes list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_productlikecount/productslike_list" name="productslike_list" template="stargenius_productlikecount/productslike/list.phtml" />
+        </reference>
+    </stargenius_productlikecount_productslike_index>
+    <stargenius_productlikecount_productslike_view translate="label" module="stargenius_productlikecount">
+        <label>ProductsLike view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_productlikecount/productslike_view" name="productslike_view" template="stargenius_productlikecount/productslike/view.phtml" />
+        </reference>
+    </stargenius_productlikecount_productslike_view>
+</layout>

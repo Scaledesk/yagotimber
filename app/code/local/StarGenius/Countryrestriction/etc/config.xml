@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <StarGenius_Countryrestriction>
+            <version>0.1.0</version>
+        </StarGenius_Countryrestriction>
+    </modules>
+    <global>
+        <models>
+            <countryrestriction>
+                 <class>StarGenius_Countryrestriction_Model</class>
+            </countryrestriction>
+            <checkout>
+                <rewrite>
+                    <type_onepage>StarGenius_Countryrestriction_Model_Onepage</type_onepage>
+                </rewrite>
+            </checkout>
+        </models>
+    </global>
+</config>

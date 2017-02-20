@@ -1,0 +1,35 @@
+<adminhtml>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<Netsolutions_Checkdelivery>
+							<title>CheckDelivery Module</title>
+							<sort_order>10</sort_order>
+						</Netsolutions_Checkdelivery>
+						<system>
+							<children>
+								<config>
+									<children>
+										<checkdelivery translate="title" module="checkdelivery">
+											<title>Netsolutions CheckDelivery Section</title>
+										</checkdelivery>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<layout>
+			<updates>
+				<checkdelivery>
+					<file>checkdelivery.xml</file>
+				</checkdelivery>
+			</updates>
+		</layout>
+    </adminhtml> 

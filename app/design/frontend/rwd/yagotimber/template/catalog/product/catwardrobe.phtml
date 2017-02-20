@@ -1,0 +1,350 @@
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_one')) { ?>   
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu1.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_two')) { ?>  
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min2.css" type="text/css" /> 
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu2.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common2.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?>   
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu3.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common3.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_four')) { ?>  
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min4.css" type="text/css" /> 
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider4.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style4.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal4.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common4.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?>     
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu5.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common5.js" type="text/javascript"></script>
+<?php } ?>
+
+</head>
+
+<body class="<?php echo $this->getBodyClass()?' '.$this->getBodyClass().'':'' ?>">
+  <div id="page">
+       <?php echo $this->getChildHtml('after_body_start') ?>
+
+       <?php echo $this->getChildHtml('global_notices') ?>      
+      
+      <?php echo $this->getChildHtml('header') ?>
+
+       <?php echo $this->getChildHtml('breadcrumbs') ?> 
+           <!-- BEGIN Main Container col2-right --> 
+            <div class="main-container col2-right-layout">
+              <div class="main container">
+                <div class="row">
+                  <div class="col-main col-sm-12 wow bounceInUp animated">
+              <?php echo $this->getChildHtml('global_messages') ?>
+             <?php // echo $this->getChildHtml('content') ?>    
+                     <div class="container">
+
+  <?php     $category_id = Mage::getModel('catalog/layer')->getCurrentCategory()->getId();
+$category = Mage::getModel('catalog/category')->load($category_id);
+$products = Mage::getModel('catalog/product')
+    ->getCollection()
+    ->addAttributeToSelect('*')
+    ->addCategoryFilter($category)
+    ->setOrder('price', 'ASC')
+    ->load(); 
+	 $category_name = Mage::getModel('catalog/layer')->getCurrentCategory()->getDescription();
+	 ?>  
+ 
+<div class="kitchen_shape01">
+<ul>
+<li><a href="<?php echo Mage::getBaseUrl(); ?>">HOME</a></li>
+<li><a <?php if($category_name == 'L'){ ?>  class="active" <?php } ?> href="<?php echo Mage::getBaseUrl(); ?>l-shaped-kitchen">L SHAPED</a></li>
+<li><a <?php if($category_name == 'U'){ ?>  class="active" <?php } ?> href="<?php echo Mage::getBaseUrl(); ?>u-shaped-kitchen">U SHAPED</a></li>
+<li><a <?php if($category_name == 'PARALLEL'){ ?>  class="active" <?php } ?> href="<?php echo Mage::getBaseUrl(); ?>parallel">PARALLEL</a></li>
+<li><a  <?php if($category_name == 'ICLAND'){ ?>  class="active" <?php } ?> href="<?php echo Mage::getBaseUrl(); ?>icland">STREATE</a></li>
+</ul>
+</div>
+ 
+      </div>
+         <?php $i=1; foreach($products as $product_data) {?>  
+      <?php 
+		$productMediaConfig = Mage::getModel('catalog/product_media_config');
+
+ $baseImageUrl = $productMediaConfig->getMediaUrl($product_data->getImage());
+		
+	
+	 ?>
+	 <div class="container">
+       <div class="land01">
+<div class="row">
+<div class="col-md-8 col-sm-8 col-xs-12">
+<div class="land01_img"><img alt="" src="<?php echo $baseImageUrl; ?>" /></div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">
+<div class="land01_detail">
+<div class="heard">
+
+<?php 
+       
+	 
+  $collection = Mage::getResourceModel('stargenius_productlikecount/productslike_collection')
+                ->addFieldToFilter('product_sku', $product_data->getSku())
+				->load();
+		 $total_count = 0;
+		  foreach ($collection->getItems() as $productslike) {
+           
+               $total_count =   $total_count + $productslike->getProductLiked();
+              
+        }
+		
+		
+			 ?>
+<p>
+<img alt="" src="http://yagotimbercdn.magehost.com/media/wysiwyg/hart_1.png"> 
+<?php 
+
+ $collection_current = Mage::getResourceModel('stargenius_productlikecount/productslike_collection')
+                ->addFieldToFilter('product_sku', $product_data->getSku())
+				 ->addFieldToFilter('u_ipaddress',$_SERVER['REMOTE_ADDR'])
+				->load(); 
+				 if($collection_current->getItems()) { ?>
+					 <img alt="" src="http://yagotimbercdn.magehost.com/media/wysiwyg/heart.png">
+				<?php  }
+               else {?>
+			  <a id="countplus<?php echo $product_data->getId();?>" href="#"><img alt="" src="http://yagotimbercdn.magehost.com/media/wysiwyg/heart.png"></a>
+			<?php    }?>
+<?php echo $total_count; ?></p>
+
+</div>
+      
+<ul>
+<li><h2><?php echo $product_data->getName(); ?></h2></li>
+<li><h2><?php echo $product_data->getShortDescription(); ?></h2></li>
+<?php $roundprz = $product_data->getPrice(); ?>
+<li><strong>Price:</strong><h2><?php echo Mage::helper('core')->currency($roundprz, true, false);?></h2></li>
+</ul>
+<a id="open_55592391" data-popup-ordinal="1" href="#fadeandscaledesigner<?php echo $i; ?>" class="fadeandscaledesigner<?php echo $i; ?>_open"><div class="des09">Consult Designer</div></a>
+<div class="share">Share This Look
+<div class="social">      
+       <ul class="link">
+
+					<li class="fb">
+	<a href="http://www.facebook.com/share.php?u=<?php echo $product_data->getProductUrl(); ?>" rel="nofollow" target="_blank" style="text-decoration:none;">
+				
+			</a>
+			</li>
+
+				<li class="tw">
+			<a href="http://twitter.com/home?status=<?php echo $product_data->getProductUrl(); ?>" rel="nofollow" target="_blank" style="text-decoration:none;">
+				
+			</a>
+			</li>
+
+				<li class="pintrest">
+<a href="http://pinterest.com/pin/create/link/?url=<?php echo $product_data->getProductUrl(); ?>&media=<?php echo  $baseImageUrl; ?>&description=<?php echo $product_data->getDescription(); ?>" rel="nofollow" target="_blank" style="text-decoration:none;"></a>
+			</li>
+
+		<li class="googleplus">
+			<a href="https://plus.google.com/share?url=<?php echo $product_data->getProductUrl(); ?>" rel="nofollow" target="_blank" style="text-decoration:none;">
+				
+			</a>
+			</li>
+
+	</ul>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+       <!-- Fade & scale -->
+<div id="fadeandscaledesigner<?php echo $i; ?>" class="well"><a class="fadeandscaledesigner<?php echo $i; ?>_close close02">X</a>
+<div class="col-md-5 col-sm-5 col-xs-12"><div class="pop-img1">
+                            <div class="register007">
+                                <ul>
+                                    <li><img alt="Kit Price" src="<?php echo $this->getSkinUrl('kit-price.png'); ?>" /> <span>Starting from  <B>Rs 1,00,000</B></span></li>
+                                    <li><img alt="Cupen 4" src="<?php echo $this->getSkinUrl('cupen4.png'); ?>" /> <span>10 years <B>WARRANTY</B></span></li>
+                                    <li><img alt="Kit Delivery" src="<?php echo $this->getSkinUrl('kit-delivery.png'); ?>" /> <span><b>30 days </b> delivery</span></li>
+                                    <li><img alt="Cupen 3" src="<?php echo $this->getSkinUrl('cupen3.png'); ?>" /> <span>Free <b>INSTALLATION</b></span></li>
+                                </ul>
+                            </div>
+                            <img src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/register-popup.png" alt="Register" class="register-img">
+                    </div>
+       </div>
+       <div class="col-md-7 col-sm-7 col-xs-12">
+	<div class="bookdesigner">
+        <div class="col-md-12 col-sm-7 col-xs-12"><?php echo $this->getLayout()->createBlock('formbuilder/frontend_form')->setData('form_id','7')->setTemplate('formbuilder/form.phtml')->toHtml(); ?>
+	</div>
+    </div>
+    </div>
+</div>
+<script type="text/javascript">// <![CDATA[
+jQuery(document).ready(function () {
+
+    jQuery('#fadeandscaledesigner<?php echo $i; ?>').popup({
+        pagecontainer: '.container',
+        transition: 'all 0.3s'
+    });
+
+});
+// ]]></script>
+  <script type="text/javascript">
+		
+			
+jQuery("#countplus<?php echo $product_data->getId(); ?>").click(function(){
+	
+var id = <?php echo $product_data->getId(); ?>;
+var sku = '<?php  echo $product_data->getSku();  ?>';
+var ip = '<?php echo $_SERVER['REMOTE_ADDR'] ?>';
+var dataString = 'id='+ id + '&sku='+ sku + '&ip='+ ip;
+// AJAX Code To Submit Form.
+jQuery.ajax({
+type: "POST",
+url: "<?php echo Mage::getBaseUrl(); ?>productlikecount/productslike/ashu/",
+data: dataString,
+cache: false,
+success: function(result){
+location.reload(true)
+}
+});
+
+});
+
+		
+		</script>
+<style><!--
+#fadeandscaledesigner<?php echo $i; ?> {
+    -webkit-transform: scale(0.8);
+       -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+			  width: 900px;
+}
+.popup_visible #fadeandscaledesigner<?php echo $i; ?> {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+
+@media (max-width: 800px) {
+	#fadeandscaledesigner<?php echo $i; ?> {width: 400px;}
+	.pop-img1{display:none;}
+	
+}
+
+@media (max-width: 500px) {
+	#fadeandscaledesigner<?php echo $i; ?> {width: 300px;}
+}
+
+
+
+
+--></style>  
+        
+     
+         <?php 
+		 $i++;
+		 }
+		 
+		 // loop end ?>  
+
+
+
+</div>
+
+               </div><!--row--> 
+              </div><!--main container-->        
+            </div><!--main-container col2-right-layout-->
+
+                 <!-- Logo Brand Block -->
+      <?php if(($get_current_layout=='custom_static_page_one')) { ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_logo_brand_block')->toHtml() ?>
+      <?php } ?>
+      <?php if(($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_logo_brand2_block')->toHtml() ?> 
+      <?php } ?>   
+
+
+        <?php echo $this->getChildHtml('footer') ?>
+        <?php echo $this->getChildHtml('before_body_end') ?>
+        <?php echo $this->getAbsoluteFooter() ?>
+  </div> <!--page-->
+
+<!-- Mobile Menu-->
+  <?php if(($get_current_layout!='custom_static_page_four')) { ?> <!-- Exclude from version 4 -->
+      <div id="mobile-menu" >     
+        <ul class="mobile-menu">
+          <li><?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalogsearch/form.mini-mob.phtml')->toHtml() ; ?></li>
+            <?php echo $this->getLayout()->createBlock('catalog/navigation')->setTemplate('catalog/navigation/top_nav_mob.phtml')->toHtml() ; ?>
+        </ul> <!--mobile-menu-->
+
+        <?php if(($get_current_layout=='custom_static_page_three')) { ?> 
+          <div class="top-links">
+            <?php if(($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude from version 5 -->
+            <div class="lang-curr">
+              <?php echo $this->getChildHtml('store_language') ?>     
+              <?php echo $this->getChildHtml('custom_currency_selector') ?>
+            </div><!--lang-curr-->
+            <?php } ?> <!-- Exclude from version 5 -->
+            <ul class="links">
+              <li><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></li>
+              <li><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"><?php echo $this->__('Wishlist') ?></a></li>
+              <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1) { ?>
+                <li><a href="<?php echo $this->getUrl('')?>onestepcheckout/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } else { ?>
+                <li><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } ?>
+              <li><a href="<?php echo $this->getUrl('')?>blog" title="<?php echo $this->__('Blog') ?>"><span><?php echo $this->__('Blog') ?></span></a></li>
+              <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>" title="<?php echo $this->__('Log In') ?>"><span><?php echo $this->__('Log In') ?></span></a></li>
+              <?php } ?>
+              <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>" title="<?php echo $this->__('Log Out') ?>"><span><?php echo $this->__('Log Out') ?></span></a></li>
+              <?php } ?>
+            </ul>
+          </div><!--top-links-->
+        <?php } ?>
+
+      </div> <!--mobile-menu-->
+     <?php } ?> <!-- Exclude from version 4 -->
+      
+</body>
+</html>

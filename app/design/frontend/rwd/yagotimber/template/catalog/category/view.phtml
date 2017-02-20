@@ -1,0 +1,60 @@
+
+<?php
+/**
+ * Category view template
+ *
+ * @see Mage_Catalog_Block_Category_View
+ */
+?>
+
+<?php
+$_helper    = $this->helper('catalog/output');
+$_category  = $this->getCurrentCategory();
+$_imgHtml   = '';
+if ($_imgUrl = $_category->getImageUrl()) {
+	$_imgHtml = '<p class="category-image"><img src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" /></p>';
+	$_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+}
+?>
+
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<?php if($_imgUrl): ?>
+    <?php //echo $_imgHtml ?>
+<?php endif; ?>
+
+<?php if($_description=$this->getCurrentCategory()->getDescription()): ?>
+    <div class="category-description std">
+        <?php echo $_helper->categoryAttribute($_category, $_description, 'description') ?>
+    </div>
+<?php endif; ?>
+
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_four')) { ?> 
+<!-- for version 1,2,4 -->
+<div class="page-title">
+    <?php if($this->IsRssCatalogEnable() && $this->IsTopCategory()): ?>
+        <a href="<?php echo $this->getRssLink() ?>" class="link-rss"><?php echo $this->__('Subscribe to RSS Feed') ?></a>
+    <?php endif; ?>
+    <h1><?php echo $_helper->categoryAttribute($_category, $_category->getName(), 'name') ?></h1>
+</div> <!--category-title-->
+<?php } ?> <!-- for version 1,2,4 -->
+
+<?php if($this->isContentMode()): ?>
+    <?php echo $this->getCmsBlockHtml() ?>
+
+<?php elseif($this->isMixedMode()): ?>
+    <?php echo $this->getCmsBlockHtml() ?>
+    <?php echo $this->getProductListHtml() ?>
+
+<?php else: ?>
+    <?php echo $this->getProductListHtml() ?>
+<?php endif; ?>

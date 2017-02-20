@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <StarGenius_AskAnExpert>
+            <version>1.0.0</version>
+        </StarGenius_AskAnExpert>
+    </modules>
+    <global>
+        <resources>
+            <stargenius_askanexpert_setup>
+                <setup>
+                    <module>StarGenius_AskAnExpert</module>
+                    <class>StarGenius_AskAnExpert_Model_Resource_Setup</class>
+                </setup>
+            </stargenius_askanexpert_setup>
+        </resources>
+        <blocks>
+            <stargenius_askanexpert>
+                <class>StarGenius_AskAnExpert_Block</class>
+            </stargenius_askanexpert>
+        </blocks>
+        <helpers>
+            <stargenius_askanexpert>
+                <class>StarGenius_AskAnExpert_Helper</class>
+            </stargenius_askanexpert>
+        </helpers>
+        <models>
+            <stargenius_askanexpert>
+                <class>StarGenius_AskAnExpert_Model</class>
+                <resourceModel>stargenius_askanexpert_resource</resourceModel>
+            </stargenius_askanexpert>
+            <stargenius_askanexpert_resource>
+                <class>StarGenius_AskAnExpert_Model_Resource</class>
+                <entities>
+                    <questions>
+                        <table>stargenius_askanexpert_questions</table>
+                    </questions>
+                    <questions_store>
+                        <table>stargenius_askanexpert_questions_store</table>
+                    </questions_store>
+                </entities>
+            </stargenius_askanexpert_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <stargenius_askanexpert>
+                        <class>StarGenius_AskAnExpert_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </stargenius_askanexpert>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <stargenius_askanexpert>
+                    <file>stargenius_askanexpert.xml</file>
+                </stargenius_askanexpert>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_AskAnExpert>
+                    <files>
+                        <default>StarGenius_AskAnExpert.csv</default>
+                    </files>
+                </StarGenius_AskAnExpert>
+            </modules>
+        </translate>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <StarGenius_AskAnExpert before="Mage_Adminhtml">StarGenius_AskAnExpert_Adminhtml</StarGenius_AskAnExpert>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <stargenius_askanexpert>
+                <use>standard</use>
+                <args>
+                    <module>StarGenius_AskAnExpert</module>
+                    <frontName>askanexpert</frontName>
+                </args>
+            </stargenius_askanexpert>
+        </routers>
+        <layout>
+            <updates>
+                <stargenius_askanexpert>
+                    <file>stargenius_askanexpert.xml</file>
+                </stargenius_askanexpert>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_AskAnExpert>
+                    <files>
+                        <default>StarGenius_AskAnExpert.csv</default>
+                    </files>
+                </StarGenius_AskAnExpert>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <stargenius_askanexpert>
+            <questions>
+                <breadcrumbs>1</breadcrumbs>
+                <rss>1</rss>
+                <meta_title>Questions</meta_title>
+            </questions>
+        </stargenius_askanexpert>
+    </default>
+</config>

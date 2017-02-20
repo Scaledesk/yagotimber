@@ -1,0 +1,363 @@
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+  */
+?>
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<?php echo $this->getChildHtml('head') ?>
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min5.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider5.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style5.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal5.css" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu5.css" type="text/css" />
+<link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Bad+Script' rel='stylesheet' type='text/css'>
+<script src="<?php echo $this->getSkinUrl(); ?>js/common5.js" type="text/javascript"></script>
+<script src="<?php echo $this->getSkinUrl(); ?>js/revolution-slider.js" type="text/javascript"></script>
+<script src="<?php echo $this->getSkinUrl(); ?>js/revolution.extension.js" type="text/javascript"></script>
+ <script type="text/javascript">
+                    var tpj=jQuery;         
+                    var revapi4;
+                    tpj(document).ready(function() {
+                        if(tpj("#rev_slider_4_1").revolution == undefined){
+                            revslider_showDoubleJqueryError("#rev_slider_4_1");
+                        }else{
+                            revapi4 = tpj("#rev_slider_4_1").show().revolution({
+                               
+                                dottedOverlay:"none",
+                                delay:3000,
+                                navigation: {
+                                    keyboardNavigation:"off",
+                                    keyboard_direction: "horizontal",
+                                    mouseScrollNavigation:"off",
+                                    onHoverStop:"off",
+                                    touch:{
+                                        touchenabled:"on",
+                                        swipe_threshold: 75,
+                                        swipe_min_touches: 1,
+                                        swipe_direction: "horizontal",
+                                        drag_block_vertical: false
+                                    }
+                                    ,
+                                    arrows: {
+                                        style:"zeus",
+                                        enable:true,
+                                        hide_onmobile:true,
+                                        hide_under:750,
+                                        hide_onleave:true,
+                                        hide_delay:200,
+                                        hide_delay_mobile:1200,
+                                        tmp:'',
+                                        left: {
+                                            h_align:"left",
+                                            v_align:"center",
+                                            h_offset:30,
+                                            v_offset:0
+                                        },
+                                        right: {
+                                            h_align:"right",
+                                            v_align:"center",
+                                            h_offset:30,
+                                            v_offset:0
+                                        }
+                                    }
+                                    ,
+                                    bullets: {
+                                        enable:false,
+                                        hide_onmobile:true,
+                                        hide_under:600,
+                                        style:"metis",
+                                        hide_onleave:true,
+                                        hide_delay:200,
+                                        hide_delay_mobile:1200,
+                                        direction:"horizontal",
+                                        h_align:"center",
+                                        v_align:"bottom",
+                                        h_offset:0,
+                                        v_offset:30,
+                                        space:5,
+                                        tmp:'<span class="tp-bullet-img-wrap">  <span class="tp-bullet-image"></span></span><span class="tp-bullet-title">{{title}}</span>'
+                                    }
+                                },
+                                viewPort: {
+                                    enable:true,
+                                    outof:"pause",
+                                    visible_area:"80%"
+                                },
+                                responsiveLevels:[1240,1024,778,480],
+                                gridwidth:[768,980,778,480],
+                                gridheight:[380,400,300,200],
+                                parallax: {
+                                    type:"mouse",
+                                    origo:"slidercenter",
+                                    speed:2000,
+                                    levels:[2,3,4,5,6,7,12,16,10,50],
+                                },
+                                shadow:0,
+                                spinner:"off",
+                                stopLoop:"off",
+                                stopAfterLoops:-1,
+                                stopAtSlide:-1,
+                                shuffle:"off",
+                                autoHeight:"off",
+                                hideThumbsOnMobile:"off",
+                                hideSliderAtLimit:0,
+                                hideCaptionAtLimit:0,
+                                hideAllCaptionAtLilmit:0,
+                                debugMode:false,
+                                fallbacks: {
+                                    simplifyAll:"off",
+                                    nextSlideOnWindowFocus:"off",
+                                    disableFocusListener:false,
+                                }
+                            });
+                        }
+                    }); /*ready*/
+                </script> 
+</head>
+
+<body class="<?php echo $this->getBodyClass()?' '.$this->getBodyClass().'':'' ?>" itemscope itemtype="http://schema.org/WebPage">
+  <div id="page">
+    
+    <?php echo $this->getChildHtml('after_body_start') ?>
+    <?php echo $this->getChildHtml('global_notices') ?>      
+    <?php echo $this->getChildHtml('header') ?> 
+
+      <!-- Home Slider Block --> 
+      <div id="magik-slideshow" class="magik-slideshow"> 
+        <!-- <div class="container"> -->
+          <div class="row">
+         <!--  <div class="slider-top"> -->
+          <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_home5_slider_banner_block')->toHtml() ?> </div> 
+          
+      <!--     </div> -->
+        <!-- </div> -->
+      </div>
+          
+       
+
+   <?php echo $this->getChildHtml('global_messages') ?>
+
+           
+		                       
+<!-- Header Block -->
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header5_block5')->toHtml() ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header5_block')->toHtml() ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header5_block2')->toHtml() ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header5_block3')->toHtml() ?>
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_header5_block4')->toHtml() ?>
+	 <?php echo $this->getChildHtml('breadcrumbs') ?>               
+     
+	  
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('Home_page_header_emi_icon')->toHtml() ?> 
+
+ 
+  
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 100;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    jQuery('.more').each(function() {
+        var content = jQuery(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+ 
+            jQuery(this).html(html);
+        }
+ 
+    });
+ 
+    jQuery(".morelink").click(function(){
+        if(jQuery(this).hasClass("less")) {
+            jQuery(this).removeClass("less");
+            jQuery(this).html(moretext);
+        } else {
+            jQuery(this).addClass("less");
+            jQuery(this).html(lesstext);
+        }
+        jQuery(this).parent().prev().toggle();
+        jQuery(this).prev().toggle();
+        return false;
+    });
+});
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 100;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    jQuery('.more1').each(function() {
+        var content = jQuery(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink1">' + moretext + '</a></span>';
+ 
+            jQuery(this).html(html);
+        }
+ 
+    });
+ 
+    jQuery(".morelink1").click(function(){
+        if(jQuery(this).hasClass("less")) {
+            jQuery(this).removeClass("less");
+            jQuery(this).html(moretext);
+        } else {
+            jQuery(this).addClass("less");
+            jQuery(this).html(lesstext);
+        }
+        jQuery(this).parent().prev().toggle();
+        jQuery(this).prev().toggle();
+        return false;
+    });
+});
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 100;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    jQuery('.more2').each(function() {
+        var content = jQuery(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink2">' + moretext + '</a></span>';
+ 
+            jQuery(this).html(html);
+        }
+ 
+    });
+ 
+    jQuery(".morelink2").click(function(){
+        if(jQuery(this).hasClass("less")) {
+            jQuery(this).removeClass("less");
+            jQuery(this).html(moretext);
+        } else {
+            jQuery(this).addClass("less");
+            jQuery(this).html(lesstext);
+        }
+        jQuery(this).parent().prev().toggle();
+        jQuery(this).prev().toggle();
+        return false;
+    });
+});
+</script>
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    // Configure/customize these variables.
+    var showChar = 100;  // How many characters are shown by default
+    var ellipsestext = "...";
+    var moretext = "Show more >";
+    var lesstext = "Show less";
+    
+
+    jQuery('.more3').each(function() {
+        var content = jQuery(this).html();
+ 
+        if(content.length > showChar) {
+ 
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar, content.length - showChar);
+ 
+            var html = c + '<span class="moreellipses">' + ellipsestext+ '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink3">' + moretext + '</a></span>';
+ 
+            jQuery(this).html(html);
+        }
+ 
+    });
+ 
+    jQuery(".morelink3").click(function(){
+        if(jQuery(this).hasClass("less")) {
+            jQuery(this).removeClass("less");
+            jQuery(this).html(moretext);
+        } else {
+            jQuery(this).addClass("less");
+            jQuery(this).html(lesstext);
+        }
+        jQuery(this).parent().prev().toggle();
+        jQuery(this).prev().toggle();
+        return false;
+    });
+});
+</script>
+
+<?php /*?><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_home5_bottom_offer_banner_block')->toHtml() ?>
+<?php */?>
+      <!-- Logo Brand Block -->
+
+
+      <?php echo $this->getChildHtml('footer') ?> 
+      <?php echo $this->getChildHtml('before_body_end') ?>
+      <?php echo $this->getAbsoluteFooter() ?>     
+
+      </div> <!--page-->
+
+
+      <!-- Mobile Menu-->
+      <div id="mobile-menu" >     
+        <ul class="mobile-menu">
+           <?php echo $this->getLayout()->createBlock('catalog/navigation')->setTemplate('catalog/navigation/top_nav_mob.phtml')->toHtml() ; ?>
+	   </ul> <!--mobile-menu-->
+        <div class="top-links">
+            <ul class="links">
+           
+              <li><a title="<?php echo $this->__('My Account') ?>" href="<?php echo $this->getUrl('')?>customer/account/"><?php echo $this->__('My Account') ?></a></li>
+              <li>
+                  <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1){?>
+                  <a title="<?php echo $this->__('Checkout') ?>" href="<?php echo $this->getUrl('')?>onestepcheckout/"><?php echo $this->__('Checkout') ?></a>
+
+                  <?php }else{ ?>
+                  <a title="<?php echo $this->__('Checkout') ?>" href="<?php echo $this->getUrl('')?>checkout/onepage/"><?php echo $this->__('Checkout') ?></a>
+
+                  <?php } ?>
+              </li>
+              <li><a title="<?php echo $this->__('Blog') ?>" href="<?php echo $this->getUrl('')?>blog/"><?php echo $this->__('Blog') ?></a></li>
+              <li>
+                <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>"><?php echo $this->__('Log In') ?></a>
+                <?php } ?>
+                <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>"><?php echo $this->__('Log Out') ?></a>
+                <?php } ?>  
+            </li>
+        </ul>
+    </div><!--top-links-->
+      </div>
+      
+      <?php  if(Mage::app()->getStore()->getConfig('elantrasettings/elantrasettings_newsletterpopup/newsletterpopup_enable')==1){?>
+          <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe_home_popup.phtml')->toHtml() ; ?>
+      <?php }  ?>
+
+
+</body>
+</html>

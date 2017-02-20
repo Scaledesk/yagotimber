@@ -1,0 +1,15 @@
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Warning:  require_once(/abstract.php): failed to open stream: No such file or directory in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Fatal error:  require_once(): Failed opening required '/abstract.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Warning:  require_once(/abstract.php): failed to open stream: No such file or directory in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:00:02 Etc/GMT] PHP Fatal error:  require_once(): Failed opening required '/abstract.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:02 Etc/GMT] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:02 Etc/GMT] PHP Warning:  require_once(/abstract.php): failed to open stream: No such file or directory in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:02 Etc/GMT] PHP Fatal error:  require_once(): Failed opening required '/abstract.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:03 Etc/GMT] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:03 Etc/GMT] PHP Warning:  require_once(/abstract.php): failed to open stream: No such file or directory in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 14:30:03 Etc/GMT] PHP Fatal error:  require_once(): Failed opening required '/abstract.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 15:00:03 Etc/GMT] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 15:00:03 Etc/GMT] PHP Warning:  require_once(/abstract.php): failed to open stream: No such file or directory in /home/yagotur8/public_html/shell/scheduler.php on line 3
+[07-Apr-2016 15:00:03 Etc/GMT] PHP Fatal error:  require_once(): Failed opening required '/abstract.php' (include_path='.:/opt/alt/php54/usr/share/pear:/opt/alt/php54/usr/share/php') in /home/yagotur8/public_html/shell/scheduler.php on line 3

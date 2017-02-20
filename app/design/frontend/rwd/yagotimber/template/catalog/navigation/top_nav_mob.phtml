@@ -1,0 +1,37 @@
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php //$currentCategory = Mage::registry('current_category') ?>
+
+<?php $_menu = $this->renderCategoriesMenuHtml(0,'level-top') ?>
+<?php if($_menu): ?>
+
+  <li>
+  <div class="home"> <a href="<?php echo $this->getUrl('') ?>"><i class="icon-home"></i><?php echo $this->__('Home'); ?></a> </div> 
+
+   <div class="home pull-right">
+   <a class="closebtn" onclick="closeNav()" href="javascript:void(0)"><i class="fa fa-times-circle-o fa-2x p-t-5"></i></a>
+   </div>
+  </li>
+	<!--  <h1>nitesh</h1> -->
+  <?php echo $_menu; ?>
+      
+			
+<?php endif ?>
+<li><a class="KITCHEN-top" href="<?php echo Mage::getBaseUrl(); ?>modular-kitchen">KITCHEN</a> </li>
+	<li><a class="WARDROBE-top-mob" href="<?php echo Mage::getBaseUrl(); ?>wardrobe">WARDROBE</a> </li>
+	<li><a class="WARDROBE-top-mob" href="<?php echo Mage::getBaseUrl(); ?>home-look">DESIGN IDEAS</a> </li>
+	<li><a class="IMTERIOR-top-mob" href="http://www.yagotimber.com/free-design-consultation/">INTERIOR DESIGN</a> </li>
+	<li><a class="PRICE-top-mob" href="#popup4">PRICE CHECK</a> </li>
+	<li><a class="PRICE-top-mob" href="#popup1">CUSTOMISE</a> </li>
+	<li><a class="blog-top-mob" href="http://www.yagotimber.com/blog/">BLOG</a> </li>
+	<li class="SALE-top-mob"><a  href="http://www.yagotimber.com/sale.html">SALE</a> </li>
+	

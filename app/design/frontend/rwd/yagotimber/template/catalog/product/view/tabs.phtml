@@ -1,0 +1,196 @@
+<?php $custom_tab1 = Mage::getModel('cms/block')->load('elantra_custom_tab1'); ?>
+<?php $custom_tab2 = Mage::getModel('cms/block')->load('elantra_custom_tab2'); ?>
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+<?php if(($get_current_layout=='custom_static_page_two')) { ?> 
+<!--<div class="col-sm-12 wow bounceInUp animated">-->
+ <div class="add_info">
+<ul class="nav nav-tabs product-tabs" id="product-detail-tab">
+    <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+        <?php if($this->getChildHtml($_tab['alias'])): ?>
+            <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="tabLink<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)?' last':'')?>"><a href="#"><?php echo $_tab['title']?></a></li>
+        <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if($custom_tab1->getIsActive()): ?>
+        <li id="product_tabs_custom"><a href="#"><?php echo $custom_tab1->getTitle(); ?></a></li>
+    <?php endif; ?>
+    <?php if($custom_tab2->getIsActive()): ?>
+        <li id="product1_tabs_custom"><a href="#"><?php echo $custom_tab2->getTitle(); ?></a></li>
+    <?php endif; ?>
+</ul>
+
+
+<div class="tab-content" id="productTabContent">
+<?php foreach ($this->getTabs() as $_index => $_tab): ?>
+    <?php if($this->getChildHtml($_tab['alias'])): ?>
+        <div class="tab-content" id="product_tabs_<?php echo $_tab['alias'] ?>_contents">
+	   <!-- <div class="product-tabs-content-inner clearfix active"><?php //echo $this->getChildHtml($_tab['alias']) ?></div>-->
+<div id="customer-reviews" class="box-collateral box-reviews"><?php echo $this->getChildHtml($_tab['alias']) ?></div>
+	</div>
+    <?php endif; ?>
+<?php endforeach; ?>
+<?php if($custom_tab1->getIsActive()): ?>
+    <div class="tab-content" id="product_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab1')->toHtml() ?></div></div>
+<?php endif; ?>
+<?php if($custom_tab2->getIsActive()): ?>
+    <div class="tab-content" id="product1_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab2')->toHtml() ?></div></div>
+<?php endif; ?>
+</div> <!--tab-content-->
+
+<!--</div>--> <!--col-sm-12 wow bounceInUp animated-->
+</div>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_three')) { ?>
+
+ <div class="add_info">
+        
+      <?php if(($get_current_layout=='custom_static_page_three')) { ?>
+        <div class="tabs">
+           <div class="container">
+      <?php } ?>
+
+                  <ul class="nav nav-tabs product-tabs" id="product-detail-tab">
+                     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		      <?php if($this->getChildHtml($_tab['alias'])): ?>
+			  <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="tabLink<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)?' last':'')?>"><a href="#"><?php echo $_tab['title']?></a></li>
+		      <?php endif; ?>
+		      <?php endforeach; ?>
+		      <?php if($custom_tab1->getIsActive()): ?>
+			  <li id="product_tabs_custom"><a href="#"><?php echo $custom_tab1->getTitle(); ?></a></li>
+		      <?php endif; ?>
+		      <?php if($custom_tab2->getIsActive()): ?>
+			  <li id="product1_tabs_custom"><a href="#"><?php echo $custom_tab2->getTitle(); ?></a></li>
+		      <?php endif; ?>
+                  </ul>
+
+     <?php if(($get_current_layout=='custom_static_page_three')) { ?>
+          </div>
+        </div>
+      <?php } ?>         
+              
+      <?php if(($get_current_layout=='custom_static_page_three')) { ?>
+	      <div class="tab-content container" id="productTabContent">
+	  <?php } else { ?>
+          <div class="tab-content" id="productTabContent">
+	  <?php } ?>
+	      <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		  <?php if($this->getChildHtml($_tab['alias'])): ?>
+		      <div class="tab-content" id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getChildHtml($_tab['alias']) ?></div></div>
+		  <?php endif; ?>
+	      <?php endforeach; ?>
+	      <?php if($custom_tab1->getIsActive()): ?>
+		  <div class="tab-content" id="product_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab1')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      <?php if($custom_tab2->getIsActive()): ?>
+		  <div class="tab-content" id="product1_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab2')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      </div> <!--tab-content-->
+</div>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_four')) { ?>
+
+ <div class="add_info">
+      <ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+                     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		      <?php if($this->getChildHtml($_tab['alias'])): ?>
+			  <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="active"><a href="#" data-toggle="tab"><?php echo $_tab['title']?></a></li>
+
+		      <?php endif; ?>
+		      <?php endforeach; ?>
+		      <?php if($custom_tab1->getIsActive()): ?>
+			  <li id="product_tabs_custom" class="active"><a href="#" data-toggle="tab"><?php echo $custom_tab1->getTitle(); ?></a></li>
+		      <?php endif; ?>
+		      <?php if($custom_tab2->getIsActive()): ?>
+			  <li id="product1_tabs_custom" class="active"><a href="#" data-toggle="tab"><?php echo $custom_tab2->getTitle(); ?></a></li>
+		      <?php endif; ?>
+                  </ul>
+               <div id="productTabContent" class="tab-content">
+	      <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		  <?php if($this->getChildHtml($_tab['alias'])): ?>
+		      <div class="tab-pane fade in active" id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getChildHtml($_tab['alias']) ?></div></div>
+		  <?php endif; ?>
+	      <?php endforeach; ?>
+	      <?php if($custom_tab1->getIsActive()): ?>
+		  <div class="tab-pane fade in active" id="product_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab1')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      <?php if($custom_tab2->getIsActive()): ?>
+		  <div class="tab-pane fade in active" id="product1_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab2')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      </div> <!--tab-content-->
+</div>
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_five')) { ?>
+
+ <div class="add_info container">
+            
+                  <ul class="nav nav-tabs product-tabs" id="product-detail-tab">
+                     <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		      <?php if($this->getChildHtml($_tab['alias'])): ?>
+			  <li id="product_tabs_<?php echo $_tab['alias'] ?>" class="tabLink<?php echo !$_index?' active first':(($_index==count($this->getTabs())-1)?' last':'')?>"><a href="#"><?php echo $_tab['title']?></a></li>
+		      <?php endif; ?>
+		      <?php endforeach; ?>
+		      <?php if($custom_tab1->getIsActive()): ?>
+			  <li id="product_tabs_custom"><a href="#"><?php echo $custom_tab1->getTitle(); ?></a></li>
+		      <?php endif; ?>
+		      <?php if($custom_tab2->getIsActive()): ?>
+			  <li id="product1_tabs_custom"><a href="#"><?php echo $custom_tab2->getTitle(); ?></a></li>
+		      <?php endif; ?>
+                  </ul>
+              
+	      <div class="tab-content" id="productTabContent">
+	      <?php foreach ($this->getTabs() as $_index => $_tab): ?>
+		  <?php if($this->getChildHtml($_tab['alias'])): ?>
+		      <div class="tab-content" id="product_tabs_<?php echo $_tab['alias'] ?>_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getChildHtml($_tab['alias']) ?></div></div>
+		  <?php endif; ?>
+	      <?php endforeach; ?>
+	      <?php if($custom_tab1->getIsActive()): ?>
+		  <div class="tab-content" id="product_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab1')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      <?php if($custom_tab2->getIsActive()): ?>
+		  <div class="tab-content" id="product1_tabs_custom_contents"><div class="product-tabs-content-inner clearfix active"><?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_custom_tab2')->toHtml() ?></div></div>
+	      <?php endif; ?>
+	      </div> <!--tab-content-->
+</div>
+<?php } ?>
+
+<script type="text/javascript">
+//<![CDATA[
+Varien.Tabs = Class.create();
+Varien.Tabs.prototype = {
+  initialize: function(selector) {
+    var self=this;
+    $$(selector+' a').each(this.initTab.bind(this));
+  },
+
+  initTab: function(el) {
+      el.href = 'javascript:void(0)';
+      if ($(el.parentNode).hasClassName('active')) {
+        this.showContent(el);
+      }
+      el.observe('click', this.showContent.bind(this, el));
+  },
+
+  showContent: function(a) {
+    var li = $(a.parentNode), ul = $(li.parentNode);
+    ul.select('li', 'ol').each(function(el){
+      var contents = $(el.id+'_contents');
+      if (el==li) {
+        el.addClassName('active');
+        contents.show();
+      } else {
+        el.removeClassName('active');
+        contents.hide();
+      }
+    });
+  }
+}
+new Varien.Tabs('.product-tabs');
+//]]>
+</script>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+	  <tabs>
+		<seller1 translate="label" module="seller1">
+            <label>seller1</label>
+            <sort_order>0</sort_order>
+        </seller1>
+	  </tabs>
+</config>

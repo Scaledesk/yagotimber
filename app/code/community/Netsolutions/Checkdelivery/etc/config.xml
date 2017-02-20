@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Netsolutions_Checkdelivery>
+            <version>0.1.0</version>
+        </Netsolutions_Checkdelivery>
+    </modules>
+    <frontend>
+        <routers>
+            <checkdelivery>
+                <use>standard</use>
+                <args>
+                    <module>Netsolutions_Checkdelivery</module>
+                    <frontName>checkdelivery</frontName>
+                </args>
+            </checkdelivery>
+        </routers>
+        <layout>
+            <updates>
+                <checkdelivery>
+                    <file>checkdelivery.xml</file>
+                </checkdelivery>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			
+			<adminhtml>
+                <args>
+                    <checkdelivery>
+						<Netsolutions_Checkdelivery before="Mage_Adminhtml">Netsolutions_Checkdelivery_Adminhtml</Netsolutions_Checkdelivery>
+                    </checkdelivery>
+				</args>
+            </adminhtml>
+			<checkdelivery>
+				<use>admin</use>
+				<args>
+					<module>Netsolutions_Checkdelivery</module>
+					<frontName>checkdelivery</frontName>
+				</args>
+			</checkdelivery>
+			
+			
+			
+        </routers>
+    </admin>
+      
+    <global>
+       <models>
+            <checkdelivery>
+                <class>Netsolutions_Checkdelivery_Model</class>
+                <resourceModel>checkdelivery_mysql4</resourceModel>
+            </checkdelivery>
+            <checkdelivery_mysql4>
+                <class>Netsolutions_Checkdelivery_Model_Mysql4</class>
+                <entities>
+                    <checkdelivery>
+                        <table>checkdelivery</table>
+                    </checkdelivery>
+                </entities>
+            </checkdelivery_mysql4>
+        </models>
+        <resources>
+            <checkdelivery_setup>
+                <setup>
+                    <module>Netsolutions_Checkdelivery</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </checkdelivery_setup>
+            <checkdelivery_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </checkdelivery_write>
+            <checkdelivery_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </checkdelivery_read>
+        </resources>
+        <blocks>
+            <checkdelivery>
+                <class>Netsolutions_Checkdelivery_Block</class>
+            </checkdelivery>
+        </blocks>
+        <helpers>
+            <checkdelivery>
+                <class>Netsolutions_Checkdelivery_Helper</class>
+            </checkdelivery>
+        </helpers>
+    </global>
+	<default>
+		<checkdelivery>
+			<general>
+				<active>1</active>
+				<block_title>Check Delivery Availability</block_title>
+				<success_messgae>Delivery possible in your area</success_messgae>
+				<failure_messgae>We do not deliver to this location.</failure_messgae>
+				<empty_messgae>Please enter Zip Code</empty_messgae>
+			</general>
+		</checkdelivery>
+	</default>
+</config>

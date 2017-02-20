@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <StarGenius_Countryrestriction>
+            <active>true</active>
+            <codePool>local</codePool>
+        </StarGenius_Countryrestriction>
+    </modules>
+</config>

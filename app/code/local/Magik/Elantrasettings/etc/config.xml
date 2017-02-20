@@ -1,0 +1,172 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Magik_Elantrasettings>
+            <version>0.1.5</version>
+        </Magik_Elantrasettings>
+    </modules>
+    <admin>
+        <routers>
+          <adminhtml>
+            <args>
+              <modules>
+                 <elantrasettings before="Mage_Adminhtml">Magik_Elantrasettings_Adminhtml</elantrasettings>
+              </modules>
+            </args>
+          </adminhtml>
+        </routers>
+    </admin>            
+    <adminhtml>
+        <layout>
+            <updates>
+                <elantrasettings>
+                    <file>elantrasettings.xml</file>
+                </elantrasettings>
+            </updates>
+        </layout>
+        
+        <translate>
+         <modules>
+             <Magik>
+                 <files>
+                     <default>Magik_Elantrasettings.csv</default>
+                 </files>
+             </Magik>
+         </modules>
+     </translate>
+     <acl>
+         <resources>
+            <admin>
+               <children>
+                  <system>
+                     <children>
+                         <config>
+                             <children>
+                                 <elantrasettings>
+                                     <title>Elantra Theme Settings</title>
+                                 </elantrasettings>
+                             </children>
+                         </config>
+                     </children>
+                 </system>
+                 <magik>
+                     <children>
+                        <elantra>
+                            <title>Elantra</title>
+                            <children>
+                                <settings>
+                                    <title>Theme Settings</title>
+                                </settings>                                 
+                            </children>
+                        </elantra>
+                    </children>
+                </magik>
+            </children>
+        </admin>
+    </resources>
+</acl>
+</adminhtml>
+<global>
+    <blocks>
+        <elantrasettings>
+            <class>Magik_Elantrasettings_Block</class>
+        </elantrasettings>
+    </blocks>
+    <helpers>
+        <elantrasettings>
+            <class>Magik_Elantrasettings_Helper</class>
+        </elantrasettings>
+    </helpers>
+    <models>
+        <elantrasettings>
+            <class>Magik_Elantrasettings_Model</class>
+        </elantrasettings>
+    </models>
+    <resources>
+        <elantrasettings_setup>
+            <setup>
+                <module>Magik_Elantrasettings</module>
+                <class>Magik_Elantrasettings_Model_Resource_Mysql4_Setup</class>
+            </setup>
+            <connection>
+                <use>core_setup</use>
+            </connection>
+        </elantrasettings_setup>
+        <elantrasettings_write>
+            <connection>
+              <use>core_write</use>
+          </connection>
+      </elantrasettings_write>
+      <elantrasettings_read>
+         <connection>
+            <use>core_read</use>
+        </connection>
+    </elantrasettings_read>
+</resources>
+</global>
+<default>
+  <elantrasettings>
+     <elantrasettings_appearance>
+        <footer>informative</footer>       			
+        <font></font>	
+        <header_bg_color></header_bg_color>
+        <header_fg_color></header_fg_color>
+        <footer_bg_color></footer_bg_color>
+        <footer_fg_color></footer_fg_color>
+        <content_bg_color></content_bg_color>
+    </elantrasettings_appearance>
+    <elantrasettings_header>
+        <navigation_home>0</navigation_home>                               
+    </elantrasettings_header>
+    <elantrasettings_menu>
+        <navigation_menu_type>mega-menu</navigation_menu_type>                                       
+    </elantrasettings_menu>
+    <elantrasettings_labels>
+        <new_label>1</new_label>
+        <new_label_text>New</new_label_text>
+        <new_label_position>top-left</new_label_position>
+        <sale_label>1</sale_label>
+        <sale_label_text>Sale</sale_label_text>
+        <sale_label_position>top-right</sale_label_position>
+    </elantrasettings_labels>
+    <elantrasettings_footer>
+     <footer_google_analytics></footer_google_analytics>
+     <footer_google_analytics_path></footer_google_analytics_path>                                
+ </elantrasettings_footer>
+ <elantrasettings_social>
+     <social_link>1</social_link>
+     <facebook_social_link>1</facebook_social_link>
+     <facebook_social_link_path>#</facebook_social_link_path>
+     <twitter_social_link>1</twitter_social_link>
+     <twitter_social_link_path>#</twitter_social_link_path>
+     <googleplus_social_link>1</googleplus_social_link>
+     <googleplus_social_link_path>#</googleplus_social_link_path>
+     <rss_social_link>1</rss_social_link>
+     <rss_social_link_path>#</rss_social_link_path>     
+     <pinterest_social_link>1</pinterest_social_link>
+     <pinterest_social_link_path>#</pinterest_social_link_path>
+     <linkedin_social_link>1</linkedin_social_link>
+     <linkedin_social_link_path>#</linkedin_social_link_path>
+     <youtube_social_link>1</youtube_social_link>
+     <youtube_social_link_path>#</youtube_social_link_path>
+ </elantrasettings_social>
+ <elantrasettings_products>
+    <upsell_product>1</upsell_product>
+    <related_product>1</related_product>
+    <nextprevious_product>1</nextprevious_product>
+</elantrasettings_products>                                              
+<elantrasettings_shoppingcart>
+    <shoppingcart_top>1</shoppingcart_top>
+</elantrasettings_shoppingcart>
+<elantrasettings_newsletterpopup>
+    <newsletterpopup_enable>1</newsletterpopup_enable>
+</elantrasettings_newsletterpopup>
+<elantrasettings_quickview>
+    <enable>1</enable>
+</elantrasettings_quickview>
+<animatecss>
+    <enableanimate>1</enableanimate>
+</animatecss>                       
+</elantrasettings>
+</default>
+</config>

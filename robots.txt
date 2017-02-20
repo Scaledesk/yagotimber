@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /*referer/
+Disallow: /*mode=
+Disallow: /*dir=
+Disallow: /*order=
+Disallow: /*limit=
+Disallow: /*p=
+
+sitemap: http://www.yagotimber.com/sitemap/sitemap.xml

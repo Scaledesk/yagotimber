@@ -1,0 +1,53 @@
+<?php
+/**
+ * StarGenius_Yagostudio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudio
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Yagostudio view widget template
+ *
+ * @category    StarGenius
+ * @package     StarGenius_Yagostudio
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php $_yagostudio = $this->getCurrentYagostudio();?>
+<?php if ($_yagostudio) :?>
+    <div class="yagostudio-widget-view">
+        <h3><?php echo $_yagostudio->getDesignerName()?></h3>
+        <div>
+            <div class="customer_email-widget">
+                <?php echo Mage::helper('stargenius_yagostudio')->__('Customer Email');?>:<?php echo $_yagostudio->getCustomerEmail();?>
+            </div>
+            <div class="designer_name-widget">
+                <?php echo Mage::helper('stargenius_yagostudio')->__('Designer Name');?>:<?php echo $_yagostudio->getDesignerName();?>
+            </div>
+            <div class="designer_email-widget">
+                <?php echo Mage::helper('stargenius_yagostudio')->__('Designer Email');?>:<?php echo $_yagostudio->getDesignerEmail();?>
+            </div>
+            <div class="designer_mobile-widget">
+                <?php echo Mage::helper('stargenius_yagostudio')->__('Designer Mobile');?>:<?php echo $_yagostudio->getDesignerMobile();?>
+            </div>
+            <div class="designer_address-widget">
+                <?php echo Mage::helper('stargenius_yagostudio')->__('Designer Address');?>:<?php echo $_yagostudio->getDesignerAddress();?>
+            </div>
+            <div class="designer_photos-widget">
+                <?php if ($_yagostudio->getDesignerPhotos()) :?>
+    <img src="<?php echo Mage::helper('stargenius_yagostudio/yagostudio_image')->init($_yagostudio, 'designer_photos')->resize(75);?>" alt="<?php echo $this->escapeHtml($_yagostudio->getDesignerName());?>" />
+<?php endif;?>
+            </div>
+
+        </div>
+    </div>
+<?php endif;?>

@@ -1,0 +1,102 @@
+<?php 
+/* New Products */
+?>
+
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php  $_helper = $this->helper('catalog/output'); ?>
+<?php if (($_products = $this->getProductCollection()) && $_products->getSize()): ?>
+
+<div class="pdt-content pdt_new_arrivals is-loaded  tab-content-actived">
+  <ul class="pdt-list products-grid-home zoomOut play">
+
+<?php $_columnCount = $this->getColumnCount(); ?> 
+    <?php $i=0; foreach ($_products->getItems() as $_product): ?>
+        <?php if ($i++%$_columnCount==0): ?>      
+        <?php endif ?> 
+
+        <li class="item item-animate <?php if(($i-1)%$_columnCount==0): ?>wide-first<?php elseif($i%$_columnCount==0): ?> last<?php elseif($i%$_columnCount!==0): ?> odd1<?php endif; ?>">
+          <div class="item-inner">
+            <div class="item-img">
+              <div class="item-img-info">
+                <a class="product-image" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>"><img alt="<?php echo $this->htmlEscape($_product->getName()) ?>" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image') ?>"></a>
+                <?php echo $this->helper('elantrasettings')->getLabel($_product);  ?>
+                <div class="actions">
+                  <?php  if(Mage::app()->getStore()->getConfig('elantrasettings/elantrasettings_quickview/enable')==1) { ?> 
+                    <div class="quick-view-btn"><a rel="nofollow" href="<?php echo Mage::getBaseUrl().'quickview/index/view?prodid='.$_product->getId(); ?>" data-fancybox-type="iframe" class="magik-btn-quickview quick-view" data-original-title="<?php echo $this->__('Quickview') ?>" data-placement="right" data-toggle="tooltip" ><span><?php echo $this->__('Quick View') ?></span></a>
+                     </div>
+                  <?php }  ?>
+                  <div class="link-wishlist"><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" data-original-title="<?php echo $this->__('Wishlist');?>" data-placement="right" data-toggle="tooltip"><span><?php echo $this->__('Add to Wishlist');?></span></a></div>
+                  <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                    <div class="link-compare"><a href="<?php echo $_compareUrl ?>" data-original-title="<?php echo $this->__('Compare');?>" data-placement="right" data-toggle="tooltip"><span><?php echo $this->__('Add to Compare');?></span></a></div>
+                  <?php endif; ?>
+                  <?php if($_product->isSaleable()): ?>
+                    <div class="add_cart"><button type="button"  data-original-title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')" data-placement="right" data-toggle="tooltip"><span><?php echo $this->__('Add to Cart') ?></span></button></div>        
+                  <?php else: ?>
+                    <p data-original-title="<?php echo $this->__('Out of stock') ?>" data-placement="right" data-toggle="tooltip" class="availability out-of-stock"><span class="ava-out-of-stock"><?php echo $this->__('Out of stock') ?></span></p>
+                  <?php endif; ?> 
+                </div><!--actions-->
+                <?php if(($get_current_layout!='custom_static_page_five')) { ?> <!--Exclude from v5-->
+                <?php
+                        $summaryData = Mage::getModel('review/review_summary')
+                                ->setStoreId($storeId)
+                                ->load($_product->getId());
+                        if($summaryData->getRatingSummary()){ ?>
+                            <div class="ratings">
+                                <div class="rating-box">
+                                        <div class="rating" style="width: <?php echo $summaryData->getRatingSummary().'%'; ?>"></div>
+                                </div> <!--rating-box-->
+                            </div> <!--ratings-->
+                    <?php } else { ?>  
+                            <div class="ratings"><div class="rating-box"><div style="width:0%" class="rating"></div></div></div>
+                    <?php } ?>
+                <?php } ?> <!--Exclude from v5-->
+              </div>
+            </div>
+            <div class="item-info">
+              <div class="info-inner">
+                <div class="item-title">
+                   <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_product->getName()) ?>">
+                      <?php $prod_name = $this->htmlEscape($_product->getName()) ; 
+                      if(strlen($prod_name) > 30) {echo substr($prod_name,0,30)."...";}else {echo $prod_name;}?>
+                 </a>
+                </div>
+                <?php if(($get_current_layout=='custom_static_page_five')) { ?> <!--for v5-->
+                <?php
+                        $summaryData = Mage::getModel('review/review_summary')
+                                ->setStoreId($storeId)
+                                ->load($_product->getId());
+                        if($summaryData->getRatingSummary()){ ?>
+                            <div class="ratings">
+                                <div class="rating-box">
+                                        <div class="rating" style="width: <?php echo $summaryData->getRatingSummary().'%'; ?>"></div>
+                                </div> <!--rating-box-->
+                            </div> <!--ratings-->
+                    <?php } else { ?>  
+                            <div class="ratings"><div class="rating-box"><div style="width:0%" class="rating"></div></div></div>
+                    <?php } ?>
+                <?php } ?> <!-- for v5-->
+                <div class="item-content">
+                  <div class="price-box"><?php echo $this->getPriceHtml($_product, true, '-new') ?></div>
+                </div>
+              </div>
+            </div>
+          </div>
+       </li> <!--item-->
+
+                   
+        <?php if ($i%$_columnCount==0 || $i==count($_products)): ?>
+        <?php endif ?>       
+    <?php endforeach; ?>
+
+  </ul> <!--pdt-list products-grid-home zoomOut play-->
+</div> <!--pdt-content pdt_new_arrivals is-loaded  tab-content-actived-->
+
+<?php endif; ?> <!-- Endif collection -->
+

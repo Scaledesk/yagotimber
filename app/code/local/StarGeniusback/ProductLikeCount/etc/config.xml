@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_ProductLikeCount extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_ProductLikeCount
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <StarGenius_ProductLikeCount>
+            <version>1.0.0</version>
+        </StarGenius_ProductLikeCount>
+    </modules>
+    <global>
+        <resources>
+            <stargenius_productlikecount_setup>
+                <setup>
+                    <module>StarGenius_ProductLikeCount</module>
+                    <class>StarGenius_ProductLikeCount_Model_Resource_Setup</class>
+                </setup>
+            </stargenius_productlikecount_setup>
+        </resources>
+        <blocks>
+            <stargenius_productlikecount>
+                <class>StarGenius_ProductLikeCount_Block</class>
+            </stargenius_productlikecount>
+        </blocks>
+        <helpers>
+            <stargenius_productlikecount>
+                <class>StarGenius_ProductLikeCount_Helper</class>
+            </stargenius_productlikecount>
+        </helpers>
+        <models>
+            <stargenius_productlikecount>
+                <class>StarGenius_ProductLikeCount_Model</class>
+                <resourceModel>stargenius_productlikecount_resource</resourceModel>
+            </stargenius_productlikecount>
+            <stargenius_productlikecount_resource>
+                <class>StarGenius_ProductLikeCount_Model_Resource</class>
+                <entities>
+                    <productslike>
+                        <table>stargenius_productlikecount_productslike</table>
+                    </productslike>
+                    <productslike_store>
+                        <table>stargenius_productlikecount_productslike_store</table>
+                    </productslike_store>
+                </entities>
+            </stargenius_productlikecount_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <stargenius_productlikecount>
+                        <class>StarGenius_ProductLikeCount_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </stargenius_productlikecount>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <stargenius_productlikecount>
+                    <file>stargenius_productlikecount.xml</file>
+                </stargenius_productlikecount>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_ProductLikeCount>
+                    <files>
+                        <default>StarGenius_ProductLikeCount.csv</default>
+                    </files>
+                </StarGenius_ProductLikeCount>
+            </modules>
+        </translate>
+        <global_search>
+            <productslike>
+                <class>stargenius_productlikecount/adminhtml_search_productslike</class>
+                <acl>stargenius_productlikecount</acl>
+            </productslike>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <StarGenius_ProductLikeCount before="Mage_Adminhtml">StarGenius_ProductLikeCount_Adminhtml</StarGenius_ProductLikeCount>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <stargenius_productlikecount>
+                <use>standard</use>
+                <args>
+                    <module>StarGenius_ProductLikeCount</module>
+                    <frontName>productlikecount</frontName>
+                </args>
+            </stargenius_productlikecount>
+        </routers>
+        <layout>
+            <updates>
+                <stargenius_productlikecount>
+                    <file>stargenius_productlikecount.xml</file>
+                </stargenius_productlikecount>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_ProductLikeCount>
+                    <files>
+                        <default>StarGenius_ProductLikeCount.csv</default>
+                    </files>
+                </StarGenius_ProductLikeCount>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <stargenius_productlikecount>
+            <productslike>
+                <breadcrumbs>1</breadcrumbs>
+                <meta_title>ProductsLikes</meta_title>
+            </productslike>
+        </stargenius_productlikecount>
+    </default>
+</config>

@@ -1,0 +1,177 @@
+<?php
+/**
+ * Template for Mage_Page_Block_Html
+ */
+
+
+?>
+<?php $_helper = Mage::helper('catalog/category') ?>
+<?php $_categories = $_helper->getStoreCategories() ?>
+
+<!DOCTYPE html>
+<html lang="<?php echo $this->getLang() ?>">
+<head>
+<!-- nitesh 3 -->
+  <?php echo $this->getChildHtml('head') ?>
+
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_one')) { ?>   
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu1.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_two')) { ?>  
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min2.css" type="text/css" /> 
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal2.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu2.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common2.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?>   
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal3.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu3.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common3.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_four')) { ?>  
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min4.css" type="text/css" /> 
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider4.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style4.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal4.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common4.js" type="text/javascript"></script>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?>     
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/bootstrap.min5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/revslider5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/style5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/internal5.css" type="text/css" />
+   <link rel="stylesheet" href="<?php echo $this->getSkinUrl(); ?>css/jquery.mobile-menu5.css" type="text/css" />
+   <script src="<?php echo $this->getSkinUrl(); ?>js/common5.js" type="text/javascript"></script>
+<?php } ?>
+
+</head>
+
+<body class="<?php echo $this->getBodyClass()?' '.$this->getBodyClass().'':'' ?>">
+  <div id="page">
+    <?php echo $this->getChildHtml('after_body_start') ?>
+
+    <?php echo $this->getChildHtml('global_notices') ?>      
+   
+    <?php echo $this->getChildHtml('header') ?>  
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- for version3 -->
+    <div class="page-heading">  
+    <?php echo $this->getChildHtml('breadcrumbs') ?> 
+    <?php $_helper=Mage::helper('catalog/output');
+          $_catname = Mage::registry('current_category')->getName(); ?>
+        <div class="page-title"><h1><?php echo $_helper->categoryAttribute($_category, $_catname, 'name'); ?></h1></div>
+    </div><!--page-heading-->      
+<?php } ?> <!-- End for version3 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- for version5 -->
+ <div class="container">
+ <div class="baner-img-all">
+ <img src="<?php echo $this->getSkinUrl('banner03.jpg'); ?>" />
+ </div>
+ <div class="Brd-com">
+ <?php echo $this->getChildHtml('breadcrumbs') ?> 
+ </div>
+ </div>
+<?php } ?> <!-- End for version5 -->
+
+     
+  <?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_four')) { ?> <!-- for version 1,2 -->
+    <?php echo $this->getChildHtml('breadcrumbs') ?> 
+  <?php } ?>
+
+    <!-- BEGIN Main Container col2-left -->                 
+    <section class="main-container col2-left-layout">
+      
+      <div class="main container">               
+       
+       <div class="row">
+         <div class="col-main col-sm-9 col-sm-push-3">
+             <?php echo $this->getChildHtml('global_messages') ?>	      
+             <?php echo $this->getChildHtml('content') ?>       
+         </div>
+
+         <aside class="col-left sidebar col-sm-3 col-xs-12 col-sm-pull-9">
+          <?php echo $this->getChildHtml('left') ?>                 
+         </aside> <!--col-right sidebar--> 
+       </div> <!--row-->
+      </div><!--main container-->
+    </section> <!--main-container col2-left-layout-->   
+
+                 <!-- Logo Brand Block -->
+      <?php if(($get_current_layout=='custom_static_page_one')) { ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_logo_brand_block')->toHtml() ?>
+      <?php } ?>
+      <?php if(($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_logo_brand2_block')->toHtml() ?> 
+      <?php } ?>   
+
+      
+
+  <?php echo $this->getChildHtml('footer') ?>
+  <?php echo $this->getChildHtml('before_body_end') ?>
+  <?php echo $this->getAbsoluteFooter() ?>
+</div> <!--page-->
+
+<!-- Mobile Menu-->
+  <?php if(($get_current_layout!='custom_static_page_four')) { ?> <!-- Exclude from version 4 -->
+      <div id="mobile-menu" >     
+        <ul class="mobile-menu">
+          <li><?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalogsearch/form.mini-mob.phtml')->toHtml() ; ?></li>
+            <?php echo $this->getLayout()->createBlock('catalog/navigation')->setTemplate('catalog/navigation/top_nav_mob.phtml')->toHtml() ; ?>
+        </ul> <!--mobile-menu-->
+
+        <?php if(($get_current_layout=='custom_static_page_three')) { ?> 
+          <div class="top-links">
+            <?php if(($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude from version 5 -->
+            <div class="lang-curr">
+              <?php echo $this->getChildHtml('store_language') ?>     
+              <?php echo $this->getChildHtml('custom_currency_selector') ?>
+            </div><!--lang-curr-->
+            <?php } ?> <!-- Exclude from version 5 -->
+            <ul class="links">
+              <li><a href="<?php echo $this->getUrl('')?>customer/account/" title="<?php echo $this->__('My Account') ?>"><?php echo $this->__('My Account') ?></a></li>
+              <li><a href="<?php echo $this->getUrl('wishlist') ?>" title="<?php echo $this->__('Wishlist') ?>"><?php echo $this->__('Wishlist') ?></a></li>
+              <?php if(Mage::getStoreConfig('mgkonestepcheckout_section/mgkopcgeneral_group/mgkextenable')==1) { ?>
+                <li><a href="<?php echo $this->getUrl('')?>onestepcheckout/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } else { ?>
+                <li><a href="<?php echo $this->getUrl('')?>checkout/onepage/" title="<?php echo $this->__('Checkout') ?>"><?php echo $this->__('Checkout') ?></a></li>
+              <?php } ?>
+              <li><a href="<?php echo $this->getUrl('')?>blog" title="<?php echo $this->__('Blog') ?>"><span><?php echo $this->__('Blog') ?></span></a></li>
+              <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/login/"; ?>" title="<?php echo $this->__('Log In') ?>"><span><?php echo $this->__('Log In') ?></span></a></li>
+              <?php } ?>
+              <?php if(Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+                <li class="last"><a href="<?php echo $this->getUrl('')."customer/account/logout/"; ?>" title="<?php echo $this->__('Log Out') ?>"><span><?php echo $this->__('Log Out') ?></span></a></li>
+              <?php } ?>
+            </ul>
+          </div><!--top-links-->
+        <?php } ?>
+
+      </div> <!--mobile-menu-->
+     <?php } ?> <!-- Exclude from version 4 -->
+      
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?php 
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+<div class="page-heading">
+        <div class="page-title">
+          <h2><?php echo $this->getTitle() ?></h2>
+        </div><!--page-title-->
+</div><!--page-heading-->
+<?php } ?> <!-- For version 3 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+<div class="shop_header has_big_img">
+    <div class="shop_header_image_background  parallax loaded" data-stellar-background-ratio="&quot;0.5&quot;"> </div>
+    <div class="cms-bg-overlay"></div>
+    <div class="container">
+      <div class="page-title">
+          <h2><?php echo $this->getTitle() ?></h2>
+        </div>
+    </div>
+  </div>
+<?php } ?> <!-- For version 5 -->
+
+<?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3,5 -->
+<div class="main-container col1-layout wow bounceInUp animated">
+  <div class="main container">
+<?php } ?> <!-- For version 3,5 -->
+
+<?php if(($get_current_layout!='custom_static_page_three') && ($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude From version 3,5 -->
+<div class="page-title">
+   <h2><?php echo $this->getTitle() ?></h2>
+</div><!--page-title-->
+<?php } ?> <!-- Exclude From version 3,5 -->
+
+  <div class="page-sitemap">
+    <div id="sitemap_top_links">
+        <?php echo $this->getChildHtml('links') ?>
+    </div>
+    <?php echo $this->getChildHtml('pager_top') ?>
+    <?php echo $this->getChildHtml('sitemap') ?>
+    <?php echo $this->getChildHtml('links') ?>
+    <?php echo $this->getChildHtml('pager_bottom') ?>
+  </div> <!--page-sitemap-->
+
+  <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3,5 -->
+    </div>
+  </div>
+<?php } ?> <!-- For version 3,5 -->

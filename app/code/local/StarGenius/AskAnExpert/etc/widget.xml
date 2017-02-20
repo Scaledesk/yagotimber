@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<widgets>
+    <askanexpert_questions_view type="stargenius_askanexpert/questions_widget_view" translate="name description" module="stargenius_askanexpert">
+        <name>Question view</name>
+        <description>Question view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <questions_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Question</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_askanexpert/adminhtml_questions_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Question</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </questions_id>
+        </parameters>
+    </askanexpert_questions_view>
+    <askanexpert_questions_link type="stargenius_askanexpert/questions_widget_link" translate="name description" module="stargenius_askanexpert">
+        <name>Question link</name>
+        <description>Question link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <questions_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>Question</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_askanexpert/adminhtml_questions_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select Question</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </questions_id>
+        </parameters>
+    </askanexpert_questions_link>
+</widgets>

@@ -1,0 +1,40 @@
+<?php 
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+     <div class="page-heading">
+        <div class="page-title 123a">
+          <h1><?php echo $this->__('You are now logged out') ?></h1>
+        </div><!--page-title-->
+     </div><!--page-heading-->
+<?php } ?> <!-- For version 3 -->
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+<div class="main-container col1-layout wow bounceInUp animated">
+  <div class="main container">
+<?php } ?> <!-- For version 3 -->
+
+<div class="account-login">
+	<?php if(($get_current_layout!='custom_static_page_three')) { ?> <!-- Exclude From version 3 -->
+       <div class="page-title">
+          <h1><?php echo $this->__('You are now logged out') ?></h1>
+       </div><!--page-title-->
+     <?php } ?> <!-- Exclude From version 3 -->
+  <p class="container"><?php echo Mage::helper('customer')->__('You have logged out and will be redirected to our homepage in 5 seconds.') ?></p>
+<script type="text/javascript">
+//<![CDATA[
+    setTimeout(function(){ location.href = '<?php echo $this->getUrl() ?>'},5000);
+//]]>
+</script>
+</div> <!--login_page-->
+<br />
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+    </div>
+  </div>
+<?php } ?> <!-- For version 3 -->

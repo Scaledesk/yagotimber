@@ -1,0 +1,123 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    Adesh
+ * @package     Mymodule_Customerpage
+ * @author      Adesh
+ * @Website     adeshsuryan.in
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>        <?php 
+
+if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+ 
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+   $customer_email = $customer->getEmail();
+	}
+	
+	
+ $collection_current = Mage::getResourceModel('stargenius_yagostudio/yagostudio_collection')
+                ->addFieldToFilter('customer_email', $customer_email) 
+				->load(); 
+				 if($collection_current->getItems()) {
+					$studio_data = $collection_current->getItems(); 
+				 }if($studio_data ) {
+					 ?>
+               
+    <div class="dashboard">
+        <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+        <div class="box-account box-info">
+                <div class="box-head col-md-12">
+                    <h2><?php echo $this->__('Yago Studio') ?></h2>
+                </div>
+            <div class="col-md-8 col-sm-8 col-xs-12">
+            <div class="box_image">
+            	<div class="download_all"><a href="#">Download All</a></div>
+                <div class="gallery_01">
+                	<div class="row">
+                   <?php
+				  foreach($studio_data as $studio_data ) { 
+					 
+				$designerphotos = $studio_data->getDesignerPhotos();	 
+				$designer_nam = $studio_data->getDesignerName();	
+				$designer_id  = $studio_data->getId();	 
+				$designer_email = $studio_data->getDesignerEmail();	 
+				$designer_address = $studio_data->getDesignerAddress();	
+				$designer_mobile = $studio_data->getDesignerMobile(); ?>
+				
+				 <div class="col-md-3 col-sm-3 col-xs-6 "><a class="lightbox thumbnail" href="<?php echo Mage::getBaseUrl('media').'yagostudio/image/'.$designerphotos; ?>" data-littlelightbox-group="gallery" title="<?php echo $designer_nam;?>"><img src="<?php echo Mage::getBaseUrl('media').'yagostudio/image/'.$designerphotos; ?>" alt="<?php echo $designer_nam;?>" /></a> <a href="<?php echo Mage::getBaseUrl('media').'yagostudio/image/'.$designerphotos; ?>" class="single_download" download>Download</a></div>
+				 <?php }  ?>
+                 
+                    </div>
+                    
+                </div>
+                
+            </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+            	<div class="box_form">
+                	<div class="name_box">
+                    	<strong>ID:-</strong>&nbsp;<?php echo $designer_id;?>
+						<br>
+						<strong>Name:-</strong>&nbsp;<?php echo $designer_nam;?>
+						<br>
+						<strong>Mail:-</strong>&nbsp;<?php echo $designer_email;?>
+						<strong>Address:-</strong>&nbsp;<?php echo $designer_address;?> <br>
+						<strong>Mobile:-</strong>&nbsp; <?php echo $designer_mobile;?> <br>
+                    </div>
+                    <div class="comment_right_box01">
+            <?php         	
+ $collection_comments = Mage::getResourceModel('stargenius_yagostudiocomments/yagocomment_collection')
+                ->addFieldToFilter('customer_email', $customer_email) 
+				->load(); 
+				 if($collection_comments->getItems()) {
+					$studio_comments = $collection_comments->getItems(); 
+				 }?>
+                 <?php
+				 foreach($studio_comments as $studio_comments ) {
+					
+					$CommentContent = $studio_comments->getCommentContent();	 
+				 $UpdatedAt = $studio_comments->getUpdatedAt();	?>
+					 
+					 
+				
+                    <div class="comment_right_box">
+                    	<div class="profile_img">
+                        	<img src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/profile_comment.png" />
+                            <h3><?php echo $designer_nam;?></h3>
+                            <h4>Date : <?php echo $UpdatedAt;?></h4>
+                        </div>
+                        <div class="comment_text"><p><?php echo $CommentContent;?></p></div>
+                    </div>
+                     <?php } ?>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <?php } else { echo 'Yagostudio is not activated for your account.Please try later.';} ?>
+    
+    
+      <script src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/js/jquery.littlelightbox.js"></script>
+   <script>
+jQuery('.lightbox').littleLightBox();
+</script>

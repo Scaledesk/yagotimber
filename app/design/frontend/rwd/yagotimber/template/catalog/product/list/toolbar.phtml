@@ -1,0 +1,134 @@
+<?php
+/**
+ * Product list toolbar
+ *
+ * @see Mage_Catalog_Block_Product_List_Toolbar
+ */
+?>
+<?php
+$storeId = Mage::app()->getStore()->getId(); // return current store id //echo Mage::app()->getRequest()->getParam('order');exit;
+$list_check_String=Mage::getStoreConfig('catalog/frontend/list_per_page_values',$storeId);
+$list_array = explode(",",$list_check_String);
+$flag_list_status = in_array($_GET['limit'],$list_array);
+$mode = $this->getLayout()->createBlock('catalog/product_list_toolbar')->setChild('product_list_toolbar_pager', $pager)->getCurrentMode();
+?>
+
+<?php if($this->getCollection()->getSize()): ?>
+<div class="toolbar">
+
+    <?php if( $this->isExpanded() ): ?>
+    <div class="sorter">
+        <?php if( $this->isEnabledViewSwitcher() ): ?>
+	
+<?php $category_name = Mage::getModel('catalog/layer')->getCurrentCategory()->getName();
+if( $category_name != 'Sale' ){
+	echo '<div class="view-mode">';
+             $_modes = $this->getModes();
+            if($_modes && count($_modes)>1):            
+             foreach ($this->getModes() as $_code=>$_label):
+                if($this->isModeActive($_code)):
+                   echo '<span title="<?php echo $_label ?>" class="button button-active button-'. strtolower($_code).' ">&nbsp;</span>&nbsp;';
+                 else: 
+                    echo '<a href="'. $this->getModeUrl($_code) .'" title="'. $_label .'" class="button button-'. strtolower($_code).' ">&nbsp;</a>&nbsp;';
+                 endif; 
+             endforeach; 
+             endif;           
+        echo '</div>';
+
+}
+?>
+        <?php endif; ?>
+    
+
+    </div> <!--sorter-->
+    <?php endif; ?>
+           <div id="sort-by">
+         <ul>
+          <label class="left"><?php echo $this->__('Sort By:') ?></label>
+            <li>
+                <a href="#"> 
+                  <?php if(Mage::app()->getRequest()->getParam('order')=="") { ?>
+                  <?php echo Mage::getStoreConfig('catalog/frontend/default_sort_by'); } else {?>
+                  <?php echo Mage::app()->getRequest()->getParam('order');} ?> 
+                  <span class="right-arrow"></span> 
+                </a>           
+          <ul>
+            <?php foreach($this->getAvailableOrders() as $_key=>$_order): ?>               
+              <li>
+                <a href="<?php echo $this->getOrderUrl($_key, 'asc') ?>">
+                    <?php echo $this->__($_order) ?>
+                </a>
+              </li>
+            <?php endforeach; ?>
+          </ul> 
+        </li>          
+      </ul>
+        <?php if($this->getCurrentDirection() == 'desc'): ?>
+             <a class="button-asc left" href="<?php echo $this->getOrderUrl(null, 'asc') ?>" title="<?php echo $this->__('Set Ascending Direction') ?>">             
+              <span class="fa fa-angle-up"></span></a>             
+        <?php else: ?>
+             <a class="button-desc left" href="<?php echo $this->getOrderUrl(null, 'desc') ?>" title="<?php echo $this->__('Set Descending Direction') ?>">             
+              <span class="fa fa-angle-down"></span></a>       
+        <?php endif; ?>
+    </div> <!--sort-by--> 
+
+    <div class="pager"> 
+    
+<!-- BEGIN LIMITER -->
+    <div id="limiter">
+     <ul>
+      <label><?php echo $this->__('View: ') ?></label>
+       <li>
+          <a href="#"> 
+             <?php if((Mage::app()->getRequest()->getParam('mode')=='grid')&&(Mage::app()->getRequest()->getParam('limit')=="")){?>
+                <?php echo Mage::getStoreConfig('catalog/frontend/grid_per_page');}?>
+
+             <?php if((Mage::app()->getRequest()->getParam('mode')=='list')&&(Mage::app()->getRequest()->getParam('limit')=="")){?>
+                <?php echo Mage::getStoreConfig('catalog/frontend/list_per_page');}?>
+    
+             <?php if((Mage::app()->getRequest()->getParam('mode')=='grid')&&(Mage::app()->getRequest()->getParam('limit')!="")){
+                 if(!$flag_list_status){
+                    echo Mage::getStoreConfig('catalog/frontend/grid_per_page');
+                 } else { 
+                    echo Mage::app()->getRequest()->getParam('limit');}}
+             ?>
+
+             <?php if((Mage::app()->getRequest()->getParam('mode')=='list')&&(Mage::app()->getRequest()->getParam('limit')!="")){
+                 if(!$flag_list_status){
+                    echo Mage::getStoreConfig('catalog/frontend/list_per_page');
+                 } else { 
+                    echo Mage::app()->getRequest()->getParam('limit');}}
+            ?>
+    
+            <?php  if((Mage::app()->getRequest()->getParam('mode')=="")&&(Mage::app()->getRequest()->getParam('limit')=="")){ 
+                  if($mode == 'grid'){
+                    echo Mage::getStoreConfig('catalog/frontend/grid_per_page');
+                 } else { 
+                    echo Mage::getStoreConfig('catalog/frontend/list_per_page');
+                }
+           }?>
+    
+            <?php if((Mage::app()->getRequest()->getParam('mode')=="")&&(Mage::app()->getRequest()->getParam('limit')!="")){
+               echo Mage::app()->getRequest()->getParam('limit');
+             } 
+            ?>
+            <span class="right-arrow"></span>
+        </a>
+        <ul>           
+          <?php foreach ($this->getAvailableLimit() as  $_key=>$_limit): ?>                
+            <li>
+              <a href="<?php echo $this->getLimitUrl($_key) ?>">
+                 <?php echo $_limit ?>
+              </a>
+            </li>
+          <?php endforeach; ?>           
+        </ul> 
+
+        </li>
+      </ul>
+    </div>  <!--limiter-->
+    <?php echo $this->getPagerHtml() ?> 
+  </div> <!--pager-->
+       
+</div> <!--toolbar-->
+<?php endif ?>

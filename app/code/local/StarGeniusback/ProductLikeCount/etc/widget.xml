@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_ProductLikeCount extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_ProductLikeCount
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<widgets>
+    <productlikecount_productslike_view type="stargenius_productlikecount/productslike_widget_view" translate="name description" module="stargenius_productlikecount">
+        <name>ProductsLike view</name>
+        <description>ProductsLike view widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <productslike_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>ProductsLike</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_productlikecount/adminhtml_productslike_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select ProductsLike</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>120</sort_order>
+            </productslike_id>
+        </parameters>
+    </productlikecount_productslike_view>
+    <productlikecount_productslike_link type="stargenius_productlikecount/productslike_widget_link" translate="name description" module="stargenius_productlikecount">
+        <name>ProductsLike link</name>
+        <description>ProductsLike link widget</description>
+        <is_email_compatible>0</is_email_compatible>
+        <parameters>
+            <productslike_id type="complex" translate="label">
+                <visible>1</visible>
+                <required>1</required>
+                <label>ProductsLike</label>
+                <type>label</type>
+                <helper_block>
+                    <type>stargenius_productlikecount/adminhtml_productslike_widget_chooser</type>
+                    <data>
+                        <button translate="open">
+                            <open>Select ProductsLike</open>
+                        </button>
+                    </data>
+                </helper_block>
+                <sort_order>130</sort_order>
+            </productslike_id>
+        </parameters>
+    </productlikecount_productslike_link>
+</widgets>

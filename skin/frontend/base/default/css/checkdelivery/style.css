@@ -1,0 +1,12 @@
+.block-check-delivery .block-title strong {background-image:none; font-size: 11px;}
+.block-check-delivery .block-content {padding:0 10px; width:32%;float:right;  }
+.block-check-delivery .button {float: right;}
+.block-check-delivery input{width: 107px;float:left;}
+.loading_checkDel{    width: 3%;
+    float: left;
+    position: relative;
+    left: -28px;
+    height: 33px;
+    padding-top: 6px;}
+.loading_checkDel img{    height: 21px;}	
+#delivery-message{float:left;}

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_Yagostudio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudio
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+    
+    <customer_account>
+        <reference name="customer_account_navigation">
+            <action method="addLink" translate="label" module="stargenius_yagostudio"><name>yagostudio_comments</name><path>stargenius_yagostudio/yagostudio_customer_comment</path><label>Yagostudios Comments</label></action>
+        </reference>
+    </customer_account>
+    <stargenius_yagostudio_yagostudio_index translate="label" module="stargenius_yagostudio">
+        <label>Yagostudios list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_yagostudio/yagostudio_list" name="yagostudio_list" template="stargenius_yagostudio/yagostudio/list.phtml" />
+        </reference>
+    </stargenius_yagostudio_yagostudio_index>
+    <stargenius_yagostudio_yagostudio_view translate="label" module="stargenius_yagostudio">
+        <label>Yagostudio view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_yagostudio/yagostudio_view" name="yagostudio_view" template="stargenius_yagostudio/yagostudio/view.phtml" />
+            <block type="stargenius_yagostudio/yagostudio_comment_list" name="yagostudio.comments_list" as="yagostudio_comment_list" template="stargenius_yagostudio/yagostudio/comment/list.phtml">
+                <block type="stargenius_yagostudio/yagostudio_comment_form" name="comment_form" as="comment_form" template="stargenius_yagostudio/yagostudio/comment/form.phtml" />
+            </block>
+        </reference>
+    </stargenius_yagostudio_yagostudio_view>
+    <stargenius_yagostudio_yagostudio_customer_comment_index translate="label" module="stargenius_yagostudio">
+        <label>My Yagostudios comments</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="stargenius_yagostudio/yagostudio_customer_comment_list" name="customer_yagostudio_comments" template="stargenius_yagostudio/yagostudio/customer/comment/list.phtml"/>
+        </reference>
+    </stargenius_yagostudio_yagostudio_customer_comment_index>
+    <stargenius_yagostudio_yagostudio_customer_comment_view translate="label" module="stargenius_yagostudio">
+        <label>My Yagostudios comment view</label>
+        <update handle="customer_account"/>
+        <reference name="my.account.wrapper">
+            <block type="stargenius_yagostudio/yagostudio_customer_comment_view" name="customer_yagostudio_comment" template="stargenius_yagostudio/yagostudio/customer/comment/view.phtml"/>
+        </reference>
+    </stargenius_yagostudio_yagostudio_customer_comment_view>
+</layout>

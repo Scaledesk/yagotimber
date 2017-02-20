@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<layout>
+    
+    <stargenius_askanexpert_questions_index translate="label" module="stargenius_askanexpert">
+        <label>Questions list</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_askanexpert/questions_list" name="questions_list" template="stargenius_askanexpert/questions/list.phtml" />
+        </reference>
+    </stargenius_askanexpert_questions_index>
+    <stargenius_askanexpert_questions_view translate="label" module="stargenius_askanexpert">
+        <label>Question view page</label>
+        <update handle="page_two_columns_left" />
+        <reference name="content">
+            <block type="stargenius_askanexpert/questions_view" name="questions_view" template="stargenius_askanexpert/questions/view.phtml" />
+        </reference>
+    </stargenius_askanexpert_questions_view>
+    <stargenius_askanexpert_questions_rss translate="label" module="stargenius_askanexpert">
+        <label>Questions rss feed</label>
+        <block type="stargenius_askanexpert/questions_rss" output="toHtml" name="stargenius_askanexpert.questions.rss" />
+    </stargenius_askanexpert_questions_rss>
+    <rss_index_index>
+        <reference name="content">
+            <block type="stargenius_askanexpert/rss" name="askanexpert.rss" template="stargenius_askanexpert/rss.phtml">
+                <action method="addFeed" ifconfig="stargenius_askanexpert/questions/rss" translate="label" module="stargenius_askanexpert">
+                    <label>Questions</label>
+                    <url helper="stargenius_askanexpert/questions/getRssUrl" />
+                </action>
+            </block>
+        </reference>
+    </rss_index_index>
+</layout>

@@ -1,0 +1,66 @@
+
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+ 
+
+<!-- my code --> 
+
+<?php if(Mage::registry('current_category')){ 
+$my_catimg = Mage::registry('current_category')->getImage();
+if($my_catimg) { ?>
+<div class="baner-img-all container">
+<div id="box">
+<img src="http://www.yagotimber.com/media/catalog/category/<?php echo $my_catimg; ?>"></img>
+</div>
+</div>
+<?php } }?>
+
+
+<!-- my code -->
+
+<?php if($crumbs && is_array($crumbs)): ?>
+   <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+      	<div class="col-xs-12">
+      	  <?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_two')) { ?> <!-- for version 1,2 -->
+	        <ul class="breadcrumb">
+		  <?php } ?>
+		  <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_four') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- for version3,4,5 -->
+	        <ul>
+		  <?php } ?>
+	  <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
+	      <li class="<?php echo $_crumbName ?>">
+	      <?php if($_crumbInfo['link']): ?>
+		  <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+	      <?php elseif($_crumbInfo['last']): ?>
+		  <a><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+	      <?php else: ?>
+		  <?php echo $this->htmlEscape($_crumbInfo['label']) ?>
+	      <?php endif; ?>
+	      <?php if(!$_crumbInfo['last']): ?>
+	      <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_four') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- for version3,4,5 -->
+		  <span>—› </span>
+		  <?php } ?> <!-- End for version3,4,5 -->
+	      <?php endif; ?>
+	      </li>
+	  <?php endforeach; ?>
+	</ul>
+	  </div><!--col-xs-12-->
+      </div> <!--row-->
+
+   
+
+    </div> <!--container-->
+
+  </div><!--breadcrumbs-->
+<?php endif; ?>
+
+  

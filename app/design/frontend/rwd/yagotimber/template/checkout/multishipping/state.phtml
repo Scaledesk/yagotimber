@@ -1,0 +1,58 @@
+
+<?php 
+/**
+ * Mustishipping state
+ * 
+ * @see Mage_Checkout_Block_Multishipping_State
+ */
+?>
+<?php 
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+<div class="page-heading">
+  <div class="state_bar container">
+<?php } ?> <!-- For version 3 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+<div class="shop_header has_big_img">
+    <div class="shop_header_image_background  parallax loaded" data-stellar-background-ratio="&quot;0.5&quot;"> </div>
+    <div class="cms-bg-overlay"></div>
+      <div class="container">
+<?php } ?> <!-- For version 5 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+     <div class="page-title">
+<?php } ?>
+
+<?php if(($get_current_layout!='custom_static_page_three') && ($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude From version 3, 5 -->
+<div class="state_bar">
+<?php } ?> <!-- Exclude From version 3, 5 -->
+
+<ul class="checkout-progress" id="checkout-progress-state">
+<?php foreach ($this->getSteps() as $_step): ?>
+    <li title="<?php echo $_step->getLabel() ?>"<?php if($_step->getIsActive()): ?> class="active"<?php endif; ?>><?php echo $_step->getLabel() ?></li>
+<?php endforeach; ?>
+</ul>
+
+<?php if(($get_current_layout!='custom_static_page_three') && ($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude From version 3,5 -->
+</div> <!--state_bar-->
+<?php } ?> <!-- Exclude From version 3,5 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+     </div> <!-- page title -->
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3,5 -->
+ </div>
+</div>
+<?php } ?> <!-- For version 3,5 -->
+
+<script type="text/javascript">decorateGeneric($$('#checkout-progress-state li'), ['first','last']);</script>
+

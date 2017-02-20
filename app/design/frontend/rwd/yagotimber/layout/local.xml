@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<layout>
+        <default>
+
+                <reference name="root">
+                        <action method="setTemplate">
+                                <template>page/2columns-left.phtml</template>
+                                <action method="setIsHandle">
+                                        <applied>1</applied>
+                                </action>
+                        </action>  
+
+                        <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/> 
+                        <block type="directory/currency" name="custom_currency_selector" as="custom_currency_selector" template="currency/currency.phtml"/>                        
+                </reference>   
+        
+                <!-- Remove callouts and rarely used stuff -->
+                <remove name="right.poll"/>
+                <remove name="right.permanent.callout"/>
+                <remove name="left.permanent.callout"/>
+                <remove name="paypal.partner.right.logo"/>
+                <remove name="return_link"/>
+                <remove name="wishlist_link"/>
+               <!-- <remove name="catalog.leftnav"/>-->
+
+                <!-- add the local stylesheet & js -->
+                <reference name="head">
+                
+                <!--colorswatch-->
+                <action method="addItem"><type>skin_js</type><name>js/lib/modernizr.custom.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/selectivizr.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/matchMedia.addListener.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/enquire.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/app.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/jquery.cycle2.swipe.min.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/slideshow.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/lib/imagesloaded.js</name></action>
+                <action method="addItem"><type>skin_js</type><name>js/minicart.js</name></action>
+                <!--colorswatch-->
+                
+                   <action method="addJs"><script>prototype/validation.js</script></action>
+                   <action method="addJs"><script>varien/product.js</script></action>
+                   <action method="addJs"><script>varien/configurable.js</script></action>
+                   <action method="addItem"><type>skin_js</type><name>js/bundle.js</name></action>
+                   <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
+                   <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+                   <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>  
+				    <action method="addItem"><type>js</type><name>jquery.popupoverlay.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+
+                        <action method="removeItem">
+                                <type>skin_css</type>
+                                <name>css/madisonisland.css</name>
+                        </action>
+                        <action method="removeItem">
+                                <type>skin_css</type>
+                                <name>css/styles.css</name>
+                        </action>
+
+                        <action method="addItem" ifconfig="elantrasettings/animatecss/enableanimate"><type>skin_css</type><name>css/animate.css</name></action>
+                                                                                       
+                        <!--action method="addCss"><stylesheet>css/bootstrap.min.css</stylesheet></action-->  
+                        <action method="addCss"><stylesheet>css/font-awesome.css</stylesheet></action>
+                        <action method="addCss"><stylesheet>css/simple-line-icons.css</stylesheet></action>                                      
+                        <action method="addCss"><stylesheet>css/owl.carousel.css</stylesheet></action>  
+                        <action method="addCss"><stylesheet>css/owl.theme.css</stylesheet></action>                                             
+                        <action method="addCss"><stylesheet>css/jquery.bxslider.css</stylesheet></action>  
+                        <!--action method="addCss"><stylesheet>css/jquery.mobile-menu.css</stylesheet></action--> 
+
+                        <!--colorswatch-->
+                        <action method="addCss"><stylesheet>css/color-swatch.css</stylesheet></action>
+                        <!--colorswatch-->
+
+                        <!--colorswatch-->
+                        <action method="addItem"><type>skin_js</type><script>js/lib/elevatezoom/jquery.elevateZoom-3.0.8.min.js</script></action>
+                        <!--colorswatch-->
+
+                        <action method="addItem"><type>skin_js</type><name>js/jquery.min.js</name></action>  
+                        <action method="addItem"><type>skin_js</type><name>js/bootstrap.min.js</name></action> 
+                        <action method="addItem"><type>skin_js</type><name>js/parallax.js</name></action> 
+                        <action method="addItem"><type>skin_js</type><name>js/revslider.js</name></action> 
+                        <!--action method="addItem"><type>skin_js</type><name>js/common.js</name></action-->
+                        <action method="addItem"><type>skin_js</type><name>js/jquery.bxslider.min.js</name></action>   
+                        <action method="addItem"><type>skin_js</type><name>js/owl.carousel.min.js</name></action>                        
+                        <action method="addItem"><type>skin_js</type><name>js/jquery.mobile-menu.min.js</name></action>    
+                        <!--action method="addItem"><type>skin_js</type><name>js/revolution-slider.js</name></action> 
+                        <action method="addItem"><type>skin_js</type><name>js/revolution.extension.js</name></action--> 
+                             <action method="addItem"><type>skin_css</type><name>css/scrollingcart/scroll.css</name><params/></action>
+			<action method="addItem" ifconfig="mgkautocompletesection/general/enabled"><type>skin_css</type><name>css/magikautosearch.css</name></action>
+			<action method="addItem" ifconfig="autoscrollsection/autoscrollgeneral/enabled"><type>skin_js</type><name>js/automaticscroll/jquery.scroll.min.js</name></action>
+                </reference>
+
+                <reference name="before_body_end">
+                        
+                      <block type="scrollingcart/index" name="scrollingcart_index" template="magik/scrollingcart/index.phtml">   
+                      <block type="checkout/cart" name="cart_cartheader" template="magik/scrollingcart/checkout/cart/cartheader.phtml" >
+                            <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>magik/scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+                              <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>magik/scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+                              <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>magik/scrollingcart/checkout/cart/cartheader/default.phtml</template></action>
+                              <block type="core/text_list" name="cart_cartheader.extra_actions" as="extra_actions" translate="label" module="checkout">
+                                      <label>Shopping Cart Cartheader Extra Actions</label>
+                              </block>
+                      </block>  
+                      </block>
+
+                </reference>
+                
+                <reference name="header">
+                
+            <block type="cms/block" name="elantra_logo" as="elantraLogo">
+                <action method="setBlockId"><block_id>elantra_logo</block_id></action>
+            </block>
+            <block type="cms/block" name="elantra_logo_2" as="elantraLogo2">
+                <action method="setBlockId"><block_id>elantra_logo_2</block_id></action>
+            </block>   
+            <block type="cms/block" name="elantra_logo_3" as="elantraLogo3">
+                <action method="setBlockId"><block_id>elantra_logo_3</block_id></action>
+            </block>  
+            <block type="cms/block" name="elantra_logo_4" as="elantraLogo4">
+                <action method="setBlockId"><block_id>elantra_logo_4</block_id></action>
+            </block>        
+            <block type="checkout/cart_sidebar" name="cart_top" as="cartTop" template="checkout/cart/cart-top.phtml">
+                <action method="addItemRender"><type>simple</type><block>checkout/cart_item_renderer</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>grouped</type><block>checkout/cart_item_renderer_grouped</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <action method="addItemRender"><type>configurable</type><block>checkout/cart_item_renderer_configurable</block><template>checkout/cart/sidebar/default.phtml</template></action>
+                <block type="core/text_list" name="cart_sidebar.extra_actions" as="extra_actions" translate="label" module="checkout">
+                    <label>Shopping Cart Sidebar Extra Actions</label>
+                </block>
+            </block>                                  
+                        <block type="catalog/navigation" name="top.menu" as="topMenu" template="catalog/navigation/top_nav.phtml"/> 
+                        <block type="catalog/navigation" name="top.menu" as="topMenu4" template="catalog/navigation/top_nav4.phtml"/>                    
+                        <block type="catalog/navigation" name="top.menu" as="topMenuMob" template="catalog/navigation/top_nav_mob.phtml"/>                              
+                        <block type="page/switch" name="store_language" as="store_language" template="page/switch/languages.phtml"/> 
+                        <block type="directory/currency" name="custom_currency_selector" as="custom_currency_selector" template="currency/currency.phtml"/>
+                                        
+                </reference>
+                
+                <reference name="footer">                     
+                      <block type="core/template" name="contactForm" as="contactForm" template="contacts/form1.phtml"/>
+                </reference>
+
+                <reference name="right">
+                        <remove name="right.poll" />
+                        <!--<action method="unsetChild"><name>catalog.compare.sidebar</name></action>
+                        <action method="unsetChild"><name>right.reports.product.viewed</name></action>
+                        <action method="unsetChild"><name>right.reports.product.compared</name></action>-->
+                </reference>
+
+                <reference name="left">
+         
+                    <action method="unsetChild"><name>catalogsearch.leftnav</name></action>
+                        <remove name="currency"/>
+                        <remove name="right_currency"/>
+                        
+                        
+                        <block type="poll/activePoll" name="left.poll" after="-">
+                          <action method="setPollTemplate"><template>poll/active.phtml</template><type>poll</type></action>
+                          <action method="setPollTemplate"><template>poll/result.phtml</template><type>results</type></action>
+                        </block>
+                                                                  
+                        <action method="insert">
+                                <blockName>catalog.compare.sidebar</blockName>
+                                <sublingName>left.poll</sublingName>
+                                <after>0</after>
+                        </action>
+                        <action method="insert">
+                                <blockName>right.reports.product.viewed</blockName>
+                                <sublingName>catalog.compare.sidebar</sublingName>
+                                <after>1</after>
+                        </action>
+                        <action method="insert">
+                                <blockName>right.reports.product.compared</blockName>
+                                <sublingName>right.reports.product.viewed</sublingName>
+                                <after>1</after>
+                        </action>
+                       <action method="insert">
+                                <blockName>cart_sidebar</blockName>
+                                <sublingName>catalog.compare.sidebar</sublingName>
+                                <after>0</after>
+                        </action>     
+                        <block type="catalog/navigation" name="leftMenu" as="leftMenu" before="catalog.leftnav" template="catalog/navigation/left_nav.phtml"/>
+
+                        <block type="cms/block" name="listingpage_block" as="listingpage_block" after="leftMenu">
+                        <action method="setBlockId"><block_id>elantra_listing_page_block</block_id></action>
+                        </block> 
+                                                   
+                </reference>             
+
+        </default>
+        
+    <catalog_category_layered_nochildren translate="label">
+        <label>Catalog Category (Without Subcategories)</label>
+        <remove name="right.reports.product.viewed" />
+        <reference name="left">
+            <block type="reports/product_viewed" before="right.reports.product.compared" name="left.reports.product.viewed" template="reports/product_viewed.phtml" />
+        </reference>
+    </catalog_category_layered_nochildren>
+    
+        <catalogsearch_result_index translate="label">
+         <reference name="left">
+            <block type="catalogsearch/layer" name="catalogsearch.leftnav" after="leftMenu" template="catalog/layer/view.phtml"/>
+	  </reference>
+	  <reference name="content">
+                        <block type="core/template" template="automaticscroll/automaticscroll.phtml" after="-" />
+            </reference>
+            <remove name="left_first"/> 
+        </catalogsearch_result_index>
+
+        <catalog_category_default translate="label">
+                <reference name="root">
+                      <action method="setTemplate"><template>page/columns-left-list.phtml</template></action>
+                </reference>
+                <reference name="left">
+                        <action method="unsetChild"><alias>catalog.leftnav</alias></action>
+                        <action method="insert"><blockName>catalog.leftnav</blockName><sublingName></sublingName><after>0</after></action>
+                </reference>
+             <reference name="content">
+                        <block type="core/template"  template="automaticscroll/automaticscroll.phtml" after="-" />
+			
+	    </reference>
+        </catalog_category_default>
+        
+        <catalog_category_layered translate="label">
+                <reference name="root">
+                      <action method="setTemplate"><template>page/2columns-left-list.phtml</template></action>
+                </reference>
+                <reference name="left">
+                        <action method="unsetChild"><alias>catalog.leftnav</alias></action>
+                        <action method="insert"><blockName>catalog.leftnav</blockName><sublingName></sublingName><after>0</after></action>
+                </reference>
+            <reference name="content">
+                        <block type="core/template"  template="automaticscroll/automaticscroll.phtml" after="-" />
+			
+            </reference>
+        </catalog_category_layered>
+        
+        <catalog_product_view translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column-view.phtml</template></action>
+              </reference>   
+			    <reference name="head">
+				
+				<action method="addItem"><type>js</type><name>inquery/jquery.popupoverlay.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+                  </reference>                              
+             <reference name="product.info.additional">
+              <action method="unsetChild" ><name>product_tag_list</name></action>
+              <block type="catalog/product_view_tabs" name="product.info.tabs" as="info_tabs">
+                <action method="setTemplate" ><template>catalog/product/view/tabs.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ><alias>description</alias><title>Product Description</title><block>catalog/product_view_description</block><template>catalog/product/view/description.phtml</template></action>
+                <action method="addTab" translate="title" module="catalog" ><alias>additional</alias><title>Additional Info</title><block>catalog/product_view_attributes</block><template>catalog/product/view/attributes.phtml</template></action>    
+              
+                <action method="addTab" translate="title" module="review" ><alias>review_tabbed</alias><title>Reviews</title><block>review/product_view_list</block><template>review/product/view/list.phtml</template></action>                                         
+              </block>
+               
+             </reference>
+                          
+             <reference name="review_tabbed">
+                <block type="review/form" name="tab_review_form" as="review_form" template="review/form.phtml" />
+             </reference> 
+                        
+        </catalog_product_view>
+        
+        <!--colorswatch-->
+        <PRODUCT_TYPE_configurable>
+
+        <reference name="product.info.options.configurable">
+            <block type="core/text_list" name="product.info.options.configurable.renderers" as="attr_renderers">
+                <block type="configurableswatches/catalog_product_view_type_configurable_swatches" template="configurableswatches/catalog/product/view/type/options/configurable/swatches.phtml" />
+            </block>
+            <block type="core/text_list" name="product.info.options.configurable.after" as="after">
+            <block type="core/template" template="configurableswatches/catalog/product/view/type/configurable/swatch-js.phtml" />
+            </block>
+        </reference>
+
+        </PRODUCT_TYPE_configurable>
+        <!--colorswatch-->
+        
+        <review_product_list translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>
+              </reference>         
+        </review_product_list>
+        
+        <review_product_view translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/2columns-right.phtml</template></action>
+              </reference>        
+        </review_product_view>
+           
+        <sendfriend_product_send translate="label">       
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>                    
+              </reference>         
+        </sendfriend_product_send>
+        
+        <checkout_cart_index translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>   
+        </checkout_cart_index>
+        
+        <checkout_onepage_index translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/2columns-right-checkout.phtml</template></action>
+              </reference>              
+        </checkout_onepage_index>
+        
+        <checkout_onepage_success translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>         
+        </checkout_onepage_success>
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>           
+        <checkout_onepage_failure translate="label">
+        
+        </checkout_onepage_failure>
+        
+        <checkout_multishipping translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>         
+        </checkout_multishipping>
+        
+        <customer_account_login translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>                   
+        </customer_account_login>
+        
+        <customer_account_logoutsuccess translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>         
+        </customer_account_logoutsuccess>
+        
+        <customer_account_create translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>
+        </customer_account_create>
+        
+        <customer_account_forgotpassword translate="label">
+                <reference name="root">
+                        <action method="setTemplate"><template>page/1column.phtml</template></action>
+                </reference>
+        </customer_account_forgotpassword>
+        
+        <customer_account translate="label">
+        
+          <reference name="root">
+            <action method="setTemplate"><template>page/2columns-right-dashboard.phtml</template></action>
+          </reference>
+                
+                <reference name="left">           
+
+                        <remove name="catalog.compare.sidebar"/>
+                        <remove name="tags_popular"/>
+                        <remove name="right.reports.product.viewed"/>
+                        <remove name="right.reports.product.compared"/>
+                        <remove name="left.poll"/>
+                       <remove name="cart_sidebar"/>
+                        <remove name="sale.reorder.sidebar"/>
+                        <remove name="leftMenu"/>
+                        <remove name="product_mostview"/>
+
+                </reference>
+                
+                <reference name="right">                        
+                        <remove name="catalog.left_nav"/>
+                </reference>
+                <reference name="right">
+                    <remove name="listingpage_block"/>
+                </reference>
+
+                
+        </customer_account>
+        
+        <customer_account_index translate="label">
+        
+            <reference name="root">
+               <action method="setTemplate"><template>page/2columns-right-dashboard.phtml</template></action>
+            </reference>
+            
+        <!-- Tages & Reviews -->
+                <reference name="customer_account_dashboard">
+                        <remove name="customer_account_dashboard_info1"/>
+                        <remove name="customer_account_dashboard_info2"/>    
+                </reference>
+
+                <reference name="right">
+                    <remove name="listingpage_block"/>
+                </reference>
+
+        </customer_account_index>
+        
+        <sales_billing_agreement_index>        
+             <reference name="root">
+                <action method="setTemplate"><template>page/2columns-right-dashboard.phtml</template></action>
+             </reference>
+        </sales_billing_agreement_index>
+        
+        <sales_recurring_profile_index>
+             <reference name="root">
+                <action method="setTemplate"><template>page/2columns-right-dashboard.phtml</template></action>
+             </reference>
+        </sales_recurring_profile_index>
+        
+        <contacts_index_index translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/2columns-right-contacts.phtml</template></action>
+              </reference> 
+              <reference name="right">
+                <block type="cms/block" name="contact-us" as="contact-us">
+                    <action method="setBlockId"><block_id>elantra_contact_us_block</block_id></action>
+                </block>
+              </reference>  
+              <remove name="wishlist_sidebar"/>   
+              <remove name="sale.reorder.sidebar"/> 
+              <remove name="right.reports.product.viewed"/>   
+              <remove name="right.reports.product.compared"/>   
+              <remove name="catalog.compare.sidebar"/>      
+        </contacts_index_index>
+        
+        <catalogsearch_result_index translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>
+              </reference>         
+        </catalogsearch_result_index>
+        
+        <catalogsearch_advanced_index translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>
+              </reference> 
+        </catalogsearch_advanced_index>
+        
+        <catalogsearch_advanced_result translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/2columns-left.phtml</template></action>
+              </reference> 
+        </catalogsearch_advanced_result>
+        
+        <catalogsearch_term_popular translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>
+              </reference> 
+        </catalogsearch_term_popular>
+        
+        <catalog_seo_sitemap translate="label">
+              <reference name="root">
+                      <action method="setTemplate"><template>page/1column.phtml</template></action>
+              </reference>         
+        </catalog_seo_sitemap>
+        
+        
+</layout>

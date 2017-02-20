@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_askanexpert_questions_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>stargenius_askanexpert/questions</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="stargenius_askanexpert/adminhtml_questions" name="questions" />
+
+        </reference>
+    </adminhtml_askanexpert_questions_index>
+    <adminhtml_askanexpert_questions_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="stargenius_askanexpert/adminhtml_questions_grid" name="questions_grid"/>
+        </block>
+    </adminhtml_askanexpert_questions_grid>
+    <!-- Questions add/edit action -->
+    <adminhtml_askanexpert_questions_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>stargenius_askanexpert/questions</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="stargenius_askanexpert/adminhtml_questions_edit" name="questions_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="stargenius_askanexpert/adminhtml_questions_edit_tabs" name="questions_tabs"></block>
+        </reference>
+    </adminhtml_askanexpert_questions_edit>
+
+</layout>

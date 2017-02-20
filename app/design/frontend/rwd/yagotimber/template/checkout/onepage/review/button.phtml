@@ -1,0 +1,40 @@
+<?php 
+$session        = Mage::getSingleton('checkout/session');
+ $quote_id       = $session->getQuoteId();
+
+	 $quote_ashu = Mage::getModel('sales/quote')->load($quote_id);
+ 
+     $cc_option =  $quote_ashu->getData('upfront_payment_field');
+   $paymentcode = $quote_ashu->getPayment()->getMethodInstance()->getCode();
+   $ashu_price_get =  $quote_ashu->getData('subtotal');
+   if($cc_option == 'yes' || $paymentcode == 'cashondelivery' ){ 
+
+	$ashu_price= $ashu_price_get/4;	
+   }
+   else
+   {
+	 $ashu_price= $ashu_price_get;	  
+   }
+   
+   ?>
+  
+<table class="data-table linearize-table checkout-review-table" id="checkout-review-table">
+               
+        
+        <tbody>
+                    <tr class="last">
+   <tr class="last">
+    <td style="" class="a-left" colspan="3">
+        <strong>Total amount to pay</strong>
+    </td>
+    <td style="" class="a-right last">
+        <strong><span class="price"><?php $formattedPrice = Mage::helper('core')->currency($ashu_price, true, false); echo  $formattedPrice; ?></span></strong>
+    </td>
+</tr>
+        </tr>
+                </tbody>
+    </table>
+
+<button type="submit" title="<?php echo $this->__('Place Order') ?>" class="button btn-checkout" onclick="review.save();"><span><?php echo $this->__('Place Order') ?></span></button>
+
+

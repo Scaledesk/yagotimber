@@ -1,0 +1,42 @@
+<?php
+/**
+ * StarGenius_ProductLikeCount extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_ProductLikeCount
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * ProductsLike view widget template
+ *
+ * @category    StarGenius
+ * @package     StarGenius_ProductLikeCount
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php $_productslike = $this->getCurrentProductslike();?>
+<?php if ($_productslike) :?>
+    <div class="productslike-widget-view">
+        <h3><?php echo $_productslike->getProductSku()?></h3>
+        <div>
+            <div class="product_sku-widget">
+                <?php echo Mage::helper('stargenius_productlikecount')->__('Product SKU');?>:<?php echo $_productslike->getProductSku();?>
+            </div>
+            <div class="product_liked-widget">
+                <?php echo Mage::helper('stargenius_productlikecount')->__('Product Liked');?>:<?php echo $_productslike->getProductLiked();?>
+            </div>
+            <div class="u_ipaddress-widget">
+                <?php echo Mage::helper('stargenius_productlikecount')->__('IP Address');?>:<?php echo $_productslike->getUIpaddress();?>
+            </div>
+
+        </div>
+    </div>
+<?php endif;?>

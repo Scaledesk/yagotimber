@@ -1,0 +1,61 @@
+.mini-search { position:absolute; top:0; right:0; width:300px; height:30px; padding:1px 20px 0 40px; background:url(../images/mini_search_bg.gif) 0 0 no-repeat; }
+.mini-search .input-text { width:212px !important; margin-right:4px !important; }
+.magik_head {background-color: #333;border-bottom: medium none;color: #fff; line-height: 15px;margin-bottom: 10px;min-height: 26px;
+	  padding: 4px 15px 4px 6px;text-align: center;}
+.magik_link{background-color:#F2F2F2;border-bottom:medium none;min-height:10px;padding:2px 15px 2px 6px;text-align:center;font-weight:bold;}
+.search-autocomplete {background-color: #ffffff !important;color: #333 !important;margin-left: 10px;position: absolute;width: 300px;z-index: 9999 !important;top: 38px;}
+.search-autocomplete ul {background-color: #fff !important;border: medium none !important;padding: 0;}
+.search-autocomplete li { padding:0px 8px 6px 8px !important; cursor:pointer !important; font-weight:normal !important; line-height:17px; font-size:12px; border-bottom:none !important; min-height:56px !important; }
+.search-autocomplete li .amount { float:right !important; font-weight:bold !important; }
+.search-autocomplete li.odd { background-color:#fff !important; }
+.search-autocomplete li.selected { background-color:#D8EAFB !important; }
+#search_autocomplete img { float:left !important; border:1px solid #DDDDDD !important;  margin-right:10px !important; padding:2px !important; background-color:#fff !important; }
+.search-autocomplete a :hover {background-color: #99cce5;}
+#search_autocomplete a {display: inline-block;list-style: none outside none;margin-bottom: 10px;text-decoration: none;width: 100%;}
+.magikautosearchImg{/* margin-left: 250px; */margin-top: 8px;position: absolute;right: 65px;z-index: 10000;}
+
+.search-autocomplete2 {background-color: #ffffff !important;color: #333 !important;margin-left: 0px;position: fixed;width: 300px;z-index: 9999 !important;top: 45px;}
+.search-autocomplete2 ul {background-color: #fff !important;border: medium none !important;padding: 0;}
+.search-autocomplete2 li { padding:0px 8px 6px 8px !important; cursor:pointer !important; font-weight:normal !important; line-height:17px; font-size:12px; border-bottom:none !important; min-height:56px !important; }
+.search-autocomplete2 li .amount { float:right !important; font-weight:bold !important; }
+.search-autocomplete2 li.odd { background-color:#fff !important; }
+.search-autocomplete2 li.selected { background-color:#D8EAFB !important; }
+#search_autocomplete2 img { float:left !important; border:1px solid #DDDDDD !important;  margin-right:10px !important; padding:2px !important; background-color:#fff !important; }
+.search-autocomplete2 a :hover {background-color: #99cce5;}
+#search_autocomplete2 a {display: inline-block;list-style: none outside none;margin-bottom: 10px;text-decoration: none;width: 100%;}
+
+.search-autocomplete3 {background-color: #ffffff !important;color: #333 !important;margin-left: 0px;position: fixed;width: 300px;z-index: 9999 !important;top: 111px;}
+.search-autocomplete3 ul {background-color: #fff !important;border: medium none !important;padding: 0;}
+.search-autocomplete3 li { padding:0px 8px 6px 8px !important; cursor:pointer !important; font-weight:normal !important; line-height:17px; font-size:12px; border-bottom:none !important; min-height:56px !important; }
+.search-autocomplete3 li .amount { float:right !important; font-weight:bold !important; }
+.search-autocomplete3 li.odd { background-color:#fff !important; }
+.search-autocomplete3 li.selected { background-color:#D8EAFB !important; }
+#search_autocomplete3 img { float:left !important; border:1px solid #DDDDDD !important;  margin-right:10px !important; padding:2px !important; background-color:#fff !important; }
+.search-autocomplete3 a :hover {background-color: #99cce5;}
+#search_autocomplete3 a {display: inline-block;list-style: none outside none;margin-bottom: 10px;text-decoration: none;width: 100%;}
+.magikautosearchImg3{margin-top: 27px;position: absolute;right: 65px;z-index: 1000}
+
+.search-autocomplete4 {background-color: #ffffff !important;color: #333 !important;margin-left: 0px;position: fixed;width: 280px;z-index: 9999 !important;top: 160px;}
+.search-autocomplete4 ul {background-color: #fff !important;border: medium none !important;padding: 0;}
+.search-autocomplete4 li { padding:0px 8px 6px 8px !important; cursor:pointer !important; font-weight:normal !important; line-height:17px; font-size:12px; border-bottom:none !important; min-height:56px !important; }
+.search-autocomplete4 li .amount { float:right !important; font-weight:bold !important; }
+.search-autocomplete4 li.odd { background-color:#fff !important; }
+.search-autocomplete4 li.selected { background-color:#D8EAFB !important; }
+#search_autocomplete4 img { float:left !important; border:1px solid #DDDDDD !important;  margin-right:10px !important; padding:2px !important; background-color:#fff !important; }
+.search-autocomplete4 a :hover {background-color: #99cce5;}
+#search_autocomplete4 a {display: inline-block;list-style: none outside none;margin-bottom: 10px;text-decoration: none;width: 100%;}
+.magikautosearchImg4{margin-top: 6px;position: absolute;left: 225px;z-index: 1000}
+
+.search-autocomplete5 {background-color: #ffffff !important;color: #333 !important;margin-left: 217px;position: absolute;width: 300px;z-index: 9999 !important;top: 34px;}
+.search-autocomplete5 ul {background-color: #fff !important;border: medium none !important;padding: 0;}
+.search-autocomplete5 li { padding:0px 8px 6px 8px !important; cursor:pointer !important; font-weight:normal !important; line-height:17px; font-size:12px; border-bottom:none !important; min-height:56px !important; }
+.search-autocomplete5 li .amount { float:right !important; font-weight:bold !important; }
+.search-autocomplete5 li.odd { background-color:#fff !important; }
+.search-autocomplete5 li.selected { background-color:#D8EAFB !important; }
+#search_autocomplete5 img { float:left !important; border:1px solid #DDDDDD !important;  margin-right:10px !important; padding:2px !important; background-color:#fff !important; }
+.search-autocomplete5 a :hover {background-color: #99cce5;}
+#search_autocomplete5 a {display: inline-block;list-style: none outside none;margin-bottom: 10px;text-decoration: none;width: 100%;}
+.magikautosearchImg5{/* margin-left: 250px; */margin-top: 16px;position: absolute;right: 65px;z-index: 10000;}
+
+
+

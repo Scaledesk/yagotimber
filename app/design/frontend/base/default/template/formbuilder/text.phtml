@@ -1,0 +1,61 @@
+<?php
+/*
+/**
+* Phxsolution Formbuilder
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to license@magentocommerce.com so you can be sent a copy immediately.
+*
+* Original code copyright (c) 2008 Irubin Consulting Inc. DBA Varien
+*
+* @category   frontend template
+* @package    Phxsolution_Formbuilder
+* @author     Murad Ali
+* @contact    contact@phxsolution.com
+* @site       www.phxsolution.com
+* @copyright  Copyright (c) 2014 Phxsolution Formbuilder
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+?>
+<?php
+    $title = $this->field['title'];
+    $id = $this->field['fields_index'];
+    $isRequire = $this->field['is_require'];
+    $maxCharacters = $this->field['max_characters'];
+    $defaultValue = $this->getDefaultValue();
+    $liClass = "";
+    if($this->field['type']=='area')
+        $liClass = "wide";    
+?>
+    <?php echo $labelHtml; ?>
+	<?php if($this->field['type']=='field'): ?>
+		<?php if($title == 'Email') {  ?>
+		  <input placeholder="<?php echo $title; ?>*"  required type="email" class="field00_<?php echo $id ?>" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+		<?php } elseif($title == 'Contact No') {  ?>
+            <input placeholder="<?php echo $title; ?>*"  required type="text" pattern="[0-9]{10}" class="field00_<?php echo $id ?>" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+			<?php } elseif($title == 'Name') {  ?>
+            <input placeholder="<?php echo $title; ?>*"  required type="text" pattern="[A-Za-z]+" class="field00_<?php echo $id ?>" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+			<?php } elseif($title == 'Product') {  ?>
+            <input type="text" style="display:none;" class="proname" value="product name" />			
+		<?php } else  {  ?>	
+		  <input placeholder="<?php echo $title; ?>*"  required type="text" class="field00_<?php echo $id ?>" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]" value="<?php echo $defaultValue ?>" />
+		<?php }  ?>
+        <?php elseif($this->field['type']=='area'): ?>    
+            <textarea required rows="5" cols="25" placeholder="<?php echo $title; ?>" class="field004" title="<?php echo $title; ?>" id="options_<?php echo $id ?>_text" name="options[<?php echo $id ?>]"><?php echo $defaultValue ?></textarea>
+        <?php endif; ?>
+        <?php if ($maxCharacters): ?>
+            <p class="note">
+                <?php echo Mage::helper('formbuilder')->__('Maximum number of characters:')?>
+                <strong><?php echo $maxCharacters ?></strong>
+            </p>
+        <?php endif; ?>
+		
+		
+   

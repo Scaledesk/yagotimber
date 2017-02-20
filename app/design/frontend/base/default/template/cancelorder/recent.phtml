@@ -1,0 +1,98 @@
+<div class="box-account box-recent">
+<?php $_orders = $this->getOrders(); ?>
+    <div class="box-head">
+        <h2><?php echo $this->__('Recent Orders') ?></h2>
+        <?php if( sizeof($_orders->getItems()) > 0 ): ?><a href="<?php echo $this->getUrl('sales/order/history') ?>"><?php echo $this->__('View All') ?></a><?php endif; ?>
+    </div>
+<?php if( sizeof($_orders->getItems()) > 0 ): ?>
+    <table class="data-table" id="my-orders-table">
+    <col width="1" />
+    <col width="1" />
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+        <thead>
+            <tr>
+                <th><?php echo $this->__('Order #') ?></th>
+                <th><?php echo $this->__('Date') ?></th>
+                <th><?php echo $this->__('Ship To') ?></th>
+                <th><span class="nobr"><?php echo $this->__('Order Total') ?></span></th>
+                <th><?php echo $this->__('Status') ?></th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($_orders as $_order): ?>
+                <tr>
+                    <td><?php echo $_order->getRealOrderId() ?></td>
+                    <td><span class="nobr"><?php echo $this->formatDate($_order->getCreatedAtStoreDate()) ?></span></td>
+                    <td><?php echo $_order->getShippingAddress() ? $this->htmlEscape($_order->getShippingAddress()->getName()) : '&nbsp;' ?></td>
+                    <td><?php echo $_order->formatPrice($_order->getGrandTotal()) ?></td>
+                    <td><em><?php echo $_order->getStatusLabel() ?></em></td>
+                    <td class="a-center">
+                        <span class="nobr">
+                        <a href="<?php echo $this->getViewUrl($_order) ?>"><?php echo $this->__('View Order') ?></a>
+                        <?php if ($this->helper('sales/reorder')->canReorder($_order)) : ?>
+                            <span class="separator">|</span> <a href="<?php echo $this->getReorderUrl($_order) ?>" class="link-reorder"><?php echo $this->__('Reorder') ?></a>
+                        <?php endif ?>
+                      
+                        <?php if ($this->helper('cancelorder/customer')->canCancel($_order)) : ?>
+                          
+                          <span class="separator">|</span>  <a href="#fadeandscale05" class="fadeandscale05_open">Cancel</a>  
+    
+    
+    
+<!-- Fade & scale -->
+
+<div id="fadeandscale05" class="well" style="display:none;">
+ <a href="" class="fadeandscale05_close close01">X</a>
+ <div class="homeprodt">
+     <p>Do you want to cancel order ?</p>
+     <a class="fadeandscale05_close closeno">NO</a>
+     <a href="<?php echo $this->getUrl('sales/order/cancel', array('order_id' => $_order->getId())) ?>" class="link-cancel"><?php echo $this->__('Cancel') ?></a>
+    </div>
+</div>
+
+<script>
+jQuery(document).ready(function () {
+
+    jQuery('#fadeandscale05').popup({
+        pagecontainer: '.container',
+        transition: 'all 0.3s'
+    });
+
+});
+</script>
+
+<style>
+#fadeandscale05 {
+    -webkit-transform: scale(0.8);
+       -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+}
+.popup_visible #fadeandscale05 {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+</style>
+
+                          
+                            
+                            
+                            
+                        <?php endif ?>
+                        </span>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+    <script type="text/javascript">decorateTable('my-orders-table')</script>
+<?php else: ?>
+    <p><?php echo $this->__('You have placed no orders.'); ?></p>
+<?php endif; ?>
+</div>

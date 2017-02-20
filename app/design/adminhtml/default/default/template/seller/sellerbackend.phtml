@@ -1,0 +1,74 @@
+<?php    
+$link = mysql_connect('localhost','kraftbuy_kraft','9{$_BqLmsXsQ') or die(mysql_error());
+$database= mysql_select_db("kraftbuy_kraft") or die(mysql_error());
+$sql = "SELECT * FROM 'company_detail'";
+$result = mysql_query($sql,$link);
+$res = mysql_fetch_array($result);
+//print_r($res);
+?>
+<table border="1" align="center">
+<tr>
+<td style="padding-left:20px">Company Name</td>
+<td style="padding-left:20px">Nature of organisation</td>
+<td style="padding-left:20px">Address of Registered Office</td>
+<td style="padding-left:20px">Address of Shop</td>
+<td style="padding-left:20px">Company pan</td>
+<td style="padding-left:20px">Service</td>
+<td style="padding-left:20px">Tin Num</td>
+<td style="padding-left:20px">Company Email</td>
+<td style="padding-left:20px">Commision</td>
+<td style="padding-left:20px">Directors</td>
+<td style="padding-left:20px">Address Detsils of</td>
+<td style="padding-left:20px">Din Num</td>
+<td style="padding-left:20px">Contact Person</td>
+<td style="padding-left:20px">Designation</td>
+<td style="padding-left:20px">Landline</td>
+<td style="padding-left:20px">Mobile</td>
+<td style="padding-left:20px">Email</td>
+<td style="padding-left:20px">Bank Detail</td>
+<td style="padding-left:20px">Bank Add</td>
+<td style="padding-left:20px">Acc Name</td>
+<td style="padding-left:20px">Account Type</td>
+<td style="padding-left:20px">IFSC Code</td>
+<td style="padding-left:20px">Min Code</td>
+<td style="padding-left:20px">Have You</td>
+<td style="padding-left:20px">If Yes</td>
+<td style="padding-left:20px">Iec Code</td>
+</tr>
+
+
+	<?php
+while($row = mysql_fetch_array($result)) {
+?>
+  <tr>
+   	
+    <td style="padding-left:20px"><?php echo $row['name_of_company'] ?></td>
+	<td style="padding-left:20px"><?php echo $row['service'] ?></td>
+    <td style="padding-left:20px"><?php echo $row['Address_of_Registered_office'] ?></td>
+    <td style="padding-left:20px"><?php echo $row['Address_of_Shop']?></td>
+    <td style="padding-left:20px"><?php echo $row['company_pan'] ?></td>
+	<td style="padding-left:20px"><?php echo $row['service'] ?></td>
+	<td style="padding-left:20px"><?php echo $row['tin_Num']? :0 ?></td>
+	<td style="padding-left:20px"><?php echo $row['Company_E-mail'] ?></td>
+	<td style="padding-left:20px"><?php echo $row['Name_of_Directors']? :0 ?></td>
+	<td style="padding-left:20px"><?php echo $row['Address_details_of'] ?></td>
+    <td style="padding-left:10px"><?php echo $row['din_num']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['Name_of_Contact_Person_for']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['designation']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['landline']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['mobile']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['email']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['bank_detail']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['bank_add']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['acc_name']? :0 ?>
+	</td><td style="padding-left:10px"><?php echo $row['acc_num']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['type_of_acc']? :0 ?></td>
+	<td style="padding-left:10px"><?php echo $row['ifc_code']? :0 ?>
+	</td><td style="padding-left:10px"><?php echo $row['mic_code']? :0 ?></td>
+	</td><td style="padding-left:10px"><?php echo $row['have_you']? :0 ?></td>
+	</td><td style="padding-left:10px"><?php echo $row['if_yes']? :0 ?></td>
+	</td><td style="padding-left:10px"><?php echo $row['iec_code']? :0 ?></td>
+  </tr>  
+   <?php	  }
+?>
+

@@ -1,0 +1,170 @@
+[29-Mar-2016 13:26:40 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[29-Mar-2016 13:26:54 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[29-Mar-2016 13:27:08 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[29-Mar-2016 13:27:34 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[29-Mar-2016 13:27:36 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[29-Mar-2016 13:27:36 UTC] PHP Fatal error:  Call to a member function header_content() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/file.phtml on line 47
+[30-Mar-2016 08:36:32 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/yagotur8/public_html/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/yagotur8/public_html/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/yagotur8/public_html/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/yagotur8/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT RELEASE_...', Array)
+#5 /home/yagotur8/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT RELEASE_...', Array)
+#6 /home/yagotur8/public_html/app/code/core/Mage/Index/Model/Resource/Helper/Mysql4.php(72): Varien_Db_Adapter_Pdo_Mysql->query('SELE in /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php on line 235
+[30-Mar-2016 08:36:32 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000]: General error: 2006 MySQL server has gone away' in /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php:228
+Stack trace:
+#0 /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php(228): PDOStatement->execute(Array)
+#1 /home/yagotur8/public_html/lib/Varien/Db/Statement/Pdo/Mysql.php(110): Zend_Db_Statement_Pdo->_execute(Array)
+#2 /home/yagotur8/public_html/app/code/core/Zend/Db/Statement.php(291): Varien_Db_Statement_Pdo_Mysql->_execute(Array)
+#3 /home/yagotur8/public_html/lib/Zend/Db/Adapter/Abstract.php(480): Zend_Db_Statement->execute(Array)
+#4 /home/yagotur8/public_html/lib/Zend/Db/Adapter/Pdo/Abstract.php(238): Zend_Db_Adapter_Abstract->query('SELECT `mguu_co...', Array)
+#5 /home/yagotur8/public_html/lib/Varien/Db/Adapter/Pdo/Mysql.php(504): Zend_Db_Adapter_Pdo_Abstract->query('SELECT `mguu_co...', Array)
+#6 /home/yagotur8/public_html/lib/Zend/Db/Adapter/Abstract.php(828): Varien_Db_Adapter_Pdo_Mysql->query(Object(Varien_Db_Select), Arr in /home/yagotur8/public_html/lib/Zend/Db/Statement/Pdo.php on line 235
+[31-Mar-2016 07:31:06 UTC] PHP Fatal error:  Call to a member function getIsRequire() on a non-object in /home/yagotur8/public_html/app/design/frontend/base/default/template/formbuilder/select.phtml on line 59
+[02-Apr-2016 10:48:57 UTC] DEBUG - HTTP request details
+[02-Apr-2016 10:48:57 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2Fyagotimber.com%2Fsociallogin%2Findex%2Fyahoopost%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=3a63ea595f22081537733945ec7994e2&oauth_signature=ZBOkISi%2Fvnfu27h4zXkoW18osyE%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1459594133&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Sat, 02 Apr 2016 10:48:57 GMT
+            [P3P] => policyref="https://policies.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+            [WWW-Authenticate] => OAuth oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+            [Cache-Control] => private
+            [Content-Length] => 73
+            [Content-Type] => application/x-www-form-urlencoded
+            [Age] => 0
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+            [Server] => ATS
+        )
+
+    [responseBody] => oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+)
+
+[02-Apr-2016 10:48:58 UTC] ERROR - Failed to create request token: parameter_absent
+[02-Apr-2016 10:48:58 UTC] ERROR - Failed to create request token
+[03-Apr-2016 03:16:05 UTC] DEBUG - HTTP request details
+[03-Apr-2016 03:16:05 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2Fyagotimber.com%2Findex.php%2Fsociallogin%2Findex%2Fyahoopost%3Ffb%3D1%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=47aa43d98ab5f4b9cacb9f4b927c3b09&oauth_signature=gKrUPKmm5pz5U8n31%2BUG7RcVWtc%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1459653364&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Sun, 03 Apr 2016 03:16:05 GMT
+            [P3P] => policyref="https://policies.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+            [WWW-Authenticate] => OAuth oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+            [Cache-Control] => private
+            [Content-Length] => 73
+            [Content-Type] => application/x-www-form-urlencoded
+            [Age] => 0
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+            [Server] => ATS
+        )
+
+    [responseBody] => oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+)
+
+[03-Apr-2016 03:16:05 UTC] ERROR - Failed to create request token: parameter_absent
+[03-Apr-2016 03:16:05 UTC] ERROR - Failed to create request token
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: name in /home/yagotur8/public_html/mail.php on line 28
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: email in /home/yagotur8/public_html/mail.php on line 31
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: phone in /home/yagotur8/public_html/mail.php on line 33
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: service in /home/yagotur8/public_html/mail.php on line 35
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: city in /home/yagotur8/public_html/mail.php on line 39
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: comment in /home/yagotur8/public_html/mail.php on line 51
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: name in /home/yagotur8/public_html/mail.php on line 53
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: email1 in /home/yagotur8/public_html/mail.php on line 80
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: name1 in /home/yagotur8/public_html/mail.php on line 97
+[06-Apr-2016 10:32:10 Etc/GMT] PHP Notice:  Undefined variable: name in /home/yagotur8/public_html/mail.php on line 99
+[06-Apr-2016 12:36:43 Etc/GMT] PHP Notice:  Undefined variable: msg in /home/yagotur8/public_html/mail.php on line 3
+[07-Apr-2016 06:30:00 UTC] PHP Fatal error:  Call to a member function getUrlKey() on a non-object in /home/yagotur8/public_html/app/design/frontend/rwd/yagotimber/template/catalog/product/looks-template.phtml on line 61
+[07-Apr-2016 06:30:04 UTC] PHP Fatal error:  Call to a member function getUrlKey() on a non-object in /home/yagotur8/public_html/app/design/frontend/rwd/yagotimber/template/catalog/product/looks-template.phtml on line 61
+[07-Apr-2016 13:14:24 UTC] DEBUG - HTTP request details
+[07-Apr-2016 13:14:24 UTC] DEBUG OBJECT - Array
+(
+    [method] => POST
+    [url] => https://api.login.yahoo.com/oauth/v2/get_request_token
+    [code] => 401
+    [requestHeaders] => Array
+        (
+            [0] => Accept: application/json
+            [1] => Content-Type: application/x-www-form-urlencoded
+        )
+
+    [requestBody] => oauth_callback=http%3A%2F%2Fyagotimber.com%2Fsociallogin%2Findex%2Fyahoopost%3Ffb%3D1%2F%3Fin_popup&oauth_consumer_key=&oauth_nonce=351b2ec1510d32417af264b227d925b6&oauth_signature=98uECFdoJYYAIQCSy1DTKFmABwA%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1460034864&oauth_version=1.0
+    [responseHeaders] => Array
+        (
+            [Date] => Thu, 07 Apr 2016 13:14:25 GMT
+            [P3P] => policyref="https://policies.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+            [WWW-Authenticate] => OAuth oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+            [Cache-Control] => private
+            [Content-Length] => 73
+            [Content-Type] => application/x-www-form-urlencoded
+            [Age] => 0
+            [Connection] => close
+            [Strict-Transport-Security] => max-age=15552000
+            [Server] => ATS
+        )
+
+    [responseBody] => oauth_problem=parameter_absent&oauth_parameters_absent=oauth_consumer_key
+)
+
+[07-Apr-2016 13:14:24 UTC] ERROR - Failed to create request token: parameter_absent
+[07-Apr-2016 13:14:24 UTC] ERROR - Failed to create request token
+[07-Apr-2016 14:00:02 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:02 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:02 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:02 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:06 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:06 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:00:07 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:00:07 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:30:02 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:30:02 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:30:02 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:30:02 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:30:04 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:30:04 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:30:04 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:30:04 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 14:30:05 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 14:30:05 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 15:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 15:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 15:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 15:00:03 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 15:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 15:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 15:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 15:00:04 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41
+[07-Apr-2016 15:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_NAME in /home/yagotur8/public_html/cron.php on line 40
+[07-Apr-2016 15:00:05 UTC] PHP Notice:  Undefined index: SCRIPT_FILENAME in /home/yagotur8/public_html/cron.php on line 41

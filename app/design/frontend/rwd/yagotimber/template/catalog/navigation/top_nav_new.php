@@ -1,0 +1,299 @@
+<?php
+/**
+ * $this->renderCategoriesMenuHtml() supports optional arguments:
+ * int Level number for list item class to start from
+ * string Extra class of outermost list items
+ * string If specified wraps children list in div with this class
+ */
+?>
+
+    <?php $_helper = Mage::helper('catalog/category') ?>
+    <?php $_categories = $_helper->getStoreCategories() ?>
+    <?php $menu_type = Mage::getStoreConfig('elantrasettings/elantrasettings_menu/navigation_menu_type'); ?>
+    <?php $storeId = Mage::app()->getStore()->getId(); ?>
+    <?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+?>
+<?php $get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+<?php $cms = Mage::app()->getFrontController()->getRequest()->getRouteName(); ?>
+
+    <?php if (count($_categories) > 0): ?>
+    
+             <!-- BEGIN NAV -->  
+              
+                   
+
+            <ul id="nav" class="hidden-xs">
+
+             <?php if(!Mage::getSingleton( 'customer/session' )->isLoggedIn()) { ?>
+             <li> <a href="<?php echo $this->getUrl('')."customer/account/create/"; ?>"><span class="hidden-xs"><?php echo $this->__('REGISTER') ?></span></a></li>
+                <?php } ?>
+
+                  <div class="dropdown block-company-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-company dropdown-toggle" style="font-size: 13px;padding-left: 72px;color: rgba(5, 5, 5, 0.99);" href="#">Company<span class="caret"></span></a>
+                   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_top_links2_block')->toHtml() ?>
+                  </div>
+            
+            <?php foreach($_categories as $_category): ?>
+                                           
+                    <?php if($menu_type == 'mega-menu') { ?>   
+                        <?php if($this->getCurrentCategory()->getId()==$_category->getId()) { ?>                
+                          <li class="mega-menu active">  
+                        <?php } else { ?>
+                          <li class="mega-menu" > 
+                        <?php } ?>
+
+                     <?php } else { ?>
+                        <?php if($this->getCurrentCategory()->getId()==$_category->getId()) { ?> 
+                         <li class="level0 nav-5 level-top drop-menu active"> 
+                        <?php } else { ?>
+                          <li class="level0 nav-5 level-top drop-menu"> 
+                        <?php } ?>
+                     <?php } ?>       
+                  
+                         <?php if($_category->getUrlKey()== 'home-decor') { ?>
+                         <div class="New_top">New</div>
+
+                    <a data-toggle="collapse" data-target="#<?php echo $_category->getId() ?>" class="level-top <?php echo $_category->getUrlKey() ?>" href="#"><span>
+                        
+                    <?php echo $_category->getName() ?></span></a>
+                    
+                 <?php } else { ?>
+                 <a class="level-top "  data-toggle="collapse" data-target="#<?php echo $_category->getId() ?>" href="#"><span><?php echo $_category->getName() ?></span></a>
+                    <?php }  ?>
+                                   
+ 
+<!-- ...........................sub menu ...................................... -->
+
+
+
+   <div id="<?php echo $_category->getId() ?>" class="collapse">
+                   
+            <?php //echo "</pre>"; print_r( $_subcategory); ?>
+
+                   <?php $i=0; foreach($_subcategories as $_subcategory):
+$_secondLevelCat = Mage::getModel('catalog/category')->load($_subcategory->getId());
+              if (!$_secondLevelCat->getData("include_in_menu"))continue;
+ ?>
+
+
+                                <?php $_subcategory = Mage::getModel('catalog/category')->load($_subcategory->getId());?>                                
+                                <?php $_subsubcategories = $_subcategory->getChildrenCategories() ?>
+                          <ul>      
+             
+                     <li class="level1 nav-6-1 parent item">
+                                <div class="icon-<?php echo $_subcategory->getName(); ?>">                
+                                <a href="<?php echo $_helper->getCategoryUrl($_subcategory) ?>"><span><?php echo $_subcategory->getName() ?></span></a></div>
+                                <!--sub sub category-->
+                               
+                                <?php if (count($_subsubcategories) > 0): ?>
+                                 
+                                   <ul class="level1">
+                                    <?php foreach($_subsubcategories as $_subsubcategory): 
+$_thirdLevelCat = Mage::getModel('catalog/category')->load($_subsubcategory->getId());
+                                          if (!$_thirdLevelCat->getData("include_in_menu")) continue;
+
+?>
+                                       <li class="level2 nav-6-1-1">
+                                          <a href="<?php echo $_helper->getCategoryUrl($_subsubcategory) ?>"><span><?php echo $_subsubcategory->getName() ?></span></a>
+            
+                                          <?php $_subsubsubcategory = Mage::getModel('catalog/category')->load($_subsubcategory->getId()) ?>                             
+                                          <?php $_subsubsubcategories = $_subsubcategory->getChildrenCategories() ?>
+                                          <?php if (count($_subsubsubcategories) > 0): ?>
+                                             <div class="level2 sub-wrapper" style="height: auto;">
+                                                   <ul class="level2">
+                                                     <?php foreach($_subsubsubcategories as $_subsubsubcategory): ?>
+                                                       <li class="level3 nav-1-1-1-1">
+                                                         <a href="<?php echo $_helper->getCategoryUrl($_subsubsubcategory) ?>"><span><?php echo $_subsubsubcategory->getName() ?></span></a>
+                                                       </li> <!--level3 nav-1-1-1-1-->
+                                                     <?php endforeach; ?>
+                                                   </ul> <!--level2-->
+                                             </div> <!--level2 sub-wrapper-->
+                                          <?php endif; ?>
+
+                                       </li> <!--level2 nav-6-1-1-->
+                                    <?php endforeach; ?>
+                                   </ul> <!--level1-->                        
+                                  
+                               <?php endif; ?>
+                                 <!--sub sub category-->  
+                                                                                        
+                            </li> <!--level1 nav-6-1 parent item-->
+                         <?php endforeach; ?>    
+
+
+                      </div>
+
+
+
+
+
+
+
+<!-- ...............................end sub menu....................................... -->
+
+                
+                    <?php $_category = Mage::getModel('catalog/category')->load($_category->getId()) ?>
+                    <?php $_subcategories = $_category->getChildrenCategories() ?>
+                    <?php if (count($_subcategories) > 0): ?>
+
+<?php if($menu_type == 'mega-menu') { ?>
+                        <div class="level0-wrapper dropdown-6col" style="left: 0px; display: none;">
+                          <div class="container">
+
+                            <?php if($_category->getData('elantra_menu_type') == "leftimage") { ?>
+                              <div class="row">
+                            <?php } ?>
+
+                            <div class="level0-wrapper2">
+
+<?php if($_category->getData('elantra_menu_type') == "leftimage") { ?>
+  <div class="col-2 left">
+     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('category-left-node-'.$_category->getId())->toHtml(); ?>
+  </div> <!--col-2-->
+<?php } ?>
+
+<?php if($_category->getData('elantra_menu_type') == "rightimage") { ?>
+  <div class="col-1">
+<?php } ?>
+
+<?php if($_category->getData('elantra_menu_type') == "leftimage") { ?>
+  <div class="col-1">
+<?php } ?>
+
+<?php if($_category->getElantraCustomImage()) { ?>
+    <div class="nav-block nav-block-center grid1-12 itemgrid itemgrid-4col">
+<?php } else { ?>
+
+    <div class="nav-block nav-block-center">
+        <?php } ?>
+
+       <?php } ?>  <!--mega menu-->       
+
+       <?php if($menu_type == 'mega-menu') { ?>       
+                   
+                                 <ul class="level0" >
+                     
+<?php } else { ?>
+                                <ul style="display: none;" class="level1">
+
+
+
+<?php } ?>
+   
+
+
+                        </ul>  <!--level0-->
+
+<?php if($menu_type == 'mega-menu') { ?>                      
+              
+    </div> <!--nav-block nav-block-center-->
+
+ 
+
+<?php if($_category->getData('elantra_menu_type') == "rightimage") { ?>
+  </div> <!--col-1-->
+<?php } ?>
+
+<?php if($_category->getData('elantra_menu_type') == "leftimage") { ?>
+  </div> <!--col-1-->
+<?php } ?>
+
+
+<?php if($_category->getData('elantra_menu_type') == "rightimage") { ?>
+ <div class="col-2"> 
+   <?php if($_category->getElantraCustomImage()) { ?>
+   <div class="nav-block nav-block-right std grid img_right">
+      <a href="<?php echo $_helper->getCategoryUrl($_category) ?>">
+        <img src="<?php echo Mage::getBaseUrl('media').'catalog/category/'.$_category->getElantraCustomImage() ?>" alt="<?php echo $_category->getDescription() ?>" />
+      </a>
+    </div> 
+  <?php } ?>
+     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('category-right-node-'.$_category->getId())->toHtml(); ?>
+  </div> <!--col-2-->
+<?php } ?>
+ <div class="bot-menu"><span>Offer</span>Avail upto 50% discount on selected products.</div>
+
+
+<?php  if($_category->getData('elantra_menu_type') == "bottomimage") { ?>
+  <div class="nav-add"> 
+     <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('category-bottom-node-'.$_category->getId())->toHtml(); ?>
+   </div>  
+<?php } ?>
+
+
+                </div> <!--level0-wrapper2-->    
+
+                <?php if($_category->getData('elantra_menu_type') == "leftimage") { ?>
+                  </div> <!--row-->
+                <?php } ?>
+
+              </div> <!--container-->               
+
+
+</div> <!--level0-wrapper dropdown-6col-->                                                                         
+              
+
+<?php } ?>  <!--mega menu-->
+
+                    <?php endif; ?>
+                    </li> 
+             <?php endforeach; ?> 
+
+           
+          <?php  $custom_tab = Mage::getModel('cms/block')->setStoreId($storeId)->load('elantra_navigation_block');
+                 $ver2_custom_tab = Mage::getModel('cms/block')->setStoreId($storeId)->load('elantra_navigation2_block');
+                 $ver3_custom_tab = Mage::getModel('cms/block')->setStoreId($storeId)->load('elantra_navigation3_block');
+                 $ver5_custom_tab = Mage::getModel('cms/block')->setStoreId($storeId)->load('elantra_navigation5_block');
+            if($custom_tab->getIsActive()) {
+	      if(($get_current_layout=='custom_static_page_one')) {
+		  echo '
+		  <li class="nav-custom-link mega-menu">
+		      <a href="#" class="level-top">
+			  <span>'.$custom_tab->getTitle().'</span>
+		      </a>
+		      <div class="level0-wrapper custom-menu" style="left: 0px; display: none;"><div class="header-nav-dropdown-wrapper clearer">'.$this->getLayout()->createBlock('cms/block')->setBlockId('elantra_navigation_block')->toHtml().'</div></div>
+		  </li>';
+	      }
+	     } 
+if($ver2_custom_tab->getIsActive()) {
+ if(($get_current_layout=='custom_static_page_two')) {
+		  echo '
+		  <li class="nav-custom-link mega-menu">
+		      <a href="#" class="level-top">
+			  <span>'.$ver2_custom_tab->getTitle().'</span>
+		      </a>
+		      <div class="level0-wrapper custom-menu" style="left: 0px; display: none;"><div class="header-nav-dropdown-wrapper clearer">'.$this->getLayout()->createBlock('cms/block')->setBlockId('elantra_navigation2_block')->toHtml().'</div></div>
+		  </li>';
+	      }
+}
+
+if($ver3_custom_tab->getIsActive()) {
+ if(($get_current_layout=='custom_static_page_three')) {
+      echo '
+      <li class="nav-custom-link mega-menu">
+          <a href="#" class="level-top">
+        <span>'.$ver3_custom_tab->getTitle().'</span>
+          </a>
+          <div class="level0-wrapper custom-menu" style="left: 0px; display: none;"><div class="header-nav-dropdown-wrapper clearer">'.$this->getLayout()->createBlock('cms/block')->setBlockId('elantra_navigation3_block')->toHtml().'</div></div>
+      </li>';
+        }
+}
+
+	    ?>
+
+            <!--nav-->
+		
+   <li><a class="KITCHEN-top" href="<?php echo Mage::getBaseUrl(); ?>modular-kitchen">KITCHEN</a> </li>
+  <li><a class="WARDROBE-top" href="<?php echo Mage::getBaseUrl(); ?>wardrobe">WARDROBE</a> </li>
+  <li><a class="PRICE-top" href="#popup4">PRICE CHECK</a> </li>
+  <li><a class="IMTERIOR-top" href="http://www.yagotimber.com/free-design-consultation/">INTERIOR DESIGN</a> </li>
+  <li><a class="blog-top" href="http://www.yagotimber.com/blog/">BLOG</a> </li>
+  <li class="SALE-top"><a  href="http://www.yagotimber.com/sale.html">SALE</a> </li>
+
+      </ul> 
+  <?php endif; ?>
+
+

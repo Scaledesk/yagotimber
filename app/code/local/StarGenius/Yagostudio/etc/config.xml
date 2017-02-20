@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_Yagostudio extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudio
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <StarGenius_Yagostudio>
+            <version>1.0.0</version>
+        </StarGenius_Yagostudio>
+    </modules>
+    <global>
+        <resources>
+            <stargenius_yagostudio_setup>
+                <setup>
+                    <module>StarGenius_Yagostudio</module>
+                    <class>StarGenius_Yagostudio_Model_Resource_Setup</class>
+                </setup>
+            </stargenius_yagostudio_setup>
+        </resources>
+        <blocks>
+            <stargenius_yagostudio>
+                <class>StarGenius_Yagostudio_Block</class>
+            </stargenius_yagostudio>
+        </blocks>
+        <helpers>
+            <stargenius_yagostudio>
+                <class>StarGenius_Yagostudio_Helper</class>
+            </stargenius_yagostudio>
+        </helpers>
+        <models>
+            <stargenius_yagostudio>
+                <class>StarGenius_Yagostudio_Model</class>
+                <resourceModel>stargenius_yagostudio_resource</resourceModel>
+            </stargenius_yagostudio>
+            <stargenius_yagostudio_resource>
+                <class>StarGenius_Yagostudio_Model_Resource</class>
+                <entities>
+                    <yagostudio>
+                        <table>stargenius_yagostudio_yagostudio</table>
+                    </yagostudio>
+                    <yagostudio_store>
+                        <table>stargenius_yagostudio_yagostudio_store</table>
+                    </yagostudio_store>
+                    <yagostudio_comment>
+                        <table>stargenius_yagostudio_yagostudio_comment</table>
+                    </yagostudio_comment>
+                    <yagostudio_comment_store>
+                        <table>stargenius_yagostudio_yagostudio_comment_store</table>
+                    </yagostudio_comment_store>
+                </entities>
+            </stargenius_yagostudio_resource>
+        </models>
+        <events>
+            <controller_front_init_routers>
+                <observers>
+                    <stargenius_yagostudio>
+                        <class>StarGenius_Yagostudio_Controller_Router</class>
+                        <method>initControllerRouters</method>
+                    </stargenius_yagostudio>
+                </observers>
+            </controller_front_init_routers>
+        </events>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <stargenius_yagostudio>
+                    <file>stargenius_yagostudio.xml</file>
+                </stargenius_yagostudio>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_Yagostudio>
+                    <files>
+                        <default>StarGenius_Yagostudio.csv</default>
+                    </files>
+                </StarGenius_Yagostudio>
+            </modules>
+        </translate>
+        <global_search>
+            <yagostudio>
+                <class>stargenius_yagostudio/adminhtml_search_yagostudio</class>
+                <acl>stargenius_yagostudio</acl>
+            </yagostudio>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <StarGenius_Yagostudio before="Mage_Adminhtml">StarGenius_Yagostudio_Adminhtml</StarGenius_Yagostudio>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <frontend>
+        <routers>
+            <stargenius_yagostudio>
+                <use>standard</use>
+                <args>
+                    <module>StarGenius_Yagostudio</module>
+                    <frontName>stargenius_yagostudio</frontName>
+                </args>
+            </stargenius_yagostudio>
+        </routers>
+        <layout>
+            <updates>
+                <stargenius_yagostudio>
+                    <file>stargenius_yagostudio.xml</file>
+                </stargenius_yagostudio>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_Yagostudio>
+                    <files>
+                        <default>StarGenius_Yagostudio.csv</default>
+                    </files>
+                </StarGenius_Yagostudio>
+            </modules>
+        </translate>
+    </frontend>
+    <default>
+        <stargenius_yagostudio>
+            <yagostudio>
+                <breadcrumbs>1</breadcrumbs>
+                <allow_comment>1</allow_comment>
+                <meta_title>Yagostudios</meta_title>
+            </yagostudio>
+        </stargenius_yagostudio>
+    </default>
+</config>

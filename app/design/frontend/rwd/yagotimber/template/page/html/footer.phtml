@@ -1,0 +1,360 @@
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php $footer_type = Mage::getStoreConfig('elantrasettings/elantrasettings_appearance/footer'); ?>
+
+<!-- For version 1 only -->
+<?php if(($get_current_layout=='custom_static_page_one')) { ?>  
+<!-- Category Thumbnail -->
+      <?php echo $this->getLayout()->createBlock('catalog/navigation')->setTemplate('catalog/navigation/category_nav.phtml')->toHtml() ; ?>
+<?php } ?>
+
+
+<footer>
+
+    <!-- BEGIN INFORMATIVE FOOTER -->  
+      <?php switch ($footer_type) {
+        case 'informative' :
+      ?>
+<!-- For version 1,2 -->
+<?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_five')) { ?> 
+      <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-6">
+              <?php //echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_information_links_block')->toHtml() ?>
+            </div><!--col-sm-12 col-xs-12 col-lg-8-->
+            <div class="col-xs-12 col-lg-6">
+              <div class="footer-column-last">
+                <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe_footer.phtml')->toHtml() ; ?>
+                <div class="payment"><img src="<?php echo $this->getSkinUrl('images/footer_img.jpg'); ?>" alt="Footer Img" /></div>
+              
+              </div><!--footer-column-last-->
+            </div><!--col-xs-12 col-lg-4-->
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--footer-inner-->
+      <div class="footer-middle">
+        <div class="container">
+          <div class="row">
+	  <?php if(($get_current_layout=='custom_static_page_one')) { ?>  
+ <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_contact_us')->toHtml() ?>
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_two')) { ?> 
+ <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer2_contact_us')->toHtml() ?> 
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> 
+ <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer5_contact_us')->toHtml() ?> 
+<?php } ?>
+			<div class="footer-menu1">
+           <div class="col-sm-4 col-xs-12 col-md-4">
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-yagotimber-link')->toHtml() ?>
+            </div>
+			<div class="col-sm-4 col-xs-12 col-md-4">
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('footer-needhelp-link')->toHtml() ?>
+            </div>
+            <div class="col-sm-4 col-xs-12 col-md-4">
+              <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/social_link')) { ?>
+                  <div class="social">
+                    <h4><?php echo $this->__('Follow Us') ?></h4>
+                    <hr>
+                    <ul>
+					<span itemscope itemtype="http://schema.org/Organization">
+					<link itemprop="url" href="http://www.yagotimber.com/">
+                      <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link')) { ?>
+                        <li class="fb pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link_path') ?>" title="<?php echo $this->__('Facebook');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link')) {
+                      ?>
+                          <li class="tw pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link_path') ?>" title="<?php echo $this->__('Twitter');?>"></a></li>
+                      <?php } 
+                         if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link')) {
+                      ?>
+                          <li class="googleplus pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link_path') ?>" title="<?php echo $this->__('GooglePlus');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link')) {
+                      ?>
+                          <li class="rss pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link_path') ?>" title="<?php echo $this->__('RSS');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link')) {
+                      ?>
+                          <li class="pintrest pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link_path') ?>" title="<?php echo $this->__('PInterest');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link')) {
+                      ?>
+                          <li class="linkedin pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link_path') ?>" title="<?php echo $this->__('Linkedin');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link')) {
+                      ?>
+                          <li class="youtube pull-left"><a itemprop="sameAs" target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link_path') ?>" title="<?php echo $this->__('Youtube');?>"></a></li>
+                      <?php } ?>
+					  </span>
+                  </ul>
+                </div><!--end social -->
+                <div class="social"><br><br>
+                    <h4><?php echo $this->__('Payment Methods') ?></h4>
+                    <hr>
+             	 <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_payment_block')->toHtml() ?>
+                 </div>
+              <?php } ?>
+            </div>
+            </div>
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--footer-middle-->
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_links')->toHtml() ?>
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--footer-bottom-->
+      <?php } ?> <!-- End for version 1,2 -->
+
+
+      <!-- For version 3 -->
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> 
+            <div class="footer-inner">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12 col-xs-12 col-lg-12">
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_information_links_block')->toHtml() ?>
+              <div class="co-info">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer3_contact_us')->toHtml() ?>
+                <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/social_link')) { ?>
+                  <div class="social">                   
+                    <ul class="link">
+                      <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link')) { ?>
+                        <li class="fb pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link_path') ?>" title="<?php echo $this->__('Facebook');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link')) {
+                      ?>
+                          <li class="tw pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link_path') ?>" title="<?php echo $this->__('Twitter');?>"></a></li>
+                      <?php } 
+                         if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link')) {
+                      ?>
+                          <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link_path') ?>" title="<?php echo $this->__('GooglePlus');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link')) {
+                      ?>
+                          <li class="rss pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link_path') ?>" title="<?php echo $this->__('RSS');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link')) {
+                      ?>
+                          <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link_path') ?>" title="<?php echo $this->__('PInterest');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link')) {
+                      ?>
+                          <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link_path') ?>" title="<?php echo $this->__('Linkedin');?>"></a></li>
+                      <?php } 
+                          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link')) {
+                      ?>
+                          <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link_path') ?>" title="<?php echo $this->__('Youtube');?>"></a></li>
+                      <?php } ?>
+                  </ul>
+                </div><!--end social -->
+                <?php } ?><!--end social -->
+              </div><!--co-info-->
+            </div><!--col-sm-12 col-xs-12 col-lg-12-->
+          </div>
+        </div>
+      </div>
+
+      <div class="newsletter-row">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+              <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe_footer.phtml')->toHtml() ; ?>
+            </div><!--col-lg-8 col-md-8 col-sm-7 col-xs-12-->
+            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+              <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_payment_block')->toHtml() ?>
+            </div><!--col-lg-4 col-md-4 col-sm-5 col-xs-12-->
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--newsletter-row-->
+      <div class="footer-bottom">
+        <div class="container">
+          <div class="row">
+            <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_links')->toHtml() ?>
+          </div><!--row-->
+        </div><!--container-->
+      </div><!--footer-bottom-->
+      <?php } ?> <!-- End for version 3 -->
+
+            <!-- For version 4 -->
+<?php if(($get_current_layout=='custom_static_page_four')) { ?> 
+   
+      <div class="footer-top">
+        <div class="container">     
+            <?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe_footer.phtml')->toHtml() ; ?>
+        </div>
+      </div>
+      <div class="footer-inner">
+      <div class="container">
+        <div class="row">
+          <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer4_information_links_block')->toHtml() ?>
+          <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer4_contact_us')->toHtml() ?>
+        </div></div>
+      </div>
+      <div class="footer-middle">
+      <div class="container">
+        <div class="row">
+          <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/social_link')) { ?>
+          <div class="col-xs-12 col-sm-6 social">
+            <ul class="link">
+    <?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link')) { ?>
+      <li class="fb pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/facebook_social_link_path') ?>" title="<?php echo $this->__('Facebook');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link')) {
+    ?>
+      <li class="tw pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/twitter_social_link_path') ?>" title="<?php echo $this->__('Twitter');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link')) {
+    ?>
+      <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/googleplus_social_link_path') ?>" title="<?php echo $this->__('GooglePlus');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link')) {
+    ?>
+      <li class="rss pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/rss_social_link_path') ?>" title="<?php echo $this->__('RSS');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link')) {
+    ?>
+      <li class="pintrest pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/pinterest_social_link_path') ?>" title="<?php echo $this->__('PInterest');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link')) {
+    ?>
+      <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/linkedin_social_link_path') ?>" title="<?php echo $this->__('Linkedin');?>"></a></li>
+    <?php } 
+          if (Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link')) {
+    ?>
+      <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_social/youtube_social_link_path') ?>" title="<?php echo $this->__('Youtube');?>"></a></li>
+    <?php } ?>
+        </ul>
+      </div>
+      <?php } ?>
+      <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_payment_block')->toHtml() ?> 
+    </div>
+  </div>
+</div>
+<div class="footer-bottom">
+  <div class="container">
+    <div class="row">
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_links')->toHtml() ?>  
+    </div><!--row-->
+  </div><!--container-->
+</div><!--footer-bottom-->
+
+<?php } ?> <!-- End for version 4 -->
+
+      <!-- BEGIN SIMPLE FOOTER -->  
+      <?php
+          break;
+    case 'simple' :
+    default:
+      ?>  
+
+<div class="footer-bottom">
+  <div class="container">
+    <div class="row">
+       <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_footer_links')->toHtml() ?>  
+    </div><!--row-->
+  </div><!--container-->
+</div><!--footer-bottom-->
+
+     <?php     
+  }
+     ?>  
+
+</footer> 
+
+
+
+
+<?php if (Mage::getStoreConfig('elantrasettings/elantrasettings_footer/footer_google_analytics')): ?>
+<?php echo Mage::getStoreConfig('elantrasettings/elantrasettings_footer/footer_google_analytics_path') ?>       
+<?php endif; ?>
+
+<script>
+jQuery(document).ready(function(){
+    jQuery('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+
+  <script src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/js/loadmore.js"></script>
+    <script>
+        jQuery("#list001").loadMore({
+            selector: 'li',
+            loadBtn: '#btn',
+            limit: 5,
+            load: 5,
+            animate: true,
+            animateIn: 'fadeInUp'
+        });
+    </script>
+    
+<script src="<?php echo $this->getSkinUrl(); ?>js/slider1.js" type="text/javascript"></script>
+<script>
+	jQuery("#slider-container").sliderUi({
+		speed: 700,
+		cssEasing: "cubic-bezier(0.285, 1.015, 0.165, 1.000)"
+	});
+	jQuery("#caption-slide").sliderUi({
+		caption: true
+	});
+</script>
+
+<script>
+	jQuery("#slider-container1").sliderUi({
+		speed: 500,
+		cssEasing: "cubic-bezier(0.285, 1.015, 0.165, 1.000)"
+	});
+	jQuery("#caption-slide").sliderUi({
+		caption: true
+	});
+</script>
+
+<script src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/js/imglazyload.js"></script>
+  <script>
+
+			//插件使用方法：
+			jQuery('#box img').imgLazyLoad({
+				//触发滚动事件的容器，默认为window，参数为jQuery选择器字符串或对象
+				container: window,
+				//默认'fadeIn(淡入)',参数为jQuery默认效果，如show，slideDown等
+				effect: 'fadeIn',
+				//动画运行时间，默认600ms，参数为jQuery效果的速度
+				speed: 600,
+				//当用户看到图片时，是否立即加载图片，默认延迟400ms(即滚动延迟400ms)，参数类型为number
+				delay: 400,
+				//每次图片显示完毕后的回调函数
+				callback: function(){
+
+					jQuery( this ).css( 'opacity', .99 );
+
+				}
+			});
+
+			jQuery( '#wrap img' ).imgLazyLoad({
+
+				container: '#wrap'
+
+			});
+
+			jQuery( '#slide img' ).imgLazyLoad({
+
+				effect: 'slideDown'
+
+			});
+
+		</script>
+
+  
+
+
+    
+    

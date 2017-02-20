@@ -1,0 +1,211 @@
+<?php /* Latest Blog */ 
+ $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+
+
+<div class="container">
+<?php if(($get_current_layout=='custom_static_page_one')) { ?>  
+	<div class="new_title center">
+	   <div class="starSeparator"><span aria-hidden="true" class="icon-star"></span></div>
+        <h2><?php echo $this->__('Latest Blog') ?></h2>
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_blog_text_block')->toHtml() ?>
+    </div>
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_two')) { ?>  
+<div class="new_title center">
+        <h2><?php echo $this->__('Latest Blog') ?></h2>
+        <div class="starSeparator"></div>
+        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('elantra_blog_text_block')->toHtml() ?>
+      </div>
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?>  
+      <div class="new_title center">
+        <h2><?php echo $this->__('Latest Blog') ?></h2>
+      </div>
+<?php } ?>
+<?php if(($get_current_layout=='custom_static_page_four')) { ?> 
+      <div class="new_title">
+        <h2><?php echo $this->__('Latest Blog') ?></h2>
+      </div>
+<?php } ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version3 -->
+
+    <div class="row">
+
+				<?php
+				$recent_posts = $this->getRecentPost(); //print_r ($recent_posts); exit;
+                                //echo $rec_pos = count($recent_posts); 
+				$home_url = Mage::helper('core/url')->getHomeUrl();
+                                $i=0;
+				foreach ($recent_posts as $recent_post_key => $recent_post_value) {
+                                    if($i < 2) {
+					//$blog_url = $home_url.'blog/view/post/p/'.$recent_post_value['title_slug'].'/';
+
+					$urlKey = $recent_post_value['title_slug'];
+					$curl = Mage::getUrl('blog/view/post/p/'.$urlKey, array('_direct' => $urlKey)); 
+					$cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
+					$store_id=Mage::app()->getStore()->getId();
+					if($cnt==0 && ($urlKey != ''))
+					{	
+						$curl1=$recent_post_value['title_slug'];
+						$rewrite = Mage::getModel('core/url_rewrite');
+						$rewrite->setStoreId($store_id)
+						->setIdPath('index/'.$urlKey)
+						->setRequestPath($urlKey)
+						->setTargetPath('blog/view/post/p/'.$urlKey)
+						->setIsSystem(true)
+						->save();
+
+					}
+					$blog_url =$curl; 
+					?>
+					
+					<div class="col-lg-6 col-md-6 col-xs-12 col-sm-6">
+					    <div class="blog_inner">
+                                        <?php 
+                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
+                                        ?>
+                                        <?php if($image[1]) { ?>
+                                              <div class="blog-img">
+                                                 <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" alt="<?php echo $this->__('blog image') ?>" /> </a>
+                                                 <div class="mask"> <a class="info" href="<?php echo $blog_url;?>"><?php echo $this->__('Read More') ?></a> </div>
+                                              </div> <!--blog-img-->                                                                                         
+                                        <?php } ?>
+						<h3><a href="<?php echo $blog_url;?>"><?php echo ucfirst($recent_post_value['title']);?></a></h3>	
+						<div class="post-date"><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($recent_post_value['created_at']));?></time>.</div>
+						<p><?php echo ucfirst($recent_post_value['short_description']);?></p>
+						<a class="readmore" href="<?php echo $blog_url;?>"><?php echo $this->__('Read More') ?></a> 
+                        </div><!--blog_inner-->                                                                                        
+					</div> <!--col-lg-4 col-md-4 col-xs-12 col-sm-4-->
+				
+					<?php
+                                     $i++;
+                                   }
+				}
+				?>
+  </div> <!-- row -->
+
+  <?php } else { ?> <!-- end for version3 -->
+
+    <div class="row">
+
+				<?php
+				$recent_posts = $this->getRecentPost(); //print_r ($recent_posts); exit;
+                                //echo $rec_pos = count($recent_posts); 
+				$home_url = Mage::helper('core/url')->getHomeUrl();
+                                $i=0;
+				foreach ($recent_posts as $recent_post_key => $recent_post_value) {
+                                    if($i < 3) {
+					//$blog_url = $home_url.'blog/view/post/p/'.$recent_post_value['title_slug'].'/';
+
+					$urlKey = $recent_post_value['title_slug'];
+					$curl = Mage::getUrl('blog/view/post/p/'.$urlKey, array('_direct' => $urlKey)); 
+					$cnt=Mage::getModel('blogmate/blog')->chkIfExists('index/'.$urlKey,$urlKey);
+					$store_id=Mage::app()->getStore()->getId();
+					if($cnt==0 && ($urlKey != ''))
+					{	
+						$curl1=$recent_post_value['title_slug'];
+						$rewrite = Mage::getModel('core/url_rewrite');
+						$rewrite->setStoreId($store_id)
+						->setIdPath('index/'.$urlKey)
+						->setRequestPath($urlKey)
+						->setTargetPath('blog/view/post/p/'.$urlKey)
+						->setIsSystem(true)
+						->save();
+
+					}
+					$blog_url =$curl; 
+					?>
+
+				<?php if(($get_current_layout=='custom_static_page_four')) { ?> <!-- For version 4-->
+					<div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+					    <div class="blog_inner">
+                            <h3><a href="<?php echo $blog_url;?>"><?php echo ucfirst($recent_post_value['title']);?></a></h3>	
+                            <div class="post-date"><i class="icon-calendar"></i><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>"><?php echo date('M d, Y', strtotime($recent_post_value['created_at']));?></time>.</div>
+                                        <?php 
+                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
+                                        ?>
+                                        <?php if($image[1]) { ?>
+                                              <div class="blog-img">
+                                                 <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" alt="<?php echo $this->__('blog image') ?>" /> </a>
+                                                
+                                              </div> <!--blog-img-->                                                                                         
+                                        <?php } ?>
+						
+						
+						<p><?php echo ucfirst($recent_post_value['short_description']);?></p>
+					
+                        </div><!--blog_inner-->                                                                                        
+					</div> <!--col-lg-4 col-md-4 col-xs-12 col-sm-4-->
+
+<!-- End for version 4 -->
+
+<?php }elseif(($get_current_layout=='custom_static_page_five')){ ?> <!-- for version 5 -->
+			      <div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+					   <div class="blog_inner">
+                                        <?php 
+                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
+                                        ?>
+                                        <?php if($image[1]) { ?>
+                                              <div class="blog-img">
+                                                 <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" alt="<?php echo $this->__('blog image') ?>" /> </a>
+                                                 <div class="mask"> <a class="info" href="<?php echo $blog_url;?>"><?php echo $this->__('Read More') ?></a> </div>
+                                              </div> <!--blog-img-->                                                                                         
+                                        <?php } ?>
+						<a class="blog-title" href="<?php echo $blog_url;?>"><?php echo ucfirst($recent_post_value['title']);?></a>	
+						<div class="post-date"><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>">
+						      <?php echo date('M d,Y', strtotime($recent_post_value['created_at']));?><br/>
+						      <?php //echo date('Y', strtotime($recent_post_value['created_at']));?>
+					      </time>
+						</div>
+						<p><?php echo ucfirst($recent_post_value['short_description']);?></p>
+						
+                       </div><!--blog_inner-->                                                                                        
+					</div> <!--col-lg-4 col-md-4 col-xs-12 col-sm-4-->
+
+				<?php } else { ?>  <!-- for version 1,2 -->
+					
+					<div class="col-lg-4 col-md-4 col-xs-12 col-sm-4">
+					   <div class="blog_inner">
+                                        <?php 
+                                             $texthtml2 = $recent_post_value['blog_content'];
+                                             preg_match('/<img[^>]+src="{{media url="([^">]+)"/', $texthtml2, $image);
+                                        ?>
+                                        <?php if($image[1]) { ?>
+                                              <div class="blog-img">
+                                                 <a href="<?php echo $blog_url;?>"> <img src="<?php echo Mage::getBaseUrl('media') . $image[1];?>" alt="<?php echo $this->__('blog image') ?>" /> </a>
+                                                 <div class="mask"> <a class="info" href="<?php echo $blog_url;?>"><?php echo $this->__('Read More') ?></a> </div>
+                                              </div> <!--blog-img-->                                                                                         
+                                        <?php } ?>
+						<a class="blog-title" href="<?php echo $blog_url;?>"><?php echo ucfirst($recent_post_value['title']);?></a>	
+						<div class="post-date"><time class="entry-date" datetime="<?php echo date('c', strtotime($recent_post_value['created_at']));?>">
+						      <?php echo date('M d', strtotime($recent_post_value['created_at']));?><br/>
+						      <?php echo date('Y', strtotime($recent_post_value['created_at']));?>
+					      </time>
+						</div>
+						<p><?php echo ucfirst($recent_post_value['short_description']);?></p>
+						
+                       </div><!--blog_inner-->                                                                                        
+					</div> <!--col-lg-4 col-md-4 col-xs-12 col-sm-4-->
+
+				<?php } ?>
+
+					<?php
+                                     $i++;
+                                   }
+				}
+				?>
+  </div> <!-- row -->
+
+  <?php } ?> <!-- end for rest versions -->
+</div>

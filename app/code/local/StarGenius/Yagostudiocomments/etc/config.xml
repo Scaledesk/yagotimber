@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_Yagostudiocomments extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudiocomments
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+-->
+<config>
+    <modules>
+        <StarGenius_Yagostudiocomments>
+            <version>1.0.0</version>
+        </StarGenius_Yagostudiocomments>
+    </modules>
+    <global>
+        <resources>
+            <stargenius_yagostudiocomments_setup>
+                <setup>
+                    <module>StarGenius_Yagostudiocomments</module>
+                    <class>StarGenius_Yagostudiocomments_Model_Resource_Setup</class>
+                </setup>
+            </stargenius_yagostudiocomments_setup>
+        </resources>
+        <blocks>
+            <stargenius_yagostudiocomments>
+                <class>StarGenius_Yagostudiocomments_Block</class>
+            </stargenius_yagostudiocomments>
+        </blocks>
+        <helpers>
+            <stargenius_yagostudiocomments>
+                <class>StarGenius_Yagostudiocomments_Helper</class>
+            </stargenius_yagostudiocomments>
+        </helpers>
+        <models>
+            <stargenius_yagostudiocomments>
+                <class>StarGenius_Yagostudiocomments_Model</class>
+                <resourceModel>stargenius_yagostudiocomments_resource</resourceModel>
+            </stargenius_yagostudiocomments>
+            <stargenius_yagostudiocomments_resource>
+                <class>StarGenius_Yagostudiocomments_Model_Resource</class>
+                <entities>
+                    <yagocomment>
+                        <table>stargenius_yagostudiocomments_yagocomment</table>
+                    </yagocomment>
+                    <yagocomment_store>
+                        <table>stargenius_yagostudiocomments_yagocomment_store</table>
+                    </yagocomment_store>
+                </entities>
+            </stargenius_yagostudiocomments_resource>
+        </models>
+    </global>
+    <adminhtml>
+        <layout>
+            <updates>
+                <stargenius_yagostudiocomments>
+                    <file>stargenius_yagostudiocomments.xml</file>
+                </stargenius_yagostudiocomments>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <StarGenius_Yagostudiocomments>
+                    <files>
+                        <default>StarGenius_Yagostudiocomments.csv</default>
+                    </files>
+                </StarGenius_Yagostudiocomments>
+            </modules>
+        </translate>
+        <global_search>
+            <yagocomment>
+                <class>stargenius_yagostudiocomments/adminhtml_search_yagocomment</class>
+                <acl>stargenius_yagostudiocomments</acl>
+            </yagocomment>
+        </global_search>
+    </adminhtml>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <StarGenius_Yagostudiocomments before="Mage_Adminhtml">StarGenius_Yagostudiocomments_Adminhtml</StarGenius_Yagostudiocomments>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>

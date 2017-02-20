@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <StarGenius_CustomUpFront>
+            <version>1.1</version>
+        </StarGenius_CustomUpFront>
+    </modules>
+
+    <global> 
+         <fieldsets>
+            <sales_convert_quote>                           
+                <upfront_payment_field><to_order>*</to_order></upfront_payment_field>
+            </sales_convert_quote>
+
+            <sales_convert_order>                                              
+                <upfront_payment_field><to_quote>*</to_quote></upfront_payment_field>
+            </sales_convert_order>
+        </fieldsets>
+        <helpers>
+            <customupfront>
+                <class>StarGenius_CustomUpFront_Helper</class>
+            </customupfront>            
+        </helpers>
+
+        <models>
+            <customupfront>
+                <class>StarGenius_CustomUpFront_Model</class>
+                <resourceModel>customupfront_mysql4</resourceModel>
+            </customupfront>
+        </models>
+        <resources>
+            <customupfront_setup>
+                <setup>
+                    <module>StarGenius_CustomUpFront</module>
+                    <class>Mage_Sales_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </customupfront_setup>
+            <customupfront_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </customupfront_write>
+            <customupfront_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </customupfront_read>
+        </resources>
+
+         <events>
+            <sales_quote_save_before>
+                <observers>
+                    <customupfront>
+                        <type>singleton</type>
+                        <class>customupfront/observer</class>
+                        <method>saveCustomData</method>
+                    </customupfront>
+					
+                </observers>
+				
+            </sales_quote_save_before>
+			 <sales_order_place_before>
+                <observers>
+                    <customupfront>
+                        <class>customupfront/observer</class>
+                        <method>logUpdate</method>
+                        <type>singleton</type>
+                    </customupfront>
+                </observers>
+            </sales_order_place_before>
+        </events>
+
+        <blocks>
+            <customupfront>
+                <class>StarGenius_CustomUpFront_Block</class>
+            </customupfront>
+        </blocks>
+    </global>
+</config>

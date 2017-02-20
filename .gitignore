@@ -1,0 +1,60 @@
+
+# Created by https://www.gitignore.io/api/magento,sublimetext
+
+### Magento ###
+#--------------------------#
+# Magento Default Files    #
+#--------------------------#
+
+/app/etc/local.xml
+/media/*
+!/media/.htaccess
+!/media/customer/.htaccess
+!/media/dhl/logo.jpg
+!/media/downloadable/.htaccess
+!/media/xmlconnect/custom/ok.gif
+!/media/xmlconnect/original/ok.gif
+!/media/xmlconnect/system/ok.gif
+/var/*
+!/var/.htaccess
+!/var/package/*.xml
+
+### Magento Patch ###
+app/bootstrap.php
+shell/.htaccess
+dev/tests/functional
+app/etc/local.xml
+
+### SublimeText ###
+# cache files for sublime text
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+
+# workspace files are user-specific
+*.sublime-workspace
+
+# project files should be checked into the repository, unless a significant
+# proportion of contributors will probably not be using SublimeText
+# *.sublime-project
+
+# sftp configuration file
+sftp-config.json
+
+# Package control specific files
+Package Control.last-run
+Package Control.ca-list
+Package Control.ca-bundle
+Package Control.system-ca-bundle
+Package Control.cache/
+Package Control.ca-certs/
+Package Control.merged-ca-bundle
+Package Control.user-ca-bundle
+oscrypto-ca-bundle.crt
+bh_unicode_properties.cache
+
+# Sublime-github package stores a github token in this file
+# https://packagecontrol.io/packages/sublime-github
+GitHub.sublime-settings
+
+# End of https://www.gitignore.io/api/magento,sublimetext

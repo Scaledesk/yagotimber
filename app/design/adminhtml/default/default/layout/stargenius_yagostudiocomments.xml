@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * StarGenius_Yagostudiocomments extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_Yagostudiocomments
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+--> 
+<layout>
+    <adminhtml_yagostudiocomments_yagocomment_index>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>stargenius_yagostudiocomments/yagocomment</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="stargenius_yagostudiocomments/adminhtml_yagocomment" name="yagocomment" />
+
+        </reference>
+    </adminhtml_yagostudiocomments_yagocomment_index>
+    <adminhtml_yagostudiocomments_yagocomment_grid>
+        <block type="core/text_list" name="root" output="toHtml">
+            <block type="stargenius_yagostudiocomments/adminhtml_yagocomment_grid" name="yagocomment_grid"/>
+        </block>
+    </adminhtml_yagostudiocomments_yagocomment_grid>
+    <!-- Yagocomment add/edit action -->
+    <adminhtml_yagostudiocomments_yagocomment_edit>
+        <update handle="editor"/>
+        <reference name="menu">
+            <action method="setActive">
+                <menupath>stargenius_yagostudiocomments/yagocomment</menupath>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="stargenius_yagostudiocomments/adminhtml_yagocomment_edit" name="yagocomment_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="stargenius_yagostudiocomments/adminhtml_yagocomment_edit_tabs" name="yagocomment_tabs"></block>
+        </reference>
+    </adminhtml_yagostudiocomments_yagocomment_edit>
+
+</layout>

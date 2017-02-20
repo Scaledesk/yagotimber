@@ -1,0 +1,57 @@
+<?php 
+$config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate(); ?>
+
+<?php if(($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 3 -->
+<div class="page-heading">
+        <div class="page-title">
+          <h1><?php echo $this->__('Popular Search Terms') ?></h1>
+        </div><!--page-title-->
+</div><!--page-heading-->
+<?php } ?> <!-- For version 3 -->
+
+<?php if(($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 5 -->
+<div class="shop_header has_big_img">
+    <div class="shop_header_image_background  parallax loaded" data-stellar-background-ratio="&quot;0.5&quot;"> </div>
+    <div class="cms-bg-overlay"></div>
+    <div class="container">
+      <div class="page-title">
+          <h1><?php echo $this->__('Popular Search Terms') ?></h1>
+        </div>
+    </div>
+  </div>
+<?php } ?> <!-- For version 5 -->
+
+<?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3,5 -->
+<div class="main-container col1-layout wow bounceInUp animated">
+  <div class="main container">
+<?php } ?> <!-- For version 3,5 -->
+
+<?php if(($get_current_layout!='custom_static_page_three') && ($get_current_layout!='custom_static_page_five')) { ?> <!-- Exclude From version 3,5 -->
+<div class="page-title">
+    <h1><?php echo $this->__('Popular Search Terms') ?></h1>
+</div><!--page-title-->
+<?php } ?> <!-- Exclude From version 3,5 -->
+
+
+<div class="search-term">
+<?php if( sizeof($this->getTerms()) > 0 ): ?>
+    <ul class="tags-list">
+        <?php foreach ($this->getTerms() as $_term): ?>
+            <li><a href="<?php echo $this->getSearchUrl($_term) ?>" style="font-size:<?php echo $_term->getRatio()*70+75 ?>%;"><?php echo $this->htmlEscape($_term->getName()) ?></a></li>
+        <?php endforeach; ?>
+    </ul>
+<?php else: ?>
+    <p class="note-msg"><?php echo $this->__('There are no search terms available.'); ?></p>
+<?php endif; ?>
+ </div> <!--search-term-->
+
+   <?php if(($get_current_layout=='custom_static_page_three') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 3,5 -->
+    </div>
+  </div>
+<?php } ?> <!-- For version 3,5 -->

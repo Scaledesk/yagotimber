@@ -1,0 +1,35 @@
+<?php $config2 = Mage::getStoreConfig('web/default/cms_home_page'); 
+       $delimeterPosition = strrpos($config2, '|');
+       if ($delimeterPosition) {
+          $config2 = substr($config2, 0, $delimeterPosition);
+       }
+$get_current_layout = Mage::getModel('cms/page')->load($config2, 'identifier')->getRootTemplate();?>
+
+<?php if($this->getCurrencyCount() > 1): ?>
+      <!-- for version 1, 3 -->
+      <?php if(($get_current_layout=='custom_static_page_one') || ($get_current_layout=='custom_static_page_three')) { ?> <!-- For version 1, 3 -->
+	      <div class="form-currency">  
+		  <ul class="currencies_list">
+		      <?php foreach ($this->getCurrencies() as $_code => $_name): ?> 
+			  <li><a href="<?php echo $this->getSwitchCurrencyUrl($_code) . '?___store='.$_code;?>" title="<?php echo $this->htmlEscape($_code) ?>"> <?php echo Mage::app()->getLocale()->currency($_code)->getSymbol(); ?></a></li>
+		      <?php endforeach; ?>
+		  </ul>
+	      </div> <!--form-currency-->
+      <?php } ?> <!-- End For version 1, 3 -->
+
+  <?php if(($get_current_layout=='custom_static_page_two') || ($get_current_layout=='custom_static_page_four') || ($get_current_layout=='custom_static_page_five')) { ?> <!-- For version 2, 4, 5 -->
+	    <div class="dropdown block-currency-wrapper"> 
+		<a href="#" class="block-currency dropdown-toggle" data-target="#" data-toggle="dropdown" role="button"> <?php echo Mage::app()->getStore()->getCurrentCurrencyCode(); ?> <span class="caret"></span></a>  
+    <ul role="menu" class="dropdown-menu">
+        <?php foreach ($this->getCurrencies() as $_code => $_name): ?> 
+
+            <li role="presentation"><a href="<?php echo $this->getSwitchCurrencyUrl($_code) . '?___store='.$_code;?>" tabindex="-1" role="menuitem" title="<?php echo $this->htmlEscape($_code) ?>"> <?php echo Mage::app()->getLocale()->currency($_code)->getSymbol(); ?> - <?php echo $_code; ?></a></li>
+
+        <?php endforeach; ?>
+    </ul> 
+
+	
+              </div>
+
+      <?php } ?> <!-- End For version 2, 4 -->
+<?php endif; ?> 

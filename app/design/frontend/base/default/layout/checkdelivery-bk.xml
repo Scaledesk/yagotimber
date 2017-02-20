@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<catalog_product_view>
+		<reference name="head">
+			<action method="addItem"><type>skin_js</type><name>js/Checkdelivery/jquery-2.1.4.min.js</name></action>
+			<action method="addCss" ifconfig="checkdelivery/nsi_general_grp/active" ><stylesheet>css/checkdelivery/style.css</stylesheet></action>
+	  </reference>
+		<reference name="content">
+			<!--<block type="checkdelivery/checkdelivery" name="checkdelivery.checkdelivery" template="checkdelivery/checkdelivery.phtml"/>-->
+			 <block type="checkdelivery/checkdelivery" name="checkdelivery.checkdelivery">   
+				   <action method="setTemplate" ifconfig="checkdelivery/nsi_general_grp/active">  
+						<template>checkdelivery/checkdelivery.phtml</template>       
+					</action>
+			</block> 
+		</reference>
+    </catalog_product_view>
+</layout> 

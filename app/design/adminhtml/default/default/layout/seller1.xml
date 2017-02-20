@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+  <seller1_adminhtml_seller1_index>
+	<reference name="content">
+	  <block type="seller1/adminhtml_seller1" name="seller1" />
+	</reference>
+  </seller1_adminhtml_seller1_index>
+</layout>

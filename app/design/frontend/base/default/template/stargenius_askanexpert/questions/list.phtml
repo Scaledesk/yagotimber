@@ -1,0 +1,47 @@
+<?php 
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Question list template
+ *
+ * @category    StarGenius
+ * @package     StarGenius_AskAnExpert
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $_questionss = $this->getQuestionss(); ?>
+<div class="page-title questions-title">
+    <?php if (Mage::helper('stargenius_askanexpert/questions')->isRssEnabled()) : ?>
+        <a href="<?php echo Mage::helper('stargenius_askanexpert/questions')->getRssUrl();?>" class="link-rss"><?php echo Mage::helper('stargenius_askanexpert')->__('Subscribe to RSS Feed')?></a>
+    <?php endif;?>
+    <h1><?php echo Mage::helper('stargenius_askanexpert')->__('Questions') ?></h1>
+</div>
+<?php if ($_questionss->getSize() > 0) :?>
+    <?php echo $this->getPagerHtml(); ?>
+    <div class="questions-list-container">
+    <?php foreach ($_questionss as $_questions) : ?>
+        <div class="questions-list-item">
+            <a href="<?php echo $_questions->getQuestionsUrl()?>">
+                <?php echo $_questions->getName();?>
+            </a><br />
+        </div>
+    <?php endforeach;?>
+    </div>
+    <?php echo $this->getPagerHtml(); ?>
+<?php else : ?>
+    <?php echo Mage::helper('stargenius_askanexpert')->__('There are no questions at this moment');?>
+<?php endif;?>

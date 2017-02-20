@@ -1,0 +1,169 @@
+<?php
+/**
+ * Apptha
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.apptha.com/LICENSE.txt
+ *
+ * ==============================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * ==============================================================
+ * This package designed for Magento COMMUNITY edition
+ * Apptha does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * Apptha does not provide extension support in case of
+ * incorrect edition usage.
+ * ==============================================================
+ *
+ * @category    Apptha
+ * @package     Apptha_Marketplace
+ * @version     1.2.3
+ * @author      Apptha Team <developers@contus.in>
+ * @copyright   Copyright (c) 2014 Apptha. (http://www.apptha.com)
+ * @license     http://www.apptha.com/LICENSE.txt
+ * 
+ */?>
+ 
+<?php 
+/**
+ * get seller id
+ */
+$id = $this->getRequest()->getParam('id');
+$customerData = Mage::getModel('customer/customer')->load($id);
+$vacationMode = Mage::getModel('marketplace/vacationmode')->load($id,'seller_id');
+$vacationStatus = $vacationMode->getVacationStatus();
+$currentUrl = Mage::helper('core/url')->getCurrentUrl();
+$currentDate = Mage::getModel('core/date')->date('Y-m-d');
+
+/**
+ * display product collection
+ */
+$sellerPage = Mage::getModel('marketplace/sellerprofile')->collectprofile($id);
+
+    /**
+     * Display Reviews and Ratings
+     */
+    $displaySeller  = Mage::getModel('marketplace/sellerreview')->displayReview($id);
+    $firstStar     = $secondStar = $thirdStar = $fourthStar = $fifthStar = $advancedTotal = $ratingbar_color = 0;
+   
+    /**
+     * ITERATING ALL RATINGS
+     */ 
+    $advancedTotal=0;
+    foreach ($displaySeller as $individualStar) {
+        $advancedTotal = $advancedTotal + 1;
+        if ($individualStar['rating'] == 1) {
+            $firstStar = $firstStar + 1;
+        } elseif ($individualStar['rating'] == 2) {
+            $secondStar = $secondStar + 1;
+        } elseif ($individualStar['rating'] == 3) {
+            $thirdStar = $thirdStar + 1;
+        } elseif ($individualStar['rating'] == 4) {
+            $fourthStar = $fourthStar + 1;
+        } elseif($individualStar['rating'] == 5) {
+            $fifthStar = $fifthStar + 1;
+        }
+    }
+    
+    /**
+     * CALCULATING INDIVIDUAL RATINGS    
+     */ 
+    $advancedOne = $advancedTwo = $advancedThree = $advancedFour = $advancedFive = 0;
+    if($advancedTotal != 0){   
+    $advancedOne   = ($firstStar / $advancedTotal) * 100;
+    $advancedTwo   = ($secondStar / $advancedTotal) * 100;
+    $advancedThree = ($thirdStar / $advancedTotal) * 100;
+    $advancedFour  = ($fourthStar / $advancedTotal) * 100;
+    $advancedFive  = ($fifthStar / $advancedTotal) * 100;
+    }
+    $positiveFeedBack = ($advancedFour + $advancedFive)/2;
+    $totalRatings = $firstStar + $secondStar + $thirdStar + $fourthStar + $fifthStar;
+   
+    ?>      
+      	<div class="block"> 
+      
+      <div class="block-title"><strong><span><?php echo $this->__('Feedback Ratings'); ?></span></strong></div>
+       <div class="block-content">	<div class="individual-star-ratings">
+       <ul class="rating-histogram">
+            <li class="advanced-font-small"><span><?php echo $this->__('5 Stars'); ?></span>
+                <div class="rating-bars">
+                    <div class="progress  " style="width:<?php echo ceil($advancedFive); ?>%; background-color: <?php echo '#' . $ratingbar_color; ?> !important;"></div>
+                </div> &nbsp;<strong><?php echo $fifthStar; ?> </strong>
+            </li>
+            <li class="advanced-font-small"><span><?php echo $this->__('4 Stars'); ?></span>
+                <div class="rating-bars">
+                    <div class="progress  " style="width:<?php echo ceil($advancedFour); ?>%; background-color: <?php echo '#' . $ratingbar_color; ?> !important;"></div>
+                </div> &nbsp;<strong><?php echo $fourthStar; ?> </strong>
+            </li>
+            <li class="advanced-font-small"><span><?php echo $this->__('3 Stars'); ?></span>
+                <div class="rating-bars">
+                    <div class="progress  " style="width:<?php echo ceil($advancedThree); ?>%; background-color: <?php echo '#' . $ratingbar_color; ?> !important;"></div>
+                </div> &nbsp;<strong><?php echo $thirdStar; ?> </strong>
+            </li>
+            <li class="advanced-font-small"><span><?php echo $this->__('2 Stars'); ?></span>
+                <div class="rating-bars">
+                    <div class="progress  " style="width:<?php echo ceil($advancedTwo); ?>%; background-color: <?php echo '#' . $ratingbar_color; ?> !important;"></div>
+                </div> &nbsp;<strong><?php echo $secondStar; ?> </strong>
+            </li>
+            <li class="advanced-font-small"><span><?php echo $this->__('1 Stars'); ?></span>
+                <div class="rating-bars">
+                    <div class="progress  " style="width:<?php echo ceil($advancedOne); ?>%; background-color: <?php echo '#' . $ratingbar_color; ?> !important;"></div>
+                </div> &nbsp;<strong><?php echo $firstStar; ?> </strong>
+            </li>
+        </ul>
+
+        <div class="positive_review_ratings">            
+            <div class="positive_review_positive"><?php echo $this->__('Positive'); ?></div>
+            <div class="positive_review_neutral"><?php echo $this->__('Neutral'); ?></div>
+            <div class="positive_review_negative"><?php echo $this->__('Negative'); ?></div>
+        </div>  
+                               
+        <div class="customer_review">
+        <?php
+        /**
+         * Get Reviews and Ratings 
+         */ 
+        $reviewCount = Mage::helper('marketplace/marketplace')->getallreviewdata($id);
+        if (count($reviewCount) > 0) { 
+            $customerId = $productId = '';?>            
+            <a class="mp_view_all" href='<?php echo $this->getAllreview($customerId, $id, $productId); ?>'> <?php echo $this->__('View all Reviews'); ?> </a>
+                
+        <?php  }
+        if (Mage::getStoreConfig('marketplace/seller_review/enable_review')) {
+            if (Mage::getSingleton('customer/session')->isLoggedIn()) {
+                $customerId    = Mage::getSingleton('customer/session')->getId();
+                $orders        = Mage::helper('marketplace/marketplace')->allowReview($customerId);
+                $orderId       = $orders->getFirstItem()->getId();
+                $endDate       = $orders->getFirstItem()->getCreatedAt();
+                $currentDate   = Mage::getModel('core/date')->date('Y-m-d H:i:s');
+                $days           = abs(strtotime($currentDate) - strtotime($endDate));
+                $years          = floor($days / (365*60*60*24));
+                $months         = floor(($days - $years * 365*60*60*24) / (30*60*60*24));
+                $diff           = floor(($days - $years * 365 * 60 * 60 * 24 - $months * 30 * 60 * 60 * 24) / (60 * 60 * 24));
+                $order          = Mage::getModel('sales/order')->load($orderId);
+                $items          = $order->getAllItems();
+                $getitem        = array_slice($items, -1, 1, true);
+                foreach ($getitem as $item) {
+                    $productId     = $item->getProductId();
+                    $products       = Mage::getModel('catalog/product')->load($productId);
+                    $productSeller = $products->getSellerId();                   
+                    $checkReview    = Mage::getModel('marketplace/sellerreview')->checkReview($customerId, $id, $productId);
+                    if ($diff <= 30 && $productSeller == $id && $checkReview == '') {
+                        ?>
+                         <a href='<?php echo $this->getAllreview($customerId, $id, $productId) . '#seller_review'; ?>'> <?php echo $this->__('Write a Review to this Seller'); ?> </a> 
+                 
+            <?php
+            }
+        }
+    } else { ?>       
+                <div>
+                    <h6><?php echo $this->__('Have you bought something from this seller?'); ?> </h6>
+                    <a class="mp_view_allreview" href='<?php echo $this->loginUrl(); ?>'> <?php echo $this->__('Login to Review'); ?> </a>
+               </div>
+    <?php }
+} ?></div>    </div>
+</div></div>

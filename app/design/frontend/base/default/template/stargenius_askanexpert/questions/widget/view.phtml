@@ -1,0 +1,45 @@
+<?php
+/**
+ * StarGenius_AskAnExpert extension
+ * 
+ * NOTICE OF LICENSE
+ * 
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ * 
+ * @category       StarGenius
+ * @package        StarGenius_AskAnExpert
+ * @copyright      Copyright (c) 2016
+ * @license        http://opensource.org/licenses/mit-license.php MIT License
+ */
+/**
+ * Question view widget template
+ *
+ * @category    StarGenius
+ * @package     StarGenius_AskAnExpert
+ * @author      Ultimate Module Creator
+ */
+?>
+<?php $_questions = $this->getCurrentQuestions();?>
+<?php if ($_questions) :?>
+    <div class="questions-widget-view">
+        <h3><?php echo $_questions->getName()?></h3>
+        <div>
+            <div class="name-widget">
+                <?php echo Mage::helper('stargenius_askanexpert')->__('Name');?>:<?php echo $_questions->getName();?>
+            </div>
+            <div class="email-widget">
+                <?php echo Mage::helper('stargenius_askanexpert')->__('Email');?>:<?php echo $_questions->getEmail();?>
+            </div>
+            <div class="questionasked-widget">
+                <?php echo Mage::helper('stargenius_askanexpert')->__('Question Asked');?>:<?php echo $_questions->getQuestionasked();?>
+            </div>
+            <div class="expertreply-widget">
+                <?php echo Mage::helper('stargenius_askanexpert')->__('Expert Reply');?>:<?php echo $_questions->getExpertreply();?>
+            </div>
+
+        </div>
+    </div>
+<?php endif;?>

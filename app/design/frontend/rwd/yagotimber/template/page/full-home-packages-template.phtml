@@ -1,0 +1,390 @@
+<p>
+<script type="text/javascript" src="http://www.site4clientdemo.com/yagotimber/skin/frontend/rwd/yagotimber/js/jquery.easing.min.js"></script>
+<script type="text/javascript" src="http://www.site4clientdemo.com/yagotimber/skin/frontend/rwd/yagotimber/js/jquery.mixitup.min.js"></script>
+<script type="text/javascript">// <![CDATA[
+jQuery(function () {
+		
+		var filterList = {
+		
+			init: function () {
+			
+				// MixItUp plugin
+				// http://mixitup.io
+				jQuery('#portfoliolist').mixitup({
+					targetSelector: '.portfolio',
+					filterSelector: '.filter',
+					effects: ['fade'],
+					easing: 'snap',
+					// call the hover effect
+					onMixEnd: filterList.hoverEffect()
+				});				
+			
+			},
+			
+			hoverEffect: function () {
+			
+				// Simple parallax effect
+				jQuery('#portfoliolist .portfolio').hover(
+					function () {
+						jQuery(this).find('.label').stop().animate({bottom: 0}, 200, 'easeOutQuad');
+						jQuery(this).find('img').stop().animate({top: -30}, 500, 'easeOutQuad');				
+					},
+					function () {
+						jQuery(this).find('.label').stop().animate({bottom: -40}, 200, 'easeInQuad');
+						jQuery(this).find('img').stop().animate({top: 0}, 300, 'easeOutQuad');								
+					}		
+				);				
+			
+			}
+
+		};
+		
+		// Run the show!
+		filterList.init();
+		
+		
+	});
+// ]]></script>
+</p>
+<div class="container">
+<div class="full_home_menu">
+<ul>
+<li><a class="active" href="http://www.yagotimber.com/full-packages-two-bhk.html">2 BHK (730 <span>sqft</span>)</a></li>
+<li><a href="http://www.yagotimber.com/full-packages-three-bhk.html">3 BHK (1200 <span>sqft</span>)</a></li>
+<li><a href="http://www.yagotimber.com/full-packages-four-bhk.html">4 BHK</a></li>
+<li><a href="http://www.yagotimber.com/full-packages-villa.html">VILLA</a></li>
+<li><a href="http://www.yagotimber.com/full-packages-penthouse.html">Penthouse</a></li>
+</ul>
+</div>
+<div class="full_home_slider">
+<div id="caption-slide" class="slider-container">
+<div class="slider">
+<div class="slide"><img alt="" src="http://www.yagotimber.com/media/wysiwyg/2bhk2.jpg" />
+<div class="full_home_slider_text">
+<div class="full_home_slider_left1">
+<h2>This Package Include</h2>
+<ul>
+<li>Bed</li>
+<li>Table</li>
+<li>Wadrobe</li>
+<li><span class="emi_home">EMI</span> Available on 0% interest</li>
+</ul>
+</div>
+<div class="full_home_slider_right1">Total Price<br /><span>Rs. 4999/-</span><br /><a class="fadeandscaledesigner_open" href="#fadeandscaledesigner">Book free design consultation</a></div>
+</div>
+</div>
+<div class="slide"><img alt="" src="http://www.yagotimber.com/media/wysiwyg/2bhk2.jpg" />
+<div class="full_home_slider_text">
+<div class="full_home_slider_left1">
+<h2>This Package Include</h2>
+<ul>
+<li>Bed</li>
+<li>Table</li>
+<li>Wadrobe</li>
+<li><span class="emi_home">EMI</span> Available on 0% interest</li>
+</ul>
+</div>
+<div class="full_home_slider_right1">Total Price<br /><span>Rs. 5789/-</span><br /><a class="fadeandscaledesigner_open" href="#fadeandscaledesigner">Book free design consultation</a></div>
+</div>
+</div>
+</div>
+<div id="prev" class="switch"><img alt="" src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/prev.png" /></div>
+<div id="next" class="switch"><img alt="" src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/next.png" /></div>
+</div>
+</div>
+<div class="full_heading">
+<h2>THIS PACKAGE INCLUDE</h2>
+<h3>THIS PACKAGE INCLUDE</h3>
+</div>
+<div class="main_filter">
+<ul id="filters" class="clearfix">
+<li>
+<span class="filter active" data-filter="Living Bedroom Dining Kids Study_room"><div class="all01">&nbsp;</div>All</span></li>
+<li>
+<span class="filter" data-filter="Living"><div class="living">&nbsp;</div>Living</span></li>
+<li>
+<span class="filter" data-filter="Bedroom"><div class="bedroom">&nbsp;</div>Bedroom</span></li>
+<li>
+<span class="filter" data-filter="Dining"><div class="dining">&nbsp;</div>Dining</span></li>
+<li>
+<span class="filter" data-filter="Kids"><div class="kids">&nbsp;</div>Kids</span></li>
+<li>
+<span class="filter" data-filter="Study_room"><div class="study-room">&nbsp;</div>Study room</span></li>
+<li>
+<span class="filter" data-filter="Wardrobe"><div class="wardrobe">&nbsp;</div>Wardrobe</span></li>
+</ul>
+<div id="portfoliolist">
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">sofa</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Living" data-cat="Living">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Visual Infography</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Wardrobe" data-cat="Wardrobe">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Visual Infography</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Study_room" data-cat="Study_room">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Sonor's Design</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Bedroom" data-cat="Bedroom">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Typography Company</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Living" data-cat="Living">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Weatherette</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Bedroom" data-cat="Bedroom">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">BMF</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Wardrobe" data-cat="Wardrobe">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Techlion</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">KittyPic</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Living" data-cat="Living">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Graph Plotting</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Bedroom" data-cat="Bedroom">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">QR Quick Response</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Mobi Sock</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Village Community Church</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Dining" data-cat="Dining">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Domino's Pizza</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Study_room" data-cat="Study_room">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Backend Admin</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Dining" data-cat="Dining">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Instagram</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Study_room" data-cat="Study_room">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Student Guide</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Dining" data-cat="Dining">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Scoccer</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Dining" data-cat="Dining">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">3D Map</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Study_room" data-cat="Study_room">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Note</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Native Designers</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Bookworm</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Dining" data-cat="Dining">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Sandwich</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Bedroom" data-cat="Bedroom">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Reality</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+<div class="portfolio Kids" data-cat="Kids">
+<div class="portfolio-wrLivinger"><img alt="" src="http://www.woodenstreet.com/image/cache/data/Looks/alfonso%20Grey%20look-1000x700.jpg" />
+<div class="label">
+<div class="label-text"><a class="text-title">Speciallisterne</a></div>
+<div class="label-bg">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="interior2">
+<h4>BOOK FREE CONSULTATION</h4>
+<div class="inter-book">
+<h3>The consultation fee is absolutely free and there are no hidden charges</h3>
+<script type="text/javascript">// <![CDATA[
+function validateOptionsCallback(elmId, result)
+					{
+				        var container = $(elmId).up('ul.options-list');
+				        if (result == 'failed') {
+				            container.removeClassName('validation-passed');
+				            container.addClassName('validation-failed');
+				        } else {
+				            container.removeClassName('validation-failed');
+				            container.addClassName('validation-passed');
+				        }
+				    }
+// ]]></script>
+<div class="pop-detail">&nbsp;</div>
+<div class="pop-field">
+<?php echo $this->getLayout()->createBlock('formbuilder/frontend_form')->setData('form_id','6')->setTemplate('formbuilder/form.phtml')->toHtml(); ?>
+</div>
+<script type="text/javascript">// <![CDATA[
+var myForm = new VarienForm('custom_form', true);
+// ]]></script>
+<style type="text/css"><!--
+#custom_form .fieldset, #custom_form .form-list {background-color: }
+--></style>
+<!--if(count($currentFormFieldsCollection))--> <!--if(isset($currentForm))--></div>
+</div>
+</div>
+<!-- Fade & scale -->
+<div id="fadeandscaledesigner" class="well"><a class="fadeandscaledesigner_close close02">X</a>
+<div class="col-md-5 col-sm-12 col-xs-12">
+<div class="pop-img1">
+<div class="register007">
+<ul>
+<li><img alt="" src="http://www.yagotimber.com/skin/frontend/base/default/kit-price.png" /> <span>Starting from <b>Rs 50,000</b></span></li>
+<li><img alt="" src="http://www.yagotimber.com/skin/frontend/base/default/cupen4.png" /> <span>5 years <b>WARRANTY</b></span></li>
+<li><img alt="" src="http://www.yagotimber.com/skin/frontend/base/default/kit-delivery.png" /> <span><b>30 days </b> delivery</span></li>
+<li><img alt="" src="http://www.yagotimber.com/skin/frontend/base/default/cupen3.png" /> <span>Free <b>INSTALLATION</b></span></li>
+</ul>
+</div>
+<img class="register-img" alt="Register" src="http://www.yagotimber.com/skin/frontend/rwd/yagotimber/images/register-popup.png" /></div>
+</div>
+<div class="col-md-7 col-sm-12 col-xs-12">
+<?php echo $this->getLayout()->createBlock('formbuilder/frontend_form')->setData('form_id','7')->setTemplate('formbuilder/form.phtml')->toHtml(); ?>
+</div>
+</div>
+<script type="text/javascript">// <![CDATA[
+jQuery(document).ready(function () {
+
+    jQuery('#fadeandscaledesigner').popup({
+        pagecontainer: '.container',
+        transition: 'all 0.3s'
+    });
+
+});
+// ]]></script>
+<style><!--
+#fadeandscaledesigner {
+    -webkit-transform: scale(0.8);
+       -moz-transform: scale(0.8);
+        -ms-transform: scale(0.8);
+            transform: scale(0.8);
+}
+.popup_visible #fadeandscaledesigner {
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+            transform: scale(1);
+}
+--></style>

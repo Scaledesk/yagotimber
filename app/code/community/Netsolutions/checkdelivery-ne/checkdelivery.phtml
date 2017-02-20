@@ -1,0 +1,38 @@
+<div class="block block-list block-check-delivery">
+   
+    <div class="check_box" >
+			
+		<div class="check1"><img src="http://www.site4clientdemo.com/yagotimber/skin/frontend/rwd/yagotimber/images/check-free.png"> <?php echo $this->__('Check product availability');?></div>	
+			<input name="zipcode" size="17" type="text" id="zipcode" maxlength="10" class="input-text check2" placeholder="<?php echo $this->__('Enter ZIP Code'); ?>"/>
+		
+			<div id="loading_checkDel" class="loading_checkDel" style="display:none;"><img src="<?php echo $this->getSkinUrl('images/ajax-loader-2.gif');?>"></div>
+			
+			
+			<input type="hidden" name="sku" id="sku" value="<?php echo Mage::registry('product')->getSku();?>"/>
+			<button type="button" name="zip-check" title="Check" class="button" id="zip-check" ><span><span><?php echo $this->__('CHECK'); ?></span></span></button>
+			<div id="delivery-message"></div>
+			<?php $defaultHtml = Mage::getStoreConfig('checkdelivery/general/default_html'); ?>
+			<div id="delivery-html"><?php echo $defaultHtml ?></div>
+			
+		<br>		
+    </div>
+</div>
+<script>
+	$j = jQuery.noConflict();
+	Event.observe('zip-check', 'click', function(event){
+		 $j('.loading_checkDel').show();
+		 
+		new Ajax.Request("<?php echo $this->getUrl('checkdelivery/index/index') ?>", {
+			
+			method: "get",
+			parameters: {zipcode : $('zipcode').value,sku : $('sku').value },
+			onSuccess: function(transport) {
+				 $j('.loading_checkDel').hide();
+				 var json = transport.responseText.evalJSON();
+				 $('delivery-message').update(json.message);				 
+				 $('delivery-message').setStyle({color: json.color});
+				 $('delivery-html').update(json.html);	
+			}
+		});
+	});
+</script>
